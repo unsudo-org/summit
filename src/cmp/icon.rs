@@ -1,17 +1,14 @@
 use super::*;
 
-#[derive(Props, Clone, PartialEq)]
-pub struct IconProps {
-    pub w: String,
-    pub url: Asset,
-    pub class: Option<String>,
-    pub style: Option<String>
-}
-
 #[component]
-pub fn Icon(props: IconProps) -> Element {
+pub fn Icon(
+    w: String,
+    url: Asset,
+    class: Option<String>,
+    style: Option<String>
+) -> Element {
     rsx!(
-        ::diogen::layout::Col {
+        div {
             style: format!(
                 r#"
                     min-width: {};
@@ -23,10 +20,10 @@ pub fn Icon(props: IconProps) -> Element {
                     color: {};
                     {}
                 "#,
-                props.w,
-                props.url,
+                w,
+                url,
                 color::SILVER,
-                props.style.to_owned().unwrap_or_default()
+                style.to_owned().unwrap_or_default()
             )
         }
     )
