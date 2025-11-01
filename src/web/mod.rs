@@ -9,6 +9,7 @@ mod route;
     icon
     redirect_icon
     redirect
+    shape
 );
 
 #[derive(Debug, Clone, Routable, PartialEq)]
