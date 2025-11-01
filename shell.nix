@@ -1,17 +1,26 @@
 { pkgs ? import <nixpkgs> {} }:
 
-pkgs.mkShell {
-  buildInputs = [
-    pkgs.rustc
-    pkgs.cargo
-  ];
+with pkgs;
 
-  shellHook = ''
-    export PATH=$HOME/.cargo/bin:$PATH
-    REQUIRED_VERSION="0.2.104"
-    if ! command -v wasm-bindgen >/dev/null 2>&1 || [[ "$(wasm-bindgen --version)" != *"$REQUIRED_VERSION"* ]]; then
-      echo "Installing wasm-bindgen-cli $REQUIRED_VERSION via cargo..."
-      cargo install -f wasm-bindgen-cli --version $REQUIRED_VERSION
-    fi
-  '';
+mkShell {
+    buildInputs = [
+        rustc
+        cargo
+        openssl
+        pkg-config
+        clang
+        llvm
+        cmake
+        perl
+        python3
+    ];
+
+	nativeBuildInputs = [
+		wasm-bindgen-cli
+		dioxus-cli
+	];
+
+	shellHook = ''
+		export PKG_CONFIG_PATH="${openssl.dev}/lib/pkgconfig"
+	'';
 }
