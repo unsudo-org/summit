@@ -4,7 +4,7 @@ use super::*;
 
 #[derive(Clone)]
 #[derive(PartialEq)]
-pub enum Model {
+pub enum ShapeModel {
     CrossFlow,
     QuadCore,
     Eclipse,
@@ -42,7 +42,7 @@ pub enum Model {
     WaffleGrid
 }
 
-impl ::std::fmt::Display for Model {
+impl ::std::fmt::Display for ShapeModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         let s: &str = match self {
             Self::CrossFlow => "M 228 0 C 172.772 0 128 44.772 128 100 L 128 0 L 0 0 L 0 28 C 0 83.228 44.772 128 100 128 L 0 128 L 0 256 L 28 256 C 83.228 256 128 211.228 128 156 L 128 256 L 256 256 L 256 228 C 256 172.772 211.228 128 156 128 L 256 128 L 256 0 Z",
@@ -86,7 +86,7 @@ impl ::std::fmt::Display for Model {
 }
 
 #[component]
-pub fn Shape(w: f32, h: f32, model: Model) -> Element {
+pub fn Shape(w: f32, h: f32, model: ShapeModel) -> Element {
     rsx!(
         svg {
             xmlns: "http://www.w3.org/2000/svg",

@@ -21,16 +21,18 @@ mod font {
 #[component]
 fn Home() -> Element {
     rsx!(
-        ::diogen::layout::Page {
-            scroll_snap: diogen::layout::PageScrollSnap::Proximity,
+        cmp::Page {
+            scroll_snap: cmp::PageScrollSnap::Proximity,
             style: format!(
                 r#"
                     background: {};
                 "#,
                 color::RAISIN_BLACK
             ),
-            ::diogen::layout::PageItem {
-                top: rsx!(),
+            cmp::PageItem {
+                "Hello World"
+            }
+            cmp::PageItem {
                 "Hello World"
             }
         }

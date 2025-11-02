@@ -2,8 +2,8 @@ use super::*;
 
 #[component]
 pub fn Icon(
-    w: String,
     url: Asset,
+    w: String,
     class: Option<String>,
     style: Option<String>
 ) -> Element {
@@ -23,7 +23,7 @@ pub fn Icon(
                 w,
                 url,
                 color::SILVER,
-                style.to_owned().unwrap_or_default()
+                style.unwrap_or_default()
             )
         }
     )
