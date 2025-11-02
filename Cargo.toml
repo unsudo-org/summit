@@ -1,27 +1,19 @@
-package.name = "summit"
-package.version = "0.1.0"
-package.edition = "2021"
-package.publish = false
-dependencies.dioxus.version = ">=0.6.0,<1.0.0"
-dependencies.dioxus.features = [
-    "router",
-    "fullstack"
-]
-dependencies.diogen.version = ">=0.5.2,<1.0.0"
-dependencies.modwire.version = "*"
-dependencies.once_cell.version = "*"
-features.default = [
-    "web"
-]
-features.web = [
-    "dioxus/web"
-]
-features.desktop = [
-    "dioxus/desktop"
-]
-features.mobile = [
-    "dioxus/mobile"
-]
+[package]
+name = "summit"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+dioxus = { version = ">=0.6.0,<1.0.0", features = ["router", "fullstack"] }
+modwire = { version = ">=0.1.0,<1.0.0" }
+once_cell = { version = ">=1.0.0,<2.0.0" }
+
+[features]
+default = ["web"]
+web = ["dioxus/web"]
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]
 
 [profile]
 
