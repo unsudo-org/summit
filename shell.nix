@@ -1,25 +1,38 @@
-{ pkgs ? import (builtins.fetchTarball {
-	url = "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixpkgs-unstable.tar.gz";
-}) {} }:
+{ 
+	pkgs ? import (
+		builtins.fetchTarball {
+			url = "https://github.com/NixOS/nixpkgs/archive/88683646458dfafc95051c09f62c5b97d4249fcc.tar.gz";
+		}
+	) {}
+}:
 
-pkgs.mkShell {
+with pkgs;
+
+mkShell {
 	buildInputs = [
-		pkgs.rustc
-		pkgs.cargo
-		pkgs.openssl
-		pkgs.pkg-config
-		pkgs.clang
-		pkgs.llvm
-		pkgs.cmake
-		pkgs.perl
-		pkgs.python3
+		rustc
+		cargo
+		openssl
+		pkg-config
+		clang
+		llvm
+		cmake
+		perl
+		python3
 	];
 	
 	nativeBuildInputs = [
-		pkgs.wasm-bindgen-cli
-		pkgs.dioxus-cli
+		wasm-bindgen-cli
+		dioxus-cli
 	];
 
-	RUST_BACKTRACE = 1;
-	PKG_CONFIG_PATH = "PKG_CONFIG_PATH=${pkgs.openssl.dev}/lib/pkgconfig";
+	# after launching `nix-shell`
+	# cargo install wasm-bindgen-cli
+
+	shellHook = ''
+		export PATH="$HOME/.cargo/bin:$PATH"
+	'';
+
+	RUST_BACKTRACE = 0;
+	PKG_CONFIG_PATH = "PKG_CONFIG_PATH=${openssl.dev}/lib/pkgconfig";
 }
