@@ -1,28 +1,25 @@
-{ pkgs ? import <nixpkgs> {} }:
-let
-	pin = import (builtins.fetchTarball {
-		url = "https://github.com/NixOS/nixpkgs/archive/3609928eec5894d5a483a14f81346f53480619f9.tar.gz";
-	}) {};
-in
-	pkgs.mkShell {
-		buildInputs = [
-			pin.rustc
-			pin.cargo
-			pin.openssl
-			pin.pkg-config
-			pin.clang
-			pin.llvm
-			pin.cmake
-			pin.perl
-			pin.python3
-		];
+{ pkgs ? import (builtins.fetchTarball {
+	url = "https://github.com/NixOS/nixpkgs/archive/refs/heads/nixpkgs-unstable.tar.gz";
+}) {} }:
 
-		nativeBuildInputs = [
-			pin.wasm-bindgen-cli
-			pin.dioxus-cli
-		];
+pkgs.mkShell {
+	buildInputs = [
+		pkgs.rustc
+		pkgs.cargo
+		pkgs.openssl
+		pkgs.pkg-config
+		pkgs.clang
+		pkgs.llvm
+		pkgs.cmake
+		pkgs.perl
+		pkgs.python3
+	];
+	
+	nativeBuildInputs = [
+		pkgs.wasm-bindgen-cli
+		pkgs.dioxus-cli
+	];
 
-		shellHook = ''
-			export PKG_CONFIG_PATH="${pin.openssl.dev}/lib/pkgconfig"
-		'';
-	}
+	RUST_BACKTRACE = 1;
+	PKG_CONFIG_PATH = "PKG_CONFIG_PATH=${pkgs.openssl.dev}/lib/pkgconfig";
+}
