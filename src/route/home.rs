@@ -12,7 +12,9 @@ pub fn Home() -> Element {
                 color::RAISIN_BLACK
             ),
             cmp::PageItem {
-                "Hello World"
+                cmp::NavbarBuild {
+                    
+                }
             }
             cmp::PageItem {
                 "Hello World"

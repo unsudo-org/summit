@@ -1,7 +1,7 @@
 { 
 	pkgs ? import (
 		builtins.fetchTarball {
-			url = "https://github.com/NixOS/nixpkgs/archive/88683646458dfafc95051c09f62c5b97d4249fcc.tar.gz";
+			url = "https://github.com/NixOS/nixpkgs/archive/caece28c8ee20e6b77323a784451262b470b47c8.tar.gz";
 		}
 	) {}
 }:

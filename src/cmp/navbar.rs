@@ -5,7 +5,10 @@ pub fn NavbarBuild() -> Element {
     rsx!(
         Navbar {
             left: rsx!(
-
+                Logo {
+                    mode: LogoMode::Icon,
+                    color: "#000000"
+                }
             ),
             right: rsx!(
 
@@ -33,6 +36,8 @@ pub fn Navbar(
                     align-items: center;
                     min-width: 100%;
                     max-width: 100%;
+                    padding-left: 10px;
+                    padding-right: 10px;
                     {}
                 "#,
                 style.unwrap_or_default()
