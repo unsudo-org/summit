@@ -1,26 +1,28 @@
 { pkgs ? import <nixpkgs> {} }:
+let
+	pin = import (builtins.fetchTarball {
+		url = "https://github.com/NixOS/nixpkgs/archive/3609928eec5894d5a483a14f81346f53480619f9.tar.gz";
+	}) {};
+in
+	pkgs.mkShell {
+		buildInputs = [
+			pin.rustc
+			pin.cargo
+			pin.openssl
+			pin.pkg-config
+			pin.clang
+			pin.llvm
+			pin.cmake
+			pin.perl
+			pin.python3
+		];
 
-with pkgs;
+		nativeBuildInputs = [
+			pin.wasm-bindgen-cli
+			pin.dioxus-cli
+		];
 
-mkShell {
-    buildInputs = [
-        rustc
-        cargo
-        openssl
-        pkg-config
-        clang
-        llvm
-        cmake
-        perl
-        python3
-    ];
-
-	nativeBuildInputs = [
-		wasm-bindgen-cli
-		dioxus-cli
-	];
-
-	shellHook = ''
-		export PKG_CONFIG_PATH="${openssl.dev}/lib/pkgconfig"
-	'';
-}
+		shellHook = ''
+			export PKG_CONFIG_PATH="${pin.openssl.dev}/lib/pkgconfig"
+		'';
+	}
