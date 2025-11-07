@@ -62,28 +62,117 @@ pub fn Home() -> Element {
                         ),
                         "Layer 1.5 Build on top of Polkadot JAM"
                     }
-                    cmp::Shape {
-                        w: 400.0,
-                        h: 400.0,
-                        model: cmp::ShapeModel::random(),
-                        color: color::ROSE_POMPADOUR
-                    }
-                    cmp::Shape {
-                        w: 250.0,
-                        h: 250.0,
-                        model: cmp::ShapeModel::random(),
-                        color: color::ROSE_POMPADOUR
-                    }
-                    cmp::Shape {
-                        w: 250.0,
-                        h: 250.0,
-                        model: cmp::ShapeModel::random(),
-                        color: color::ROSE_POMPADOUR
+                    HeroSectionWithAsset {
+                        image: rsx!(
+                            cmp::Shape {
+                                w: 128.0,
+                                h: 128.0,
+                                model: cmp::ShapeModel::random(),
+                                color: color::TIMBERWOLF
+                            }
+                        )
                     }
                 }
             }
             cmp::PageItem {
                 "Hello World"
+            }
+        }
+    )
+}
+
+
+// MARK: Hero
+
+mod hero {
+    use super::*;
+
+    #[component]
+    pub fn Heading(
+        children: Option<Element>
+    ) -> Element {
+        rsx!(
+            h1 {
+                style: format!(
+                    r#"
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        font-family: {};
+                        font-weight: normal;
+                        color: {};
+                    "#,
+                    font::BR_COBANE,
+                    color::TIMBERWOLF
+                ),
+                { children }
+            }
+        )
+    }
+
+    #[component]
+    pub fn SubHeading(
+        children: Option<Element>
+    ) -> Element {
+        rsx!(
+            h2 {
+                style: format!(
+                    r#"
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        font-family: {};
+                        font-weight: normal;
+                        color: {};
+                    "#,
+                    font::BR_COBANE,
+                    color::SILVER
+                ),
+                { children }
+            }
+        )
+    }
+
+}
+
+#[component]
+fn HeroSectionWithAsset(
+    content: Option<Element>,
+    image: Option<Element>
+) -> Element {
+    rsx!(
+        div {
+            style: format!(
+                r#"
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 8px;
+                "#
+            ),
+            div {
+                style: format!(
+                    r#"
+                        padding: 8px;
+                    "#
+                ),
+                { image }
+            }
+            div {
+                style: format!(
+                    r#"
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: start;
+                        padding: 8px;
+                    "#
+                ),
+                hero::Heading { "No gasfees" }
+                hero::SubHeading { "Pick your monetization model and pass down full flexibility." }
             }
         }
     )
