@@ -3907,6 +3907,7 @@ name = "summit"
 version = "0.1.0"
 dependencies = [
  "dioxus",
+ "fastrand",
  "modwire",
  "once_cell",
 ]

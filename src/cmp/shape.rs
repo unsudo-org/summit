@@ -42,6 +42,50 @@ pub enum ShapeModel {
     WaffleGrid
 }
 
+impl ShapeModel {
+    pub fn random() -> Self {
+        let n: usize = 36;
+        match ::fastrand::usize(..n) {
+            0 => Self::CrossFlow,
+            1 => Self::QuadCore,
+            2 => Self::Eclipse,
+            3 => Self::SoftFourLeafClover,
+            4 => Self::FourPetalFlower,
+            5 => Self::AngularStar,
+            6 => Self::GeometricStarburst,
+            7 => Self::RoundedSquareCross,
+            8 => Self::InsetPlusFrame,
+            9 => Self::RoundedLFrameCross,
+            10 => Self::JaggedPinwheel,
+            11 => Self::JaggedDoubleStar,
+            12 => Self::RoundedTab,
+            13 => Self::GeometricPinwheel,
+            14 => Self::LeftKite,
+            15 => Self::QuatrefoilFlower,
+            16 => Self::DoubleBean,
+            17 => Self::SoftWindowpane,
+            18 => Self::FourLobedRoundedSquare,
+            19 => Self::Ring,
+            20 => Self::ConcentricCirclesWithDot,
+            21 => Self::ConcentricCircleLayers,
+            22 => Self::TwoPartEmblem,
+            23 => Self::CrossBadge,
+            24 => Self::HeartBadge,
+            25 => Self::PowerRing,
+            26 => Self::SplitRoundedFrame,
+            27 => Self::LayeredStructure,
+            28 => Self::StackedRoundedCubes,
+            29 => Self::FivePointCircleGrid,
+            30 => Self::FourLobedFlower,
+            31 => Self::FourLobedLink,
+            32 => Self::DualLobedEmblem,
+            33 => Self::DoubleLobedHeart,
+            34 => Self::WaffleGrid,
+            _ => Self::CrossFlow
+        }
+    }
+}
+
 impl ::std::fmt::Display for ShapeModel {
     fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
         let s: &str = match self {
@@ -86,15 +130,22 @@ impl ::std::fmt::Display for ShapeModel {
 }
 
 #[component]
-pub fn Shape(w: f32, h: f32, model: ShapeModel) -> Element {
+pub fn Shape(
+    w: f32, 
+    h: f32, 
+    model: ShapeModel,
+    color: String
+) -> Element {
     rsx!(
         svg {
             xmlns: "http://www.w3.org/2000/svg",
             width: w.to_string(),
             height: h.to_string(),
+            view_box: format!("0 0 256 256"),
+            preserve_aspect_ratio: "xMidYMid meet",
             fill: "none",
             path {
-                fill: "rgb(84, 84, 84)",
+                fill: color,
                 d: model.to_string()
             }
         }
