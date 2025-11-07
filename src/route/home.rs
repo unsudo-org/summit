@@ -45,33 +45,7 @@ pub fn Home() -> Element {
                             flex: 1;
                         "#
                     ),
-                    div {
-                        style: format!(
-                            r#"
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: center;
-                                font-size: 4em;
-                                font-family: br cobane;
-                                font-weight: normal;
-                                color: white;
-                                padding: 32px;
-                                line-height: 1.75em;
-                            "#
-                        ),
-                        "Layer 1.5 Build on top of Polkadot JAM"
-                    }
-                    HeroSectionWithAsset {
-                        image: rsx!(
-                            cmp::Shape {
-                                w: 128.0,
-                                h: 128.0,
-                                model: cmp::ShapeModel::random(),
-                                color: color::TIMBERWOLF
-                            }
-                        )
-                    }
+                    hero::Hero {}
                 }
             }
             cmp::PageItem {
@@ -81,11 +55,36 @@ pub fn Home() -> Element {
     )
 }
 
-
-// MARK: Hero
-
 mod hero {
     use super::*;
+
+    #[component]
+    pub fn Hero() -> Element {
+        rsx!(
+            div {
+                style: format!(
+                    r#"
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 300px;
+                        border-width: 1px;
+                        border-style: solid;
+                        border-color: {};
+                        border-radius: 2px;
+                        position: relative;
+                    "#,
+                    color::SILVER
+                ),
+                cmp::CtaButton {
+                    "Create Account"
+                }
+            }
+        )
+    }
 
     #[component]
     pub fn Heading(
@@ -177,3 +176,4 @@ fn HeroSectionWithAsset(
         }
     )
 }
+
