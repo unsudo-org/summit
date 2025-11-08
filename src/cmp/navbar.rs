@@ -11,7 +11,17 @@ pub fn NavbarBuild() -> Element {
                 }
             ),
             right: rsx!(
-                NavbarGotoButton { "Whitepaper" }
+                div {
+                    style: format!(
+                        r#"
+                            display: flex;
+                            flex-direction: row;
+                            gap: 8px;
+                        "#
+                    ),
+                    NavbarGotoButton { "Whitepaper" }
+                    NavbarGotoButton { "About" }
+                }
             )
         }
     )
@@ -87,10 +97,11 @@ pub fn NavbarGotoButton(
                     font-family: {};
                     font-weight: normal;
                     color: {};
-                    cursor: pointer;
+                    cursor: url('{}'), auto;
                 "#,
                 font::BR_COBANE,
-                color::SILVER
+                color::SILVER,
+                cursor::FINGER
             ),
             { children }
         }

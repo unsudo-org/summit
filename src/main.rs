@@ -24,7 +24,7 @@ fn Main() -> Element {
         document::Title { "Unsudo" }
         document::Link {
             rel: "icon",
-            href: asset!("/asset/press-kit/logo.png")
+            href: asset!("/asset/press-kit/logo.svg")
         }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/horizontal-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/vertical-stripe-motion.css") }
