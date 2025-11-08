@@ -282,26 +282,33 @@ mod card {
                 flex_direction: "column",
                 justify_content: "start",
                 align_items: "start",
-                max_width: "256px",
+                max_width: "500px",
                 div {
-                    padding_bottom: "8px",
-                    cmp::Shape {
-                        w: 16.0,
-                        h: 16.0,
-                        color: color::TIMBERWOLF,
-                        model: cmp::ShapeModel::random()
-                    }
-                }
-                h2 {
                     display: "flex",
                     flex_direction: "row",
                     justify_content: "start",
                     align_items: "center",
-                    font_family: font::BR_COBANE,
-                    font_weight: "bold",
-                    color: color::TIMBERWOLF,
-                    padding_bottom: "4px",
-                    { heading }
+                    padding_bottom: "8px",
+                    gap: "8px",
+                    div {
+                        cmp::Shape {
+                            w: 16.0,
+                            h: 16.0,
+                            color: color::TIMBERWOLF,
+                            model: cmp::ShapeModel::random()
+                        }
+                    }
+                    h4 {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "start",
+                        align_items: "center",
+                        font_family: font::BR_COBANE,
+                        font_weight: "bold",
+                        color: color::TIMBERWOLF,
+                        padding_bottom: "4px",
+                        { heading }
+                    }
                 }
                 p {
                     display: "flex",

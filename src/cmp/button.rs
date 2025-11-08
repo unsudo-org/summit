@@ -1,53 +1,36 @@
 use super::*;
 
 #[component]
-pub fn Button(
-    class: Option<String>,
-    style: Option<String>,
-    children: Option<Element>
-) -> Element {
+pub fn Button(children: Option<Element>) -> Element {
     let mut hover: Signal<bool> = use_signal(|| false);
 
     rsx!(
         button {
-            class: class,
             onmouseenter: move |_| *hover.write() = true,
             onmouseleave: move |_| *hover.write() = false,
-            style: format!(
-                r#"
-                    all: unset;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 1em;
-                    font-family: {};
-                    font-weight: normal;
-                    color: {};
-                    cursor: url('{}'), auto;
-                    border-width: 1px;
-                    border-style: solid;
-                    border-image: {} 1;
-                    border-radius: 2px;
-                    padding: 8px;
-                    background: {};
-                    {}
-                "#,
-                font::BR_COBANE,
-                if *hover.read() {
-                    color::RAISIN_BLACK
-                } else {
-                    color::SILVER
-                },
-                cursor::FINGER,
-                format!("linear-gradient(to top right, {})", color::SILVER),
-                if *hover.read() {
-                    color::SILVER
-                } else {
-                    "transparent"
-                },
-                style.unwrap_or_default()
-            ),
+            all: "unset",
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "center",
+            font_family: font::BR_COBANE,
+            font_weight: "normal",
+            color: if *hover.read() {
+                color::RAISIN_BLACK
+            } else {
+                color::SILVER
+            },
+            cursor: format!("url('{}'), auto", cursor::FINGER),
+            border_width: "1px",
+            border_style: "solid",
+            border_image: format!("linear-gradient(to top right, {}) 1", color::SILVER),
+            border_radius: "2px",
+            padding: "8px",
+            background: if *hover.read() {
+                color::SILVER
+            } else {
+                "transparent"
+            },
             { children }
         }
     )
