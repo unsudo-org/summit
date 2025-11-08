@@ -7,11 +7,11 @@ pub fn NavbarBuild() -> Element {
             left: rsx!(
                 Logo {
                     mode: LogoMode::Icon,
-                    color: "#000000"
+                    color: format!("linear-gradient(to bottom right, {}, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR, color::MINDARO)
                 }
             ),
             right: rsx!(
-
+                NavbarGotoButton { "Whitepaper" }
             )
         }
     )
@@ -64,6 +64,35 @@ pub fn Navbar(
                 ),
                 { right }
             }
+        }
+    )
+}
+
+
+
+#[component]
+pub fn NavbarGotoButton(
+    children: Option<Element>
+) -> Element {
+    rsx!(
+        button {
+            style: format!(
+                r#"
+                    all: unset;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1em;
+                    font-family: {};
+                    font-weight: normal;
+                    color: {};
+                    cursor: pointer;
+                "#,
+                font::BR_COBANE,
+                color::SILVER
+            ),
+            { children }
         }
     )
 }

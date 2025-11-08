@@ -24,7 +24,7 @@ pub fn Button(
                     font-family: {};
                     font-weight: normal;
                     color: {};
-                    cursor: pointer;
+                    cursor: url('{}'), auto;
                     border-width: 1px;
                     border-style: solid;
                     border-image: {} 1;
@@ -39,6 +39,7 @@ pub fn Button(
                 } else {
                     color::SILVER
                 },
+                cursor::FINGER,
                 format!("linear-gradient(to top right, {})", color::SILVER),
                 if *hover.read() {
                     color::SILVER

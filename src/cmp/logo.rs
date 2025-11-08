@@ -19,6 +19,12 @@ pub fn Logo(
             LogoMode::Icon => {
                 rsx!(
                     Icon {
+                        style: format!(
+                            r#"
+                                background-color: {} 1;
+                            "#,
+                            color.unwrap_or("#FFFFFF".to_owned())
+                        ),
                         url: asset!("/asset/press-kit/logo.svg"),
                         w: "32px"
                     }
@@ -37,6 +43,16 @@ pub fn Logo(
                             font::BR_COBANE,
                             color::SILVER
                         ),
+                        Icon {
+                            style: format!(
+                                r#"
+                                    background-color: {} 1;
+                                "#,
+                                color.unwrap_or("#FFFFFF".to_owned())
+                            ),
+                            url: asset!("/asset/press-kit/logo.svg"),
+                            w: "32px"
+                        }
                         "Unsudo"
                     }
                 )

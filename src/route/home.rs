@@ -88,18 +88,32 @@ mod hero {
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
-                        align-items: center;
+                        align-items: start;
                         min-width: 100%;
                         max-width: 100%;
                         min-height: 300px;
-                        border-width: 1px;
-                        border-style: solid;
-                        border-color: {};
-                        border-radius: 2px;
+                        padding-left: 16px;
+                        padding-right: 16px;
                         position: relative;
-                    "#,
-                    color::SILVER
+                    "#
                 ),
+                div {
+                    style: format!(
+                        r#"
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: start;
+                            padding-bottom: 8px;
+                        "#
+                    ),
+                    Heading {
+                        "A layer 1.5 built on top of Polkadot JAM"
+                    }
+                    SubHeading {
+                        "Its time to move to a safer, faster, and more flexible ecosystem."
+                    }
+                }
                 div {
                     style: format!(
                         r#"

@@ -32,8 +32,10 @@ pub fn Page(
                     max-height: 100vh;
                     overflow-x: hidden;
                     overflow-y: hidden;
+                    cursor: url('{}'), auto;
                     {}
                 "#,
+                cursor::DEFAULT,
                 style.unwrap_or_default()
             ),
             if let Some(surface) = surface {

@@ -4,6 +4,7 @@ use route::*;
 
 mod cmp;
 mod color;
+mod cursor;
 mod font;
 mod route;
 
@@ -20,6 +21,11 @@ enum Route {
 #[component]
 fn Main() -> Element {
     rsx!(
+        document::Title { "Unsudo" }
+        document::Link {
+            rel: "icon",
+            href: asset!("/asset/press-kit/logo.png")
+        }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/horizontal-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/vertical-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/faulty-neon.css") }
@@ -30,6 +36,7 @@ fn Main() -> Element {
         document::Stylesheet { href: asset!("/asset/css/scrollbar/webkit-scrollbar-track.css") }
         document::Stylesheet { href: asset!("/asset/css/scrollbar/webkit-scrollbar.css") }
         document::Stylesheet { href: asset!("/asset/css/color.css") }
+        document::Stylesheet { href: asset!("/asset/css/cursor.css") }
         document::Stylesheet { href: asset!("/asset/css/reset.css") }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/alien-skyline" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/stray" }
