@@ -4,22 +4,12 @@ use super::*;
 pub fn CtaButton(
     children: Option<Element>
 ) -> Element {
-    let hover: Signal<bool> = use_signal(|| false);
+    let mut hover: Signal<bool> = use_signal(|| false);
 
     rsx!(
         button {
-            onmouseenter: {
-                let mut hover: Signal<_> = hover.to_owned();
-                move |_| {
-                    *hover.write() = true;
-                }
-            },
-            onmouseleave: {
-                let mut hover: Signal<_> = hover.to_owned();
-                move |_| {
-                    *hover.write() = false;
-                }
-            },
+            onmouseenter: move |_| *hover.write() = true,
+            onmouseleave: move |_| *hover.write() = false,
             style: format!(
                 r#"
                     all: unset;
@@ -34,11 +24,7 @@ pub fn CtaButton(
                     cursor: pointer;
                     border-width: 1px;
                     border-style: solid;
-                    border-image: linear-gradient(
-                        to top right, 
-                        {}, 
-                        {}
-                    ) 1;
+                    border-image: {} 1;
                     border-radius: 2px;
                     padding: 8px;
                     background: {};
@@ -50,13 +36,12 @@ pub fn CtaButton(
                     color::SILVER
                 },
                 if *hover.read() {
-                    color::MEDIUM_SLATE_BLUE
+                    format!("linear-gradient(to bottom right, {})", color::SILVER)
                 } else {
-                    color::SILVER
+                    format!("linear-gradient(to bottom right, {}, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR, color::MINDARO)
                 },
-                color::SILVER,
                 if *hover.read() {
-                    format!("linear-gradient(to right bottom, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR)
+                    format!("linear-gradient(to right bottom, {}, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR, color::MINDARO)
                 } else {
                     "transparent".to_owned()
                 }

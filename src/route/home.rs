@@ -15,9 +15,6 @@ pub fn Home() -> Element {
                 style: format!(
                     r#"
                         justify-content: space-between;
-                        padding-left: 16px;
-                        padding-right: 16px;
-                        padding-top: 16px;
                     "#
                 ),
                 div {
@@ -31,6 +28,30 @@ pub fn Home() -> Element {
                             max-width: 100%;
                         "#
                     ),
+                    div {
+                        style: format!(
+                            r#"
+                                min-width: 100%;
+                                min-height: 1px;
+                                background: linear-gradient(
+                                    to right,
+                                    {},
+                                    {},
+                                    {}
+                                );
+                            "#,
+                            color::MEDIUM_SLATE_BLUE,
+                            color::ROSE_POMPADOUR,
+                            color::MINDARO
+                        )
+                    }
+                    div {
+                        style: format!(
+                            r#"
+                                padding: 4px;
+                            "#
+                        )
+                    }
                     cmp::NavbarBuild {}
                 }
                 div {
@@ -79,8 +100,20 @@ mod hero {
                     "#,
                     color::SILVER
                 ),
-                cmp::CtaButton {
-                    "Create Account"
+                div {
+                    style: format!(
+                        r#"
+                            display: flex;
+                            flex-direction: row;
+                            gap: 8px
+                        "#
+                    ),
+                    cmp::CtaButton {
+                        "Create Account"
+                    }
+                    cmp::Button {
+                        "Learn More"
+                    }
                 }
             }
         )
