@@ -5,23 +5,10 @@ pub fn NavbarBuild() -> Element {
     rsx!(
         Navbar {
             left: rsx!(
-                Logo {
-                    mode: LogoMode::Icon,
-                    color: format!("linear-gradient(to bottom right, {}, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR, color::MINDARO)
-                }
+                Logo {}
             ),
             right: rsx!(
-                div {
-                    style: format!(
-                        r#"
-                            display: flex;
-                            flex-direction: row;
-                            gap: 8px;
-                        "#
-                    ),
-                    NavbarGotoButton { "Whitepaper" }
-                    NavbarGotoButton { "About" }
-                }
+
             )
         }
     )
@@ -79,31 +66,22 @@ pub fn Navbar(
 }
 
 
-
 #[component]
-pub fn NavbarGotoButton(
-    children: Option<Element>
-) -> Element {
+pub fn NavbarGotoButton(children: Option<Element>) -> Element {
     rsx!(
         button {
-            style: format!(
-                r#"
-                    all: unset;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 1em;
-                    font-family: {};
-                    font-weight: normal;
-                    color: {};
-                    cursor: url('{}'), auto;
-                "#,
-                font::BR_COBANE,
-                color::SILVER,
-                cursor::FINGER
-            ),
-            { children }
+            all: "unset",
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "center",
+            font_family: font::BR_COBANE,
+            font_weight: "normal",
+            color: color::TIMBERWOLF,
+            cursor: format!("url('{}'), auto", cursor::FINGER),
+            div {
+                { children }
+            }
         }
     )
 }

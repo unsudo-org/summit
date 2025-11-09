@@ -12,74 +12,57 @@ pub enum PageScrollSnap {
 pub fn Page(
     scroll_snap: Option<PageScrollSnap>, 
     surface: Option<Element>,
-    class: Option<String>,
-    style: Option<String>,
+    color: Option<String>,
     children: Option<Element>
 ) -> Element {
     rsx!(
         div {
-            class: class,
-            style: format!(
-                r#"
-                    position: relative;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: start;
-                    align-items: center;
-                    min-width: 100vw;
-                    max-width: 100vw;
-                    min-height: 100vh;
-                    max-height: 100vh;
-                    overflow-x: hidden;
-                    overflow-y: hidden;
-                    cursor: url('{}'), auto;
-                    {}
-                "#,
-                cursor::DEFAULT,
-                style.unwrap_or_default()
-            ),
+            position: "relative",
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "center",
+            min_width: "100vw",
+            max_width: "100vw",
+            min_height: "100vh",
+            max_height: "100vh",
+            overflow_x: "hidden",
+            overflow_y: "hidden",
+            cursor: format!("url('{}'), auto", cursor::DEFAULT),
+            background: color,
             if let Some(surface) = surface {
                 div {
-                    style: format!(
-                        r#"
-                            z-index: 67000000;
-                            position: absolute;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            min-width: 100%;
-                            max-width: 100%;
-                            min-height: 100%;
-                            max-height: 100%;
-                            overflow-x: hidden;
-                            overflow-y: hidden;
-                            pointer-events: none;
-                        "#
-                    ),
+                    position: "absolute",
+                    z_index: "6767676767676767",
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "start",
+                    min_width: "100%",
+                    max_width: "100%",
+                    min_height: "100%",
+                    max_height: "100%",
+                    overflow_x: "hidden",
+                    overflow_y: "hidden",
+                    pointer_events: "none",
                     { surface }
                 }
             }
             div {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: start;
-                        align-items: center;
-                        min-width: 100%;
-                        max-width: 100%;
-                        overflow-x: hidden;
-                        overflow-y: auto;
-                        scroll-snap-type: {};
-                        scroll-behaviour: smooth;
-                    "#,
-                    match scroll_snap {
-                        Some(PageScrollSnap::Mandatory) => "y mandatory",
-                        Some(PageScrollSnap::Proximity) => "y proximity",
-                        None => "none"
-                    }
-                ),
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "center",
+                min_width: "100%",
+                max_width: "100%",
+                overflow_x: "hidden",
+                overflow_y: "auto",
+                scroll_behavior: "smooth",
+                scroll_snap_type: match scroll_snap {
+                    Some(PageScrollSnap::Mandatory) => "y mandatory",
+                    Some(PageScrollSnap::Proximity) => "y proximity",
+                    None => "none"
+                },
                 { children }
             }
         }
@@ -87,29 +70,18 @@ pub fn Page(
 }
 
 #[component]
-pub fn PageItem(
-    class: Option<String>,
-    style: Option<String>,
-    children: Option<Element>
-) -> Element {
+pub fn PageItem(children: Option<Element>) -> Element {
     rsx!(
         div {
-            class: class,
-            style: format!(
-                r#"
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    min-width: 100vw;
-                    max-width: 100vw;
-                    min-height: 100vh;
-                    max-height: 100vh;
-                    scroll-snap-align: start;
-                    {}
-                "#,
-                style.unwrap_or_default()
-            ),
+            style: "scroll-snap-align: start;",
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            min_width: "100vw",
+            max_width: "100vw",
+            min_height: "100vh",
+            max_height: "100vh",
             { children }
         }
     )

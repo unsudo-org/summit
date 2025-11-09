@@ -1,61 +1,65 @@
 use super::*;
 
-#[derive(Default)]
-#[derive(Clone)]
-#[derive(PartialEq)]
-pub enum LogoMode {
-    #[default]
-    Icon,
-    Horizontal
+#[component]
+pub fn LogoCompact() -> Element {
+    rsx!(
+        h1 {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "center",
+            font_family: font::ALIEN_SKYLINE,
+            font_weight: "normal",
+            color: color::TIMBERWOLF,
+            span {
+                style: format!(
+                    r#"
+                        background: linear-gradient(to bottom right, {}, {}, {});
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        color: transparent;
+                        display: inline-block;
+                    "#,
+                    color::MEDIUM_SLATE_BLUE,
+                    color::ROSE_POMPADOUR,
+                    color::MINDARO
+                ),
+                "un"
+            }
+        }
+    )
 }
 
 #[component]
-pub fn Logo(
-    mode: Option<LogoMode>,
-    color: Option<String>
-) -> Element {
+pub fn Logo() -> Element {
     rsx!(
-        match mode.unwrap_or_default() {
-            LogoMode::Icon => {
-                rsx!(
-                    Icon {
-                        style: format!(
-                            r#"
-                                background-color: {} 1;
-                            "#,
-                            color.unwrap_or("#FFFFFF".to_owned())
-                        ),
-                        url: asset!("/asset/press-kit/logo.svg"),
-                        w: "32px"
-                    }
-                )
-            },
-            LogoMode::Horizontal => {
-                rsx!(
-                    div {
-                        style: format!(
-                            r#"
-                                font-size: 2em;
-                                font-family: {};
-                                font-weight: normal;
-                                color: {};
-                            "#,
-                            font::BR_COBANE,
-                            color::SILVER
-                        ),
-                        Icon {
-                            style: format!(
-                                r#"
-                                    background-color: {} 1;
-                                "#,
-                                color.unwrap_or("#FFFFFF".to_owned())
-                            ),
-                            url: asset!("/asset/press-kit/logo.svg"),
-                            w: "32px"
-                        }
-                        "Unsudo"
-                    }
-                )
+        h1 {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "center",
+            font_family: font::ALIEN_SKYLINE,
+            font_weight: "normal",
+            color: color::TIMBERWOLF,
+            span {
+                style: format!(
+                    r#"
+                        background: linear-gradient(to bottom right, {}, {}, {});
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        color: transparent;
+                        display: inline-block;
+                    "#,
+                    color::MEDIUM_SLATE_BLUE,
+                    color::ROSE_POMPADOUR,
+                    color::MINDARO
+                ),
+                "un"
+            }
+            span {
+                "SUDO"
             }
         }
     )

@@ -5,76 +5,169 @@ pub fn Home() -> Element {
     rsx!(
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
-            style: format!(
-                r#"
-                    background: {};
-                "#,
-                color::RAISIN_BLACK
-            ),
+            color: color::RAISIN_BLACK,
             cmp::PageItem {
-                style: format!(
-                    r#"
-                        justify-content: space-between;
-                    "#
-                ),
                 div {
-                    style: format!(
-                        r#"
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            min-width: 100%;
-                            max-width: 100%;
-                        "#
-                    ),
-                    div {
-                        style: format!(
-                            r#"
-                                min-width: 100%;
-                                min-height: 1px;
-                                background: linear-gradient(
-                                    to right,
-                                    {},
-                                    {},
-                                    {}
-                                );
-                            "#,
-                            color::MEDIUM_SLATE_BLUE,
-                            color::ROSE_POMPADOUR,
-                            color::MINDARO
-                        )
-                    }
-                    div {
-                        style: format!(
-                            r#"
-                                padding: 4px;
-                            "#
-                        )
-                    }
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    max_width: "100%",
+                    padding_top: "4px",
+                    padding_bottom: "4px",
                     cmp::NavbarBuild {}
                 }
                 div {
-                    style: format!(
-                        r#"
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            min-width: 100%;
-                            max-width: 100%;
-                            flex: 1;
-                        "#
-                    ),
-                    hero::Hero {}
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "center",
+                    min_width: "100%",
+                    max_width: "100%",
+                    flex: "1",
+                    "h"
                 }
             }
             cmp::PageItem {
-                "Hello World"
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    max_width: "100%",
+                    min_height: "100%",
+                    max_height: "100%",
+                    div {
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "start",
+                        align_items: "start",
+                        gap: "8px",
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "start",
+                            align_items: "start",
+                            background: color::TIMBERWOLF,
+                            border_radius: "2px",
+                            padding: "16px",
+                            gap: "8px",
+                            div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "start",
+                                align_items: "start",
+                                div {
+                                    display: "flex",
+                                    flex_direction: "column",
+                                    justify_content: "start",
+                                    align_items: "start",
+                                    h1 {
+                                        font_family: font::BR_COBANE,
+                                        font_weight: "normal",
+                                        color: color::RAISIN_BLACK,
+                                        "Some catchy heading"
+                                    }
+                                    p {
+                                        font_family: font::BR_COBANE,
+                                        font_weight: "normal",
+                                        color: color::RAISIN_BLACK,
+                                        "Some vey nice catchy phrase or body describing something very important."
+                                    }
+                                }
+                                div {
+                                    display: "flex",
+                                    flex_direction: "column",
+                                    min_height: "100px",
+                                    flex: "1"
+                                }
+                                cmp::CtaButton {
+                                    "Learn More"
+                                }
+                            }
+                            div {
+                                cmp::Shape {
+                                    w: 200.0,
+                                    h: 200.0,
+                                    color: color::RAISIN_BLACK,
+                                    model: cmp::ShapeModel::random()
+                                }
+                            }
+                        }
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "space-between",
+                            align_items: "start",
+                            min_width: "100%",
+                            gap: "8px",
+                            div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "start",
+                                align_items: "start",
+                                padding: "16px",
+                                flex: "1",
+                                border_width: "1px",
+                                border_style: "solid",
+                                border_color: color::TIMBERWOLF,
+                                border_radius: "2px",
+                                h1 {
+                                    font_family: font::BR_COBANE,
+                                    font_weight: "normal",
+                                    color: color::TIMBERWOLF,
+                                    "Blazingly fast"
+                                }
+                                p {
+                                    font_family: font::BR_COBANE,
+                                    font_weight: "normal",
+                                    color: color::TIMBERWOLF,
+                                    "Bla bla bla bla"
+                                }
+                            }
+                            div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "start",
+                                align_items: "start",
+                                padding: "16px",
+                                flex: "1",
+                                border_width: "1px",
+                                border_style: "solid",
+                                border_color: color::TIMBERWOLF,
+                                border_radius: "2px",
+                                h1 {
+                                    font_family: font::BR_COBANE,
+                                    font_weight: "normal",
+                                    color: color::TIMBERWOLF,
+                                    "Blazingly fast"
+                                }
+                                p {
+                                    font_family: font::BR_COBANE,
+                                    font_weight: "normal",
+                                    color: color::TIMBERWOLF,
+                                    "Bla bla bla bla"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     )
 }
+
+
+
+
+
+
+
+
+
+
 
 mod hero {
     use super::*;
