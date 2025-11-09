@@ -35,10 +35,10 @@ pub fn Home() -> Element {
                     flex_direction: "column",
                     justify_content: "center",
                     align_items: "center",
-                    min_width: "100%",
-                    max_width: "100%",
-                    min_height: "100%",
-                    max_height: "100%",
+                    min_width: "100vw",
+                    max_width: "100vw",
+                    min_height: "100vh",
+                    max_height: "100vh",
                     div {
                         display: "flex",
                         flex_direction: "column",
@@ -53,20 +53,22 @@ pub fn Home() -> Element {
                             background: color::TIMBERWOLF,
                             border_radius: "2px",
                             padding: "16px",
-                            gap: "8px",
+                            gap: "32px",
                             div {
                                 display: "flex",
                                 flex_direction: "column",
                                 justify_content: "start",
                                 align_items: "start",
                                 div {
+                                    all: "unset",
                                     display: "flex",
                                     flex_direction: "column",
                                     justify_content: "start",
                                     align_items: "start",
+                                    margin_bottom: "16px",
                                     h1 {
                                         font_family: font::BR_COBANE,
-                                        font_weight: "normal",
+                                        font_weight: "bold",
                                         color: color::RAISIN_BLACK,
                                         "Some catchy heading"
                                     }
@@ -79,15 +81,39 @@ pub fn Home() -> Element {
                                 }
                                 div {
                                     display: "flex",
-                                    flex_direction: "column",
-                                    min_height: "100px",
-                                    flex: "1"
-                                }
-                                cmp::CtaButton {
-                                    "Learn More"
+                                    flex_direction: "row",
+                                    justify_content: "center",
+                                    align_items: "center",
+                                    gap: "8px",
+                                    button {
+                                        all: "unset",
+                                        border_width: "1px",
+                                        border_style: "solid",
+                                        border_image: color::RAISIN_BLACK,
+                                        border_radius: "2px",
+                                        padding: "8px",
+                                        font_family: font::BR_COBANE,
+                                        font_weight: "normal",
+                                        "Explore"
+                                    }
+                                    button {
+                                        all: "unset",
+                                        border_width: "1px",
+                                        border_style: "dashed",
+                                        border_color: color::RAISIN_BLACK,
+                                        border_radius: "2px",
+                                        padding: "8px",
+                                        font_family: font::BR_COBANE,
+                                        font_weight: "normal",
+                                        "Learn More"
+                                    }
                                 }
                             }
                             div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "center",
+                                align_items: "center",
                                 cmp::Shape {
                                     w: 200.0,
                                     h: 200.0,
@@ -116,7 +142,7 @@ pub fn Home() -> Element {
                                 border_radius: "2px",
                                 h1 {
                                     font_family: font::BR_COBANE,
-                                    font_weight: "normal",
+                                    font_weight: "bold",
                                     color: color::TIMBERWOLF,
                                     "Blazingly fast"
                                 }
@@ -140,7 +166,7 @@ pub fn Home() -> Element {
                                 border_radius: "2px",
                                 h1 {
                                     font_family: font::BR_COBANE,
-                                    font_weight: "normal",
+                                    font_weight: "bold",
                                     color: color::TIMBERWOLF,
                                     "Blazingly fast"
                                 }
@@ -158,8 +184,6 @@ pub fn Home() -> Element {
         }
     )
 }
-
-
 
 
 

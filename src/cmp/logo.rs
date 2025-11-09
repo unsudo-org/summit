@@ -52,9 +52,9 @@ pub fn Logo() -> Element {
                         color: transparent;
                         display: inline-block;
                     "#,
-                    color::MEDIUM_SLATE_BLUE,
-                    color::ROSE_POMPADOUR,
-                    color::MINDARO
+                    color::TIMBERWOLF,
+                    color::TIMBERWOLF,
+                    color::TIMBERWOLF
                 ),
                 "un"
             }
