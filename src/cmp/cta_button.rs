@@ -13,46 +13,33 @@ pub fn CtaButton(
         button {
             onmouseenter: move |_| *hover.write() = true,
             onmouseleave: move |_| *hover.write() = false,
-            class: class,
-            style: format!(
-                r#"
-                    all: unset;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 1em;
-                    font-family: {};
-                    font-weight: normal;
-                    color: {};
-                    cursor: url('{}'), auto;
-                    border-width: 1px;
-                    border-style: solid;
-                    border-image: {} 1;
-                    border-radius: 2px;
-                    padding: 8px;
-                    background: {};
-                    {}
-                "#,
-                font::BR_COBANE,
-                if *hover.read() {
-                    conf::RAISIN_BLACK
-                } else {
-                    conf::SILVER
-                },
-                cursor::FINGER,
-                if *hover.read() {
-                    format!("linear-gradient(to bottom right, {})", conf::SILVER)
-                } else {
-                    format!("linear-gradient(to bottom right, {}, {}, {})", conf::MEDIUM_SLATE_BLUE, conf::ROSE_POMPADOUR, conf::MINDARO)
-                },
-                if *hover.read() {
-                    format!("linear-gradient(to right bottom, {}, {}, {})", conf::MEDIUM_SLATE_BLUE, conf::ROSE_POMPADOUR, conf::MINDARO)
-                } else {
-                    "transparent".to_owned()
-                },
-                style.unwrap_or_default()
-            ),
+            all: "unset",
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "center",
+            align_items: "center",
+            font_family: conf.font.br_cobane,
+            font_weight: "normal",
+            color: if *hover.read() {
+                conf.color.raisin_black.to_string()
+            } else {
+                conf.color.silver.to_string()
+            },
+            cursor: format!("url({}), auto", conf.cursor.finger),
+            border_width: "1px",
+            border_style: "solid",
+            border_image: if *hover.read() {
+                format!("linear-gradient(to bottom right, {}) 1", conf.color.silver)
+            } else {
+                format!("linear-gradient(to bottom right, {}, {}, {}) 1", conf.color.medium_slate_blue, conf.color.rose_pompadour, conf.color.mindaro)
+            },
+            border_radius: "2px",
+            padding: "8px",
+            background: if *hover.read() {
+                format!("linear-gradient(to right bottom, {}, {}. {})", conf.color.medium_slate_blue, conf.color.rose_pompadour, conf.color.mindaro)
+            } else {
+                "transparent".to_owned()
+            },
             { children }
         }
     )

@@ -11,7 +11,7 @@ pub fn LogoCompact() -> Element {
             align_items: "center",
             font_family: conf.font.alien_skyline,
             font_weight: "normal",
-            color: conf.color.timberwolf,
+            color: conf.color.timberwolf.to_string(),
             span {
                 style: format!(
                     r#"

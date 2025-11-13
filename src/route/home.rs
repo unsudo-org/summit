@@ -7,7 +7,7 @@ pub fn Home() -> Element {
     rsx!(
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
-            color: conf.color.raisin_black,
+            color: conf.color.raisin_black.to_owned(),
             cmp::PageItem {
                 div {
                     display: "flex",
@@ -42,7 +42,7 @@ pub fn Home() -> Element {
                             flex_direction: "row",
                             justify_content: "start",
                             align_items: "start",
-                            background: conf.color.timberwolf,
+                            background: conf.color.timberwolf.to_string(),
                             border_radius: "2px",
                             padding: "16px",
                             gap: "32px",
@@ -61,13 +61,13 @@ pub fn Home() -> Element {
                                     h1 {
                                         font_family: conf.font.br_cobane,
                                         font_weight: "bold",
-                                        color: conf.color.raisin_black,
+                                        color: conf.color.raisin_black.to_string(),
                                         "Some catchy heading"
                                     }
                                     p {
                                         font_family: conf.font.br_cobane,
                                         font_weight: "normal",
-                                        color: conf.color.raisin_black,
+                                        color: conf.color.raisin_black.to_string(),
                                         "Some vey nice catchy phrase or body describing something very important."
                                     }
                                 }
@@ -81,7 +81,7 @@ pub fn Home() -> Element {
                                         all: "unset",
                                         border_width: "1px",
                                         border_style: "solid",
-                                        border_image: conf.color.raisin_black,
+                                        border_image: conf.color.raisin_black.to_string(),
                                         border_radius: "2px",
                                         padding: "8px",
                                         font_family: conf.font.br_cobane,
@@ -92,7 +92,7 @@ pub fn Home() -> Element {
                                         all: "unset",
                                         border_width: "1px",
                                         border_style: "dashed",
-                                        border_color: conf.color.raisin_black,
+                                        border_color: conf.color.raisin_black.to_string(),
                                         border_radius: "2px",
                                         padding: "8px",
                                         font_family: conf.font.br_cobane,
@@ -109,7 +109,7 @@ pub fn Home() -> Element {
                                 cmp::Shape {
                                     w: 200.0,
                                     h: 200.0,
-                                    color: conf.color.raisin_black,
+                                    color_: conf.color.raisin_black.to_string(),
                                     model: cmp::ShapeModel::random()
                                 }
                             }
@@ -130,18 +130,18 @@ pub fn Home() -> Element {
                                 flex: "1",
                                 border_width: "1px",
                                 border_style: "solid",
-                                border_color: conf.color.timberwolf,
+                                border_color: conf.color.timberwolf.to_string(),
                                 border_radius: "2px",
                                 h1 {
                                     font_family: conf.font.br_cobane,
                                     font_weight: "bold",
-                                    color: conf.color.timberwolf,
+                                    color: conf.color.timberwolf.to_string(),
                                     "Blazingly fast"
                                 }
                                 p {
                                     font_family: conf.font.br_cobane,
                                     font_weight: "normal",
-                                    color: conf.color.timberwolf,
+                                    color: conf.color.timberwolf.to_string(),
                                     "Bla bla bla bla"
                                 }
                             }
@@ -154,18 +154,18 @@ pub fn Home() -> Element {
                                 flex: "1",
                                 border_width: "1px",
                                 border_style: "solid",
-                                border_color: conf.color.timberwolf,
+                                border_color: conf.color.timberwolf.to_string(),
                                 border_radius: "2px",
                                 h1 {
                                     font_family: conf.font.br_cobane,
                                     font_weight: "bold",
-                                    color: conf.color.timberwolf,
+                                    color: conf.color.timberwolf.to_string(),
                                     "Blazingly fast"
                                 }
                                 p {
                                     font_family: conf.font.br_cobane,
                                     font_weight: "normal",
-                                    color: conf.color.timberwolf,
+                                    color: conf.color.timberwolf.to_string(),
                                     "Bla bla bla bla"
                                 }
                             }

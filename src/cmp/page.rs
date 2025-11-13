@@ -15,6 +15,8 @@ pub fn Page(
     color: Option<conf::Hex>,
     children: Option<Element>
 ) -> Element {
+    let conf: conf::Conf = use_context();
+
     rsx!(
         div {
             position: "relative",
@@ -28,8 +30,8 @@ pub fn Page(
             max_height: "100vh",
             overflow_x: "hidden",
             overflow_y: "hidden",
-            cursor: format!("url('{}'), auto", cursor::DEFAULT),
-            background: color,
+            cursor: format!("url('{}'), auto", conf.cursor.default),
+            background: color.unwrap_or_default().to_string(),
             if let Some(surface) = surface {
                 div {
                     position: "absolute",

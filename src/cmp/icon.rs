@@ -1,30 +1,22 @@
 use super::*;
 
 #[component]
-pub fn Icon(
-    url: Asset,
-    w: String,
-    class: Option<String>,
-    style: Option<String>
-) -> Element {
+pub fn Icon(url: Asset, w: String) -> Element {
+    let conf: conf::Conf = use_context();
+
     rsx!(
         div {
-            style: format!(
-                r#"
-                    min-width: {};
-                    aspect-ratio: 1 / 1;
-                    background-image: url({});
-                    background-position: center;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    color: {};
-                    {}
-                "#,
-                w,
-                url,
-                conf::SILVER,
-                style.unwrap_or_default()
-            )
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "center",
+            align_items: "center",
+            min_width: w,
+            aspect_ratio: "1 / 1",
+            background_image: format!("url({})", url),
+            background_position: "center",
+            background_size: "contain",
+            background_repeat: "no-repeat",
+            color: conf.color.timberwolf
         }
     )
 }
