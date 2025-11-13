@@ -2319,7 +2319,7 @@ dependencies = [
 [[package]]
 name = "kore"
 version = "0.1.0"
-source = "git+https://github.com/unsudo-org/kore.git#c04ad9ab76c7ca5694bd68e63e8458185786447f"
+source = "git+https://github.com/unsudo-org/kore.git#36de09574c6c6946375a51e3fab98c64a5006a8f"
 dependencies = [
  "modwire",
  "paste",

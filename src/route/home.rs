@@ -7,7 +7,7 @@ pub fn Home() -> Element {
     rsx!(
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
-            color: conf.color.raisin_black.to_owned(),
+            color_: conf.color.raisin_black.to_owned(),
             cmp::PageItem {
                 div {
                     display: "flex",
@@ -109,7 +109,7 @@ pub fn Home() -> Element {
                                 cmp::Shape {
                                     w: 200.0,
                                     h: 200.0,
-                                    color_: conf.color.raisin_black.to_string(),
+                                    color_: Some(conf.color.raisin_black.to_owned()),
                                     model: cmp::ShapeModel::random()
                                 }
                             }

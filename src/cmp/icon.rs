@@ -16,7 +16,7 @@ pub fn Icon(url: Asset, w: String) -> Element {
             background_position: "center",
             background_size: "contain",
             background_repeat: "no-repeat",
-            color: conf.color.timberwolf
+            color: conf.color.timberwolf.to_string()
         }
     )
 }

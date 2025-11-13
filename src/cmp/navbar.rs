@@ -63,7 +63,7 @@ pub fn NavbarGotoButton(children: Option<Element>) -> Element {
             align_items: "center",
             font_family: conf.font.br_cobane,
             font_weight: "normal",
-            color: conf.color.timberwolf,
+            color: conf.color.timberwolf.to_string(),
             cursor: format!("url('{}'), auto", conf.cursor.finger),
             div {
                 { children }

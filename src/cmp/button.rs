@@ -17,9 +17,9 @@ pub fn Button(children: Option<Element>) -> Element {
             font_family: conf.font.br_cobane,
             font_weight: "normal",
             color: if *hover.read() {
-                conf.color.raisin_black
+                conf.color.raisin_black.to_string()
             } else {
-                conf.color.silver
+                conf.color.silver.to_string()
             },
             cursor: format!("url('{}'), auto", conf.cursor.finger),
             border_width: "1px",
@@ -28,9 +28,9 @@ pub fn Button(children: Option<Element>) -> Element {
             border_radius: "2px",
             padding: "8px",
             background: if *hover.read() {
-                conf.color.silver
+                conf.color.silver.to_string()
             } else {
-                "transparent"
+                "transparent".to_owned()
             },
             { children }
         }

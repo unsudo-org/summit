@@ -12,7 +12,7 @@ pub enum PageScrollSnap {
 pub fn Page(
     scroll_snap: Option<PageScrollSnap>, 
     surface: Option<Element>,
-    color: Option<conf::Hex>,
+    color_: Option<conf::Hex>,
     children: Option<Element>
 ) -> Element {
     let conf: conf::Conf = use_context();
@@ -31,7 +31,7 @@ pub fn Page(
             overflow_x: "hidden",
             overflow_y: "hidden",
             cursor: format!("url('{}'), auto", conf.cursor.default),
-            background: color.unwrap_or_default().to_string(),
+            background: color_.unwrap_or_default().to_string(),
             if let Some(surface) = surface {
                 div {
                     position: "absolute",
