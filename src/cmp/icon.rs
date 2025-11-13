@@ -22,7 +22,7 @@ pub fn Icon(
                 "#,
                 w,
                 url,
-                color::SILVER,
+                conf::SILVER,
                 style.unwrap_or_default()
             )
         }

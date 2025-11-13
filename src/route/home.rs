@@ -2,10 +2,12 @@ use super::*;
 
 #[component]
 pub fn Home() -> Element {
+    let conf: conf::Conf = use_context();
+
     rsx!(
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
-            color: color::RAISIN_BLACK,
+            color: conf.color.raisin_black,
             cmp::PageItem {
                 div {
                     display: "flex",
@@ -17,16 +19,6 @@ pub fn Home() -> Element {
                     padding_top: "4px",
                     padding_bottom: "4px",
                     cmp::NavbarBuild {}
-                }
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "start",
-                    align_items: "center",
-                    min_width: "100%",
-                    max_width: "100%",
-                    flex: "1",
-                    "h"
                 }
             }
             cmp::PageItem {
@@ -50,7 +42,7 @@ pub fn Home() -> Element {
                             flex_direction: "row",
                             justify_content: "start",
                             align_items: "start",
-                            background: color::TIMBERWOLF,
+                            background: conf.color.timberwolf,
                             border_radius: "2px",
                             padding: "16px",
                             gap: "32px",
@@ -67,15 +59,15 @@ pub fn Home() -> Element {
                                     align_items: "start",
                                     margin_bottom: "16px",
                                     h1 {
-                                        font_family: font::BR_COBANE,
+                                        font_family: conf.font.br_cobane,
                                         font_weight: "bold",
-                                        color: color::RAISIN_BLACK,
+                                        color: conf.color.raisin_black,
                                         "Some catchy heading"
                                     }
                                     p {
-                                        font_family: font::BR_COBANE,
+                                        font_family: conf.font.br_cobane,
                                         font_weight: "normal",
-                                        color: color::RAISIN_BLACK,
+                                        color: conf.color.raisin_black,
                                         "Some vey nice catchy phrase or body describing something very important."
                                     }
                                 }
@@ -89,10 +81,10 @@ pub fn Home() -> Element {
                                         all: "unset",
                                         border_width: "1px",
                                         border_style: "solid",
-                                        border_image: color::RAISIN_BLACK,
+                                        border_image: conf.color.raisin_black,
                                         border_radius: "2px",
                                         padding: "8px",
-                                        font_family: font::BR_COBANE,
+                                        font_family: conf.font.br_cobane,
                                         font_weight: "normal",
                                         "Explore"
                                     }
@@ -100,10 +92,10 @@ pub fn Home() -> Element {
                                         all: "unset",
                                         border_width: "1px",
                                         border_style: "dashed",
-                                        border_color: color::RAISIN_BLACK,
+                                        border_color: conf.color.raisin_black,
                                         border_radius: "2px",
                                         padding: "8px",
-                                        font_family: font::BR_COBANE,
+                                        font_family: conf.font.br_cobane,
                                         font_weight: "normal",
                                         "Learn More"
                                     }
@@ -117,7 +109,7 @@ pub fn Home() -> Element {
                                 cmp::Shape {
                                     w: 200.0,
                                     h: 200.0,
-                                    color: color::RAISIN_BLACK,
+                                    color: conf.color.raisin_black,
                                     model: cmp::ShapeModel::random()
                                 }
                             }
@@ -138,18 +130,18 @@ pub fn Home() -> Element {
                                 flex: "1",
                                 border_width: "1px",
                                 border_style: "solid",
-                                border_color: color::TIMBERWOLF,
+                                border_color: conf.color.timberwolf,
                                 border_radius: "2px",
                                 h1 {
-                                    font_family: font::BR_COBANE,
+                                    font_family: conf.font.br_cobane,
                                     font_weight: "bold",
-                                    color: color::TIMBERWOLF,
+                                    color: conf.color.timberwolf,
                                     "Blazingly fast"
                                 }
                                 p {
-                                    font_family: font::BR_COBANE,
+                                    font_family: conf.font.br_cobane,
                                     font_weight: "normal",
-                                    color: color::TIMBERWOLF,
+                                    color: conf.color.timberwolf,
                                     "Bla bla bla bla"
                                 }
                             }
@@ -162,18 +154,18 @@ pub fn Home() -> Element {
                                 flex: "1",
                                 border_width: "1px",
                                 border_style: "solid",
-                                border_color: color::TIMBERWOLF,
+                                border_color: conf.color.timberwolf,
                                 border_radius: "2px",
                                 h1 {
-                                    font_family: font::BR_COBANE,
+                                    font_family: conf.font.br_cobane,
                                     font_weight: "bold",
-                                    color: color::TIMBERWOLF,
+                                    color: conf.color.timberwolf,
                                     "Blazingly fast"
                                 }
                                 p {
-                                    font_family: font::BR_COBANE,
+                                    font_family: conf.font.br_cobane,
                                     font_weight: "normal",
-                                    color: color::TIMBERWOLF,
+                                    color: conf.color.timberwolf,
                                     "Bla bla bla bla"
                                 }
                             }
@@ -183,261 +175,4 @@ pub fn Home() -> Element {
             }
         }
     )
-}
-
-
-
-
-
-
-
-
-
-mod hero {
-    use super::*;
-
-    #[component]
-    pub fn Hero() -> Element {
-        rsx!(
-            div {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        gap: 16px;
-                    "#
-                ),
-                div {
-                    style: format!(
-                        r#"
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: start;
-                            min-height: 300px;
-                            padding-left: 16px;
-                            padding-right: 16px;
-                        "#
-                    ),
-                    div {
-                        style: format!(
-                            r#"
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: center;
-                                align-items: start;
-                                padding-bottom: 16px;
-                                gap: 8px;
-                            "#
-                        ),
-                        Heading {
-                            "A layer 1.5 built on top of Polkadot JAM"
-                        }
-                        SubHeading {
-                            "Its time to move to a safer, faster, and more flexible ecosystem."
-                        }
-                    }
-                    div {
-                        style: format!(
-                            r#"
-                                display: flex;
-                                flex-direction: row;
-                                gap: 8px
-                            "#
-                        ),
-                        cmp::CtaButton {
-                            "Create Account"
-                        }
-                        cmp::Button {
-                            "Learn More"
-                        }
-                    }
-                }
-                cmp::Shape {
-                    w: 200.0,
-                    h: 200.0,
-                    model: cmp::ShapeModel::random(),
-                    color: color::SILVER
-                }
-            }
-            div {
-                display: "flex",
-                flex_direction: "row",
-                gap: "16px",
-                card::Card {
-                    heading: rsx!(
-                        "Technical Complexity"
-                    ),
-                    sub_heading: rsx!(
-                        "Build scalable interoperable decentralized software."
-                    )
-                }
-                card::Card {
-                    heading: rsx!(
-                        "Infrastructure Overhead"
-                    ),
-                    sub_heading: rsx!(
-                        "Run and maintain compute and build autonomous software."
-                    )
-                }
-                card::Card {
-                    heading: rsx!(
-                        "Cost and Resource Uncertainty"
-                    ),
-                    sub_heading: rsx!(
-                        "Infrastructure and deployment costs can fluctuate unpredictably."
-                    )
-                }
-            }
-        )
-    }
-
-    #[component]
-    pub fn Heading(
-        children: Option<Element>
-    ) -> Element {
-        rsx!(
-            h1 {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        font-family: {};
-                        font-weight: normal;
-                        color: {};
-                    "#,
-                    font::BR_COBANE,
-                    color::TIMBERWOLF
-                ),
-                { children }
-            }
-        )
-    }
-
-    #[component]
-    pub fn SubHeading(
-        children: Option<Element>
-    ) -> Element {
-        rsx!(
-            h2 {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        font-family: {};
-                        font-weight: normal;
-                        color: {};
-                    "#,
-                    font::BR_COBANE,
-                    color::SILVER
-                ),
-                { children }
-            }
-        )
-    }
-
-}
-
-#[component]
-fn HeroSectionWithAsset(
-    content: Option<Element>,
-    image: Option<Element>
-) -> Element {
-    rsx!(
-        div {
-            style: format!(
-                r#"
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 8px;
-                "#
-            ),
-            div {
-                style: format!(
-                    r#"
-                        padding: 8px;
-                    "#
-                ),
-                { image }
-            }
-            div {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: start;
-                        padding: 8px;
-                    "#
-                ),
-                hero::Heading { "No gasfees" }
-                hero::SubHeading { "Pick your monetization model and pass down full flexibility." }
-            }
-        }
-    )
-}
-
-mod card {
-    use super::*;
-
-    #[component]
-    pub fn Card(
-        heading: Option<Element>,
-        sub_heading: Option<Element>
-    ) -> Element {
-        rsx!(
-            div {
-                display: "flex",
-                flex_direction: "column",
-                justify_content: "start",
-                align_items: "start",
-                max_width: "500px",
-                div {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "start",
-                    align_items: "center",
-                    padding_bottom: "8px",
-                    gap: "8px",
-                    div {
-                        cmp::Shape {
-                            w: 16.0,
-                            h: 16.0,
-                            color: color::TIMBERWOLF,
-                            model: cmp::ShapeModel::random()
-                        }
-                    }
-                    h4 {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "start",
-                        align_items: "center",
-                        font_family: font::BR_COBANE,
-                        font_weight: "bold",
-                        color: color::TIMBERWOLF,
-                        padding_bottom: "4px",
-                        { heading }
-                    }
-                }
-                p {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "start",
-                    align_items: "center",
-                    font_family: font::BR_COBANE,
-                    font_weight: "normal",
-                    color: color::SILVER,
-                    { sub_heading }
-                }
-            }
-        )
-    }
 }

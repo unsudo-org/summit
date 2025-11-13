@@ -2,6 +2,7 @@ use super::*;
 
 #[component]
 pub fn Button(children: Option<Element>) -> Element {
+    let conf: conf::Conf = use_context();
     let mut hover: Signal<bool> = use_signal(|| false);
 
     rsx!(
@@ -13,21 +14,21 @@ pub fn Button(children: Option<Element>) -> Element {
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            font_family: font::BR_COBANE,
+            font_family: conf.font.br_cobane,
             font_weight: "normal",
             color: if *hover.read() {
-                color::RAISIN_BLACK
+                conf.color.raisin_black
             } else {
-                color::SILVER
+                conf.color.silver
             },
-            cursor: format!("url('{}'), auto", cursor::FINGER),
+            cursor: format!("url('{}'), auto", conf.cursor.finger),
             border_width: "1px",
             border_style: "solid",
-            border_image: format!("linear-gradient(to top right, {}) 1", color::SILVER),
+            border_image: format!("linear-gradient(to top right, {}) 1", conf.color.silver),
             border_radius: "2px",
             padding: "8px",
             background: if *hover.read() {
-                color::SILVER
+                conf.color.silver
             } else {
                 "transparent"
             },

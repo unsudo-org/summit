@@ -9,6 +9,7 @@ dioxus = { version = "=0.6.0", features = ["router", "fullstack"] }
 modwire = { version = ">=0.1.0,<1.0.0" }
 once_cell = { version = ">=1.0.0,<2.0.0" }
 fastrand = { version = "*" }
+kore = { git = "https://github.com/unsudo-org/kore.git" }
 
 [features]
 default = ["web"]

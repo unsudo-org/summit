@@ -2,15 +2,16 @@ use super::*;
 
 #[component]
 pub fn LogoCompact() -> Element {
+    let conf: conf::Conf = use_context();
     rsx!(
         h1 {
             display: "flex",
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            font_family: font::ALIEN_SKYLINE,
+            font_family: conf.font.alien_skyline,
             font_weight: "normal",
-            color: color::TIMBERWOLF,
+            color: conf.color.timberwolf,
             span {
                 style: format!(
                     r#"
@@ -21,9 +22,9 @@ pub fn LogoCompact() -> Element {
                         color: transparent;
                         display: inline-block;
                     "#,
-                    color::MEDIUM_SLATE_BLUE,
-                    color::ROSE_POMPADOUR,
-                    color::MINDARO
+                    conf.color.medium_slate_blue,
+                    conf.color.rose_pompadour,
+                    conf.color.mindaro
                 ),
                 "un"
             }
@@ -33,15 +34,16 @@ pub fn LogoCompact() -> Element {
 
 #[component]
 pub fn Logo() -> Element {
+    let conf: conf::Conf = use_context();
     rsx!(
         h1 {
             display: "flex",
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            font_family: font::ALIEN_SKYLINE,
+            font_family: conf.font.alien_skyline,
             font_weight: "normal",
-            color: color::TIMBERWOLF,
+            color: conf.color.timberwolf,
             span {
                 style: format!(
                     r#"
@@ -52,9 +54,9 @@ pub fn Logo() -> Element {
                         color: transparent;
                         display: inline-block;
                     "#,
-                    color::TIMBERWOLF,
-                    color::TIMBERWOLF,
-                    color::TIMBERWOLF
+                    conf.color.timberwolf,
+                    conf.color.timberwolf,
+                    conf.color.timberwolf
                 ),
                 "un"
             }

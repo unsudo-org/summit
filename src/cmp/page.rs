@@ -12,7 +12,7 @@ pub enum PageScrollSnap {
 pub fn Page(
     scroll_snap: Option<PageScrollSnap>, 
     surface: Option<Element>,
-    color: Option<String>,
+    color: Option<conf::Hex>,
     children: Option<Element>
 ) -> Element {
     rsx!(

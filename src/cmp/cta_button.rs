@@ -6,6 +6,7 @@ pub fn CtaButton(
     style: Option<String>,
     children: Option<Element>
 ) -> Element {
+    let conf: conf::Conf = use_context();
     let mut hover: Signal<bool> = use_signal(|| false);
 
     rsx!(
@@ -35,18 +36,18 @@ pub fn CtaButton(
                 "#,
                 font::BR_COBANE,
                 if *hover.read() {
-                    color::RAISIN_BLACK
+                    conf::RAISIN_BLACK
                 } else {
-                    color::SILVER
+                    conf::SILVER
                 },
                 cursor::FINGER,
                 if *hover.read() {
-                    format!("linear-gradient(to bottom right, {})", color::SILVER)
+                    format!("linear-gradient(to bottom right, {})", conf::SILVER)
                 } else {
-                    format!("linear-gradient(to bottom right, {}, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR, color::MINDARO)
+                    format!("linear-gradient(to bottom right, {}, {}, {})", conf::MEDIUM_SLATE_BLUE, conf::ROSE_POMPADOUR, conf::MINDARO)
                 },
                 if *hover.read() {
-                    format!("linear-gradient(to right bottom, {}, {}, {})", color::MEDIUM_SLATE_BLUE, color::ROSE_POMPADOUR, color::MINDARO)
+                    format!("linear-gradient(to right bottom, {}, {}, {})", conf::MEDIUM_SLATE_BLUE, conf::ROSE_POMPADOUR, conf::MINDARO)
                 } else {
                     "transparent".to_owned()
                 },

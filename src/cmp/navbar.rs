@@ -15,59 +15,45 @@ pub fn NavbarBuild() -> Element {
 }
 
 #[component]
-pub fn Navbar(
-    left: Option<Element>,
-    right: Option<Element>,
-    class: Option<String>,
-    style: Option<String>,
-    children: Option<Element>
-) -> Element {
+pub fn Navbar(left: Option<Element>, right: Option<Element>, center: Option<Element>) -> Element {
     rsx!(
         div {
-            class: class,
-            style: format!(
-                r#"
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    align-items: center;
-                    min-width: 100%;
-                    max-width: 100%;
-                    padding-left: 10px;
-                    padding-right: 10px;
-                    {}
-                "#,
-                style.unwrap_or_default()
-            ),
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "space-between",
+            align_items: "center",
+            min_width: "100%",
+            max_width: "100%",
+            padding_left: "8px",
+            padding_right: "8px",
             div {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: start;
-                        align-items: center;
-                    "#
-                ),
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "start",
+                align_items: "center",
                 { left }
             }
             div {
-                style: format!(
-                    r#"
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: end;
-                        align-items: center;
-                    "#
-                ),
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "center",
+                { center }
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "end",
+                align_items: "center",
                 { right }
             }
         }
     )
 }
 
-
 #[component]
 pub fn NavbarGotoButton(children: Option<Element>) -> Element {
+    let conf: conf::Conf = use_context();
     rsx!(
         button {
             all: "unset",
@@ -75,10 +61,10 @@ pub fn NavbarGotoButton(children: Option<Element>) -> Element {
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            font_family: font::BR_COBANE,
+            font_family: conf.font.br_cobane,
             font_weight: "normal",
-            color: color::TIMBERWOLF,
-            cursor: format!("url('{}'), auto", cursor::FINGER),
+            color: conf.color.timberwolf,
+            cursor: format!("url('{}'), auto", conf.cursor.finger),
             div {
                 { children }
             }
