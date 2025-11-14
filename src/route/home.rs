@@ -8,6 +8,32 @@ pub fn Home() -> Element {
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
             color_: conf.color.raisin_black.to_owned(),
+            surface: rsx!(
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "end",
+                    align_items: "start",
+                    min_width: "100vw",
+                    max_width: "100vw",
+                    min_height: "100vh",
+                    max_height: "100vh",
+                    padding_left: "16px",
+                    padding_bottom: "16px",
+                    button {
+                        all: "unset",
+                        font_family: conf.font.br_cobane,
+                        font_weight: "normal",
+                        color: conf.color.timberwolf.to_string(),
+                        border_width: "1px",
+                        border_style: "solid",
+                        border_color: conf.color.mindaro.to_string(),
+                        border_radius: "2px",
+                        padding: "8px",
+                        "<sign_in_sign_up_form>"
+                    }
+                }
+            ),
             cmp::PageItem {
                 div {
                     display: "flex",
@@ -25,7 +51,7 @@ pub fn Home() -> Element {
                 div {
                     display: "flex",
                     flex_direction: "column",
-                    justify_content: "center",
+                    justify_content: "space-around",
                     align_items: "center",
                     min_width: "100vw",
                     max_width: "100vw",
@@ -33,10 +59,32 @@ pub fn Home() -> Element {
                     max_height: "100vh",
                     div {
                         display: "flex",
-                        flex_direction: "row",
+                        flex_direction: "column",
                         justify_content: "start",
                         align_items: "start",
                         position: "relative",
+                        gap: "8px",
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "space-between",
+                            align_items: "end",
+                            min_width: "100%",
+                            div {
+                                font_size: "0.5em",
+                                font_family: conf.font.br_cobane,
+                                font_weight: "normal",
+                                color: conf.color.timberwolf.to_string(),
+                                "Something nice to know"
+                            }
+                            div {
+                                font_size: "0.5em",
+                                font_family: conf.font.br_cobane,
+                                font_weight: "normal",
+                                color: conf.color.timberwolf.to_string(),
+                                "2025"
+                            }
+                        }
                         Hero {
                             heading: rsx!("An L1.5 for Polkadot"),
                             sub_heading: rsx!("It's time for a better web3 experience"),
@@ -49,7 +97,22 @@ pub fn Home() -> Element {
                             display: "flex",
                             flex_direction: "column",
                             justify_content: "start",
+                            align_items: "start",
+                            font_size: "0.5em",
+                            font_family: conf.font.br_cobane,
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+                            "Something that is not the main focus but nice to know"
                         }
+                    }
+                    div {
+                        class: "pulse_flicker",
+                        font_size: "2em",
+                        font_family: conf.font.br_cobane,
+                        font_weight: "normal",
+                        color: conf.color.timberwolf.to_string(),
+                        padding_top: "64px",
+                        "↡"
                     }
                 }
             }
@@ -62,7 +125,43 @@ pub fn Home() -> Element {
                     overflow_x: "auto",
                     overflow_y: "hidden",
                     div {
-                        "Hello"
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "start",
+                        align_items: "start",
+                        div {
+                            font_size: "0.5em",
+                            font_family: "br cobane",
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+                            "Bla bla bla"
+                        }
+                        h1 {
+                            font_family: "Alien Android",
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+                            "Pillars of Decentralization"
+                        }
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "end",
+                            min_width: "100%",
+                            div {
+                                font_size: "0.5em",
+                                font_family: "br cobane",
+                                font_weight: "normal",
+                                color: conf.color.timberwolf.to_string(),
+                                "Bla bla bla"
+                            }
+                        }
+                    }
+                    div {
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "start",
+                        align_items: "start",
+
                     }
                 }
             }
@@ -111,7 +210,7 @@ fn Hero(
                         justify_content: "start",
                         align_items: "start",
                         h1 {
-                            font_family: conf.font.br_cobane,
+                            font_family: "Alien Android",
                             font_weight: "bold",
                             color: conf.color.raisin_black.to_string(),
                             { heading }
@@ -144,7 +243,7 @@ fn Hero(
                         w: 200.0,
                         h: 200.0,
                         color_: Some(conf.color.raisin_black.to_owned()),
-                        model: cmp::ShapeModel::GeometricStarburst
+                        model: cmp::ShapeModel::LayeredStructure
                     }
                 }
             }
@@ -156,11 +255,11 @@ fn Hero(
                 gap: "8px",
                 HeroFeatureCard {
                     heading: "24/7 Uptime",
-                    sub_heading: "Build on infrastructure that never sleeps."
+                    sub_heading: "Build on infrastructure that never sleeps"
                 }
                 HeroFeatureCard {
                     heading: "Gassless Economy",
-                    sub_heading: "Say goodbye to gas fees."
+                    sub_heading: "Say goodbye to gas fees"
                 }
             }
         }
@@ -182,8 +281,10 @@ fn HeroFeatureCard(heading: String, sub_heading: String) -> Element {
             border_style: "solid",
             border_color: conf.color.timberwolf.to_string(),
             border_radius: "2px",
+            min_width: "400px",
+            max_width: "400px",
             h1 {
-                font_family: conf.font.br_cobane,
+                font_family: "Alien Android",
                 font_weight: "bold",
                 color: conf.color.timberwolf.to_string(),
                 { heading }
@@ -197,3 +298,4 @@ fn HeroFeatureCard(heading: String, sub_heading: String) -> Element {
         }
     )
 }
+

@@ -3,3 +3,122 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+
+
+
+.float {
+    animation: float 10s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);  
+    }
+    25% {
+        transform: translate(5px, -10px);
+    }
+    50% {
+        transform: translate(0, -5px);
+    }
+    75% {
+        transform: translate(-5px, -10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pulse_flicker {
+    animation: pulse_flicker 1.5s infinite;
+}
+
+@keyframes pulse_flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    8%, 12% {
+        opacity: 0.1;
+    }
+    20% {
+        opacity: 0.4;
+    }
+    22% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0.5;
+    }
+}
+
+.soft_flicker {
+    animation: soft_flicker 3s infinite;
+}
+
+@keyframes soft_flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.6;
+    }
+    60% {
+        opacity: 0.85;
+    }
+}
+
+.flicker_in {
+    opacity: 0;
+    animation: flicker_in 2.2s forwards;
+}
+
+@keyframes flicker_in {
+    0%   { 
+        opacity: 0; 
+    }
+    10%  { 
+        opacity: 0.4; 
+    }
+    15%  { 
+        opacity: 0; 
+    }
+    25%  { 
+        opacity: 0.6; 
+    }
+    30%  { 
+        opacity: 0.2; 
+    }
+    45%  { 
+        opacity: 0.8; 
+    }
+    50%  { 
+        opacity: 0.3; 
+    }
+    70%  { 
+        opacity: 1; 
+    }
+    80%  { 
+        opacity: 0.7; 
+    }
+    100% { 
+        opacity: 1; 
+    }
+}

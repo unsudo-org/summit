@@ -82,6 +82,9 @@ fn Main() -> Element {
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/alien-skyline" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/stray" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/br-cobane" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/alien-android" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/futurama" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/sf-alien-encounters" }
         Router::<Route> {}
     )
 }
