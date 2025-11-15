@@ -21,7 +21,7 @@ pub fn Button(children: Option<Element>) -> Element {
             } else {
                 conf.color.raisin_black.to_string()
             },
-            border_width: "1px",
+            border_width: "2px",
             border_style: "solid",
             border_image: format!("linear-gradient(to bottom right, {}) 1", conf.color.raisin_black),
             border_radius: "2px",

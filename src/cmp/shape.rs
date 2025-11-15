@@ -1,5 +1,7 @@
 //! https://www.shapes.gallery/
 
+use dioxus::html::u::aspect_ratio;
+
 use super::*;
 
 #[derive(Clone)]
@@ -131,16 +133,16 @@ impl ::std::fmt::Display for ShapeModel {
 
 #[component]
 pub fn Shape(
-    w: f32, 
-    h: f32, 
+    w: Option<String>, 
+    h: Option<String>,
     model: ShapeModel,
     color_: Option<conf::Hex>
 ) -> Element {
     rsx!(
         svg {
             xmlns: "http://www.w3.org/2000/svg",
-            width: w.to_string(),
-            height: h.to_string(),
+            width: w,
+            height: h,
             view_box: format!("0 0 256 256"),
             preserve_aspect_ratio: "xMidYMid meet",
             fill: "none",

@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Borneox";
+    src: url(borneox.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Brulia";
+    src: url(brulia.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "BruliaDisplay";
+    src: url(brulia_display.otf) format("opentype");
+}

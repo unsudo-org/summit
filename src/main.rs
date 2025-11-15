@@ -67,6 +67,24 @@ fn Main() -> Element {
             rel: "icon",
             href: asset!("/asset/press-kit/logo.svg")
         }
+        document::Style {
+            r#"
+@font-face {{
+    font-family: "Borneox";
+    src: url('{asset!("asset/font/borneox.otf")}') format("opentype");
+}}
+
+@font-face {{
+    font-family: "Brulia";
+    src: url('{asset!("asset/font/brulia.otf")}') format("opentype");
+}}
+
+@font-face {{
+    font-family: "BruliaDisplay";
+    src: url('{asset!("asset/font/brulia_display.otf")}') format("opentype");
+}}
+            "#
+        }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/horizontal-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/vertical-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/faulty-neon.css") }
@@ -83,8 +101,8 @@ fn Main() -> Element {
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/stray" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/br-cobane" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/alien-android" }
-        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/futurama" }
-        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/sf-alien-encounters" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/strike-fighter" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/darken-2" }
         Router::<Route> {}
     )
 }
