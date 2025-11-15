@@ -8,7 +8,7 @@
 
 
 .float {
-    animation: float 10s ease-in-out infinite;
+    animation: float 32s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -75,10 +75,10 @@
         opacity: 1;
     }
     40% {
-        opacity: 0.8;
+        opacity: 0.9;
     }
     50% {
-        opacity: 0.6;
+        opacity: 0;
     }
     60% {
         opacity: 0.85;

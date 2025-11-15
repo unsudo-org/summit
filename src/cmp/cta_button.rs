@@ -23,20 +23,20 @@ pub fn CtaButton(
             color: if *hover.read() {
                 conf.color.raisin_black.to_string()
             } else {
-                conf.color.silver.to_string()
+                conf.color.raisin_black.to_string()
             },
             cursor: format!("url({}), auto", conf.cursor.finger),
-            border_width: "1px",
+            border_width: "2px",
             border_style: "solid",
             border_image: if *hover.read() {
-                format!("linear-gradient(to bottom right, {}) 1", conf.color.silver)
+                format!("linear-gradient(to bottom right, {}) 1", conf.color.raisin_black)
             } else {
-                format!("linear-gradient(to bottom right, {}, {}, {}) 1", conf.color.medium_slate_blue, conf.color.rose_pompadour, conf.color.mindaro)
+                format!("linear-gradient(to bottom right, {}, {}, {}) 1", conf.color.medium_slate_blue, conf.color.rose_pompadour, conf.color.medium_slate_blue)
             },
             border_radius: "2px",
             padding: "8px",
             background: if *hover.read() {
-                format!("linear-gradient(to right bottom, {}, {}. {})", conf.color.medium_slate_blue, conf.color.rose_pompadour, conf.color.mindaro)
+                format!("linear-gradient(to right bottom, {}, {}, {})", conf.color.medium_slate_blue, conf.color.rose_pompadour, conf.color.mindaro)
             } else {
                 "transparent".to_owned()
             },

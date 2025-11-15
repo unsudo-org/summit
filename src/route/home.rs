@@ -61,7 +61,7 @@ pub fn Home() -> Element {
                     max_height: "100vh",
                     Hero {}
                     div {
-                        class: "pulse_flicker",
+                        class: "soft_flicker",
                         font_size: "2em",
                         font_family: conf.font.br_cobane,
                         font_weight: "normal",
@@ -137,6 +137,27 @@ fn Hero() -> Element {
             HeroBanner {
                 heading: "AN L1.5 FOR POLKADOT"
             }
+            div {
+                min_height: "8px"
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                gap: "8px",
+                min_width: "100%",
+                HeroFeatureCard {
+                    heading: "TRANSPARENCY"
+                }
+                HeroFeatureCard {
+                    heading: "RESILIENCE"
+                }
+                HeroFeatureCard {
+                    heading: "24/7 UPTIME"
+                }
+                HeroFeatureCard {
+                    heading: "CROSS BORDER"
+                }
+            }
         }
     )
 }
@@ -149,29 +170,22 @@ fn HeroBanner(heading: String) -> Element {
         div {
             display: "flex",
             flex_direction: "row",
-            justify_content: "start",
+            justify_content: "space-between",
             align_items: "start",
             border_radius: "2px",
             background: conf.color.timberwolf.to_string(),
-            padding: "16px",
+            padding_top: "16px",
+            padding_bottom: "0px",
+            padding_left: "16px",
+            padding_right: "16px",
+            min_width: "100%",
             div {
                 display: "flex",
                 flex_direction: "column",
                 justify_content: "end",
                 align_items: "start",
-                h1 {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "start",
-                    align_items: "start",
-                    font_size: "4em",
-                    font_family: "br cobane",
-                    font_weight: "normal",
-                    color: conf.color.raisin_black.to_string(),
-                    max_width: "350px",
-                    text_align: "left",
-                    word_wrap: "break-word",
-                    { heading }
+                HeroHeading {
+                    "AN L1.5 FOR POLKADOT"
                 }
             }
             div {
@@ -187,9 +201,31 @@ fn HeroBanner(heading: String) -> Element {
                     w: "200px",
                     h: "auto",
                     color_: Some(conf.color.raisin_black.to_owned()),
-                    model: cmp::ShapeModel::LayeredStructure
+                    model: cmp::ShapeModel::FourLobedRoundedSquare
                 }
             }
+        }
+    )
+}
+
+#[component]
+fn HeroHeading(children: Element) -> Element {
+    let conf: conf::Conf = use_context();
+
+    rsx!(
+        h1 {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            font_size: "4em",
+            font_family: "alien android",
+            font_weight: "normal",
+            color: conf.color.raisin_black.to_string(),
+            max_width: "350px",
+            text_align: "left",
+            word_wrap: "break-word",
+            { children }
         }
     )
 }
@@ -200,6 +236,7 @@ fn HeroSubHeading() -> Element {
 
     rsx!(
         div {
+            class: "float",
             display: "flex",
             flex_direction: "column",
             justify_content: "start",
@@ -228,7 +265,7 @@ fn HeroSubHeading() -> Element {
 }
 
 #[component]
-fn HeroFeatureCard(heading: String, sub_heading: String) -> Element {
+fn HeroFeatureCard(heading: String) -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
@@ -243,13 +280,11 @@ fn HeroFeatureCard(heading: String, sub_heading: String) -> Element {
             border_color: conf.color.timberwolf.to_string(),
             border_radius: "2px",
             h1 {
-                font_family: "Borneox",
+                font_family: "alien android",
                 font_weight: "bold",
                 color: conf.color.timberwolf.to_string(),
                 { heading }
             }
-            
         }
     )
 }
-
