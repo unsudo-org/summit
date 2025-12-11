@@ -1,5 +1,3 @@
-use dioxus::html::u::{max_width, min_width, text_align};
-
 use super::*;
 
 #[component]
@@ -68,6 +66,30 @@ pub fn Home() -> Element {
                         color: conf.color.timberwolf.to_string(),
                         padding_top: "64px",
                         "↡"
+                    }
+                }
+            }
+            cmp::PageItem {
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "center",
+                    min_width: "100vw",
+                    max_width: "100vw",
+                    min_height: "100vw",
+                    max_height: "100vh",
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "center",
+                        align_items: "center",
+                        background: conf.color.timberwolf.to_string(),
+                        font_size: "2em",
+                        font_family: conf.font.br_cobane,
+                        font_weight: "normal",
+                        color: conf.color.raisin_black.to_string(),
+                        padding: "8px",
+                        "What is Unsudo?"
                     }
                 }
             }
@@ -157,6 +179,15 @@ fn Hero() -> Element {
                 HeroFeatureCard {
                     heading: "CROSS BORDER"
                 }
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                font_size: "1em",
+                font_family: "",
+                font_weight: "normal",
+                color: conf.color.timberwolf.to_string(),
+                "bla bla bla"
             }
         }
     )

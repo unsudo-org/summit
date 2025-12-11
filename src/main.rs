@@ -1,4 +1,4 @@
-use dioxus::html::g::color;
+use dioxus::html::{g::color, u::{align_items, justify_content}};
 use ::dioxus::prelude::*;
 use ::std::sync;
 
