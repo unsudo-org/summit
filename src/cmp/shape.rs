@@ -136,7 +136,7 @@ pub fn Shape(
     w: Option<String>, 
     h: Option<String>,
     model: ShapeModel,
-    color_: Option<conf::Hex>
+    fill: Option<conf::Hex>
 ) -> Element {
     rsx!(
         svg {
@@ -147,7 +147,7 @@ pub fn Shape(
             preserve_aspect_ratio: "xMidYMid meet",
             fill: "none",
             path {
-                fill: color_.unwrap_or_default().to_string(),
+                fill: fill.unwrap_or_default().to_string(),
                 d: model.to_string()
             }
         }

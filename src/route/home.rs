@@ -1,3 +1,5 @@
+use dioxus::html::u::flex_direction;
+
 use super::*;
 
 #[component]
@@ -7,138 +9,202 @@ pub fn Home() -> Element {
     rsx!(
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
-            color_: conf.color.raisin_black.to_owned(),
-            surface: rsx!(
+            bg_color: conf.color.raisin_black.to_owned(),
+            surface: rsx!(),
+            cmp::PageItem {
                 div {
                     display: "flex",
                     flex_direction: "column",
-                    justify_content: "end",
+                    justify_content: "start",
                     align_items: "start",
                     min_width: "100vw",
                     max_width: "100vw",
                     min_height: "100vh",
                     max_height: "100vh",
-                    padding_left: "16px",
-                    padding_bottom: "16px",
-                    button {
-                        all: "unset",
-                        font_family: conf.font.br_cobane,
-                        font_weight: "normal",
-                        color: conf.color.timberwolf.to_string(),
-                        border_width: "1px",
-                        border_style: "solid",
-                        border_color: conf.color.mindaro.to_string(),
-                        border_radius: "2px",
-                        padding: "8px",
-                        "<sign_in_sign_up_form>"
-                    }
-                }
-            ),
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "center",
-                    align_items: "center",
-                    min_width: "100%",
-                    max_width: "100%",
-                    padding_top: "4px",
-                    padding_bottom: "4px",
-                    cmp::NavbarBuild {}
-                }
-            }
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "space-around",
-                    align_items: "center",
-                    min_width: "100vw",
-                    max_width: "100vw",
-                    min_height: "100vh",
-                    max_height: "100vh",
-                    Hero {}
                     div {
-                        class: "soft_flicker",
-                        font_size: "2em",
-                        font_family: conf.font.br_cobane,
-                        font_weight: "normal",
-                        color: conf.color.timberwolf.to_string(),
-                        padding_top: "64px",
-                        "↡"
+                        cmp::NavbarBuild {}
                     }
-                }
-            }
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "center",
-                    min_width: "100vw",
-                    max_width: "100vw",
-                    min_height: "100vw",
-                    max_height: "100vh",
                     div {
                         display: "flex",
                         flex_direction: "row",
                         justify_content: "center",
                         align_items: "center",
-                        background: conf.color.timberwolf.to_string(),
-                        font_size: "2em",
-                        font_family: conf.font.br_cobane,
-                        font_weight: "normal",
-                        color: conf.color.raisin_black.to_string(),
-                        padding: "8px",
-                        "What is Unsudo?"
+                        min_width: "100%",
+                        max_width: "100%",
+                        flex: "1",
+                        HeroSection {}
+                    }
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "center",
+                        align_items: "center",
+                        min_width: "100%",
+                        max_width: "100%",
+                        flex: "1",
+                        div {
+                            class: "soft_flicker",
+                            display: "flex",
+                            flex_direction: "column",
+                            justify_content: "center",
+                            align_items: "center",
+                            font_size: "32px",
+                            font_family: conf.font.br_cobane,
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+                            "↡"
+                        }
                     }
                 }
             }
             cmp::PageItem {
                 div {
                     display: "flex",
-                    flex_direction: "row",
+                    flex_direction: "column",
                     justify_content: "start",
-                    align_items: "center",
-                    overflow_x: "auto",
-                    overflow_y: "hidden",
+                    align_items: "start",
+                    min_width: "100vw",
+                    max_width: "100vw",
+                    min_height: "100vh",
+                    max_height: "100vh",
+                    padding: "32px",
+
                     div {
                         display: "flex",
-                        flex_direction: "column",
+                        flex_direction: "row",
                         justify_content: "start",
-                        align_items: "start",
-                        div {
-                            font_size: "0.5em",
-                            font_family: "br cobane",
-                            font_weight: "normal",
-                            color: conf.color.timberwolf.to_string(),
-                            "Bla bla bla"
-                        }
-                        h1 {
-                            font_family: "alien android",
-                            font_weight: "normal",
-                            color: conf.color.timberwolf.to_string(),
-                            "Pillars of Decentralization"
-                        }
+                        align_items: "center",
                         div {
                             display: "flex",
-                            flex_direction: "row",
-                            justify_content: "end",
+                            background: conf.color.timberwolf.to_string(),
+                            padding: "8px",
+                            font_size: "128px",
+                            font_family: "alien android",
+                            font_weight: "normal",
+                            color: conf.color.raisin_black.to_string(),
+                            border_radius: "4px",
                             min_width: "100%",
-                            div {
-                                font_size: "0.5em",
-                                font_family: "br cobane",
-                                font_weight: "normal",
-                                color: conf.color.timberwolf.to_string(),
-                                "Bla bla bla"
-                            }
+                            "Web3 for Web2"
                         }
                     }
                     div {
                         display: "flex",
-                        flex_direction: "column",
+                        flex_direction: "row",
+                        justify_content: "center",
+                        align_items: "center",
+                        flex: "1",
+                        min_width: "100%",
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "center",
+                            align_items: "center",
+                            font_size: "128px",
+                            font_family: conf.font.br_cobane,
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+
+                        }
+                    }
+                        cmp::Shape {
+                            w: "256px",
+                            h: "256px",
+                            fill: conf.color.timberwolf.to_owned(),
+                            model: cmp::ShapeModel::RoundedTab
+                        }
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
                         justify_content: "start",
                         align_items: "start",
+                        gap: "64px",
 
+                        div {
+                            min_height: "16px"
+                        }
+                        div {
+                            font_size: "16px",
+                            font_family: conf.font.br_cobane,
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+                            text_align: "justify",
+                            max_width: "400px",
+                            "While Web3 promises decentralization, 17% of it is driven purely by speculation—focused on hype and short-term gains rather than real utility. This imbalance slows meaningful adoption and distracts from building products people actually use."
+                        }
+                        div {
+                            font_size: "16px",
+                            font_family: conf.font.br_cobane,
+                            font_weight: "normal",
+                            color: conf.color.timberwolf.to_string(),
+                            text_align: "justify",
+                            max_width: "400px",
+                            "Web3 aims to create real ownership and value, yet 17% of the space is dominated by speculation. This focus on hype over utility limits trust, usability, and long-term impact."
+                        }
+                    }
+                }
+            }
+            cmp::PageItem {
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "start",
+                    min_width: "100vw",
+                    max_width: "100vw",
+                    min_height: "100vh",
+                    max_height: "100vh",
+                    padding: "32px",
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "start",
+                        align_items: "start",
+                        gap: "20px",
+                        Card {
+                            label: rsx!(
+                                "Why Us"
+                            ),
+                            div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "start",
+                                align_items: "start",
+                                gap: "16px",
+                                BulletPoint { "Onchain Infrastructure" }
+                                BulletPoint { "Robust" }
+                                BulletPoint { "Modularity" }
+                            }
+                        }
+                        Card {
+                            label: rsx!(
+                                "Why It Matters"
+                            ),
+                            div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "start",
+                                align_items: "start",
+                                gap: "16px",
+                                BulletPoint { "Onchain Infrastructure" }
+                                BulletPoint { "Robust" }
+                                BulletPoint { "Modularity" }
+                            }
+                        }
+                        Card {
+                            label: rsx!(
+                                "What can you do?"
+                            ),
+                            div {
+                                display: "flex",
+                                flex_direction: "column",
+                                justify_content: "start",
+                                align_items: "start",
+                                gap: "16px",
+                                BulletPoint { "Onchain Infrastructure" }
+                                BulletPoint { "Robust" }
+                                BulletPoint { "Modularity" }
+                            }
+                        }
                     }
                 }
             }
@@ -147,7 +213,7 @@ pub fn Home() -> Element {
 }
 
 #[component]
-fn Hero() -> Element {
+fn HeroSection() -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
@@ -156,9 +222,7 @@ fn Hero() -> Element {
             flex_direction: "column",
             justify_content: "start",
             align_items: "start",
-            HeroBanner {
-                heading: "AN L1.5 FOR POLKADOT"
-            }
+            HeroSectionBanner {}
             div {
                 min_height: "8px"
             }
@@ -167,16 +231,16 @@ fn Hero() -> Element {
                 flex_direction: "row",
                 gap: "8px",
                 min_width: "100%",
-                HeroFeatureCard {
+                HeroSectionBannerFeature {
                     heading: "TRANSPARENCY"
                 }
-                HeroFeatureCard {
+                HeroSectionBannerFeature {
                     heading: "RESILIENCE"
                 }
-                HeroFeatureCard {
+                HeroSectionBannerFeature {
                     heading: "24/7 UPTIME"
                 }
-                HeroFeatureCard {
+                HeroSectionBannerFeature {
                     heading: "CROSS BORDER"
                 }
             }
@@ -194,7 +258,7 @@ fn Hero() -> Element {
 }
 
 #[component]
-fn HeroBanner(heading: String) -> Element {
+fn HeroSectionBanner() -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
@@ -215,7 +279,7 @@ fn HeroBanner(heading: String) -> Element {
                 flex_direction: "column",
                 justify_content: "end",
                 align_items: "start",
-                HeroHeading {
+                HeroSectionBannerHeading {
                     "AN L1.5 FOR POLKADOT"
                 }
             }
@@ -227,11 +291,11 @@ fn HeroBanner(heading: String) -> Element {
                 flex_direction: "row",
                 justify_content: "end",
                 align_items: "end",
-                HeroSubHeading {}
+                HeroSectionBannerSubHeading {}
                 cmp::Shape {
                     w: "200px",
                     h: "auto",
-                    color_: Some(conf.color.raisin_black.to_owned()),
+                    fill: Some(conf.color.raisin_black.to_owned()),
                     model: cmp::ShapeModel::FourLobedRoundedSquare
                 }
             }
@@ -240,7 +304,7 @@ fn HeroBanner(heading: String) -> Element {
 }
 
 #[component]
-fn HeroHeading(children: Element) -> Element {
+fn HeroSectionBannerHeading(children: Element) -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
@@ -262,7 +326,7 @@ fn HeroHeading(children: Element) -> Element {
 }
 
 #[component]
-fn HeroSubHeading() -> Element {
+fn HeroSectionBannerSubHeading() -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
@@ -296,7 +360,7 @@ fn HeroSubHeading() -> Element {
 }
 
 #[component]
-fn HeroFeatureCard(heading: String) -> Element {
+fn HeroSectionBannerFeature(heading: String) -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
@@ -311,6 +375,10 @@ fn HeroFeatureCard(heading: String) -> Element {
             border_color: conf.color.timberwolf.to_string(),
             border_radius: "2px",
             h1 {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "center",
                 font_family: "alien android",
                 font_weight: "bold",
                 color: conf.color.timberwolf.to_string(),
@@ -319,3 +387,118 @@ fn HeroFeatureCard(heading: String) -> Element {
         }
     )
 }
+
+#[component]
+fn HeroSectionSoftFlickerDownArrow() -> Element {
+    let conf: conf::Conf = use_context();
+
+    rsx!(
+        div {
+            class: "soft_flicker",
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "center",
+            align_items: "center",
+            font_size: "32px",
+            font_family: conf.font.br_cobane,
+            font_weight: "normal",
+            color: conf.color.timberwolf.to_string(),
+            "↡"
+        }
+    )
+}
+
+
+
+
+#[component]
+fn Card(label: Option<Element>, children: Option<Element>) -> Element {
+    let conf: conf::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            border_width: "2px",
+            border_style: "solid",
+            border_color: conf.color.timberwolf.to_string(),
+            border_radius: "4px",
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "center",
+                background: conf.color.timberwolf.to_string(),
+                min_width: "100%",
+                max_width: "100%",
+                padding: "8px",
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    font_size: "32px",
+                    font_family: conf.font.br_cobane,
+                    font_weight: "normal",
+                    color: conf.color.raisin_black.to_string(),
+                    { label }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                padding: "8px",
+                { children }
+            }
+        }
+    )
+}
+
+
+
+
+
+#[component]
+fn BulletPoint(
+    children: Option<Element>
+) -> Element {
+    let conf: conf::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "start",
+            align_items: "center",
+            gap: "16px",
+            cmp::Shape {
+                w: "32px",
+                h: "32px",
+                model: cmp::ShapeModel::QuatrefoilFlower,
+                fill: conf.color.timberwolf.to_owned()
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "start",
+                align_items: "center",
+                font_size: "2em",
+                font_family: conf.font.br_cobane,
+                font_weight: "normal",
+                color: conf.color.timberwolf.to_string(),
+                { children }
+            }
+        }
+    )
+}
+
+
+
+
+
+
