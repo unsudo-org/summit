@@ -24,7 +24,9 @@ pub struct ColorPalette {
 pub struct FontPalette {
     pub br_cobane: &'static str,
     pub stray: &'static str,
-    pub alien_skyline: &'static str
+    pub alien_skyline: &'static str,
+    pub borneox: &'static str,
+    pub brulia_test: &'static str
 }
 
 #[derive(Clone)]

@@ -34,7 +34,9 @@ fn Main() -> Element {
             font: conf::FontPalette {
                 br_cobane: "br cobane",
                 stray: "stray",
-                alien_skyline: "alien skyline"
+                alien_skyline: "alien skyline",
+                borneox: "beyonders",
+                brulia_test: "brulia test"
             },
             cursor: conf::CursorAssetSheet {
                 ban: asset!("/asset/icon/cursor/ban.svg"),
@@ -67,24 +69,6 @@ fn Main() -> Element {
             rel: "icon",
             href: asset!("/asset/press-kit/logo.svg")
         }
-        document::Style {
-            r#"
-@font-face {{
-    font-family: "Borneox";
-    src: url('{asset!("asset/font/borneox.otf")}') format("opentype");
-}}
-
-@font-face {{
-    font-family: "Brulia";
-    src: url('{asset!("asset/font/brulia.otf")}') format("opentype");
-}}
-
-@font-face {{
-    font-family: "BruliaDisplay";
-    src: url('{asset!("asset/font/brulia_display.otf")}') format("opentype");
-}}
-            "#
-        }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/horizontal-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/stripe/vertical-stripe-motion.css") }
         document::Stylesheet { href: asset!("/asset/css/keyframe/faulty-neon.css") }
@@ -103,6 +87,8 @@ fn Main() -> Element {
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/alien-android" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/strike-fighter" }
         document::Stylesheet { href: "https://fonts.cdnfonts.com/css/darken-2" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/beyonders" }
+        document::Stylesheet { href: "https://fonts.cdnfonts.com/css/brulia-test" }
         Router::<Route> {}
     )
 }

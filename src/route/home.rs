@@ -1,4 +1,4 @@
-use dioxus::html::u::flex_direction;
+use dioxus::html::{g::font_family, u::{flex_direction, max_height}};
 
 use super::*;
 
@@ -78,8 +78,8 @@ pub fn Home() -> Element {
                             display: "flex",
                             background: conf.color.timberwolf.to_string(),
                             padding: "8px",
-                            font_size: "128px",
-                            font_family: "alien android",
+                            font_size: "64px",
+                            font_family: conf.font.borneox,
                             font_weight: "normal",
                             color: conf.color.raisin_black.to_string(),
                             border_radius: "4px",
@@ -106,12 +106,12 @@ pub fn Home() -> Element {
 
                         }
                     }
-                        cmp::Shape {
-                            w: "256px",
-                            h: "256px",
-                            fill: conf.color.timberwolf.to_owned(),
-                            model: cmp::ShapeModel::RoundedTab
-                        }
+                    cmp::Shape {
+                        w: "256px",
+                        h: "256px",
+                        fill: conf.color.timberwolf.to_owned(),
+                        model: cmp::ShapeModel::RoundedTab
+                    }
                     div {
                         display: "flex",
                         flex_direction: "row",
@@ -133,7 +133,7 @@ pub fn Home() -> Element {
                         }
                         div {
                             font_size: "16px",
-                            font_family: conf.font.br_cobane,
+                            font_family: conf.font.brulia_test,
                             font_weight: "normal",
                             color: conf.color.timberwolf.to_string(),
                             text_align: "justify",
@@ -270,7 +270,7 @@ fn HeroSectionBanner() -> Element {
             border_radius: "2px",
             background: conf.color.timberwolf.to_string(),
             padding_top: "16px",
-            padding_bottom: "0px",
+            padding_bottom: "16px",
             padding_left: "16px",
             padding_right: "16px",
             min_width: "100%",
@@ -313,13 +313,14 @@ fn HeroSectionBannerHeading(children: Element) -> Element {
             flex_direction: "column",
             justify_content: "start",
             align_items: "start",
-            font_size: "4em",
-            font_family: "alien android",
+            font_size: "36px",
+            font_family: conf.font.borneox,
             font_weight: "normal",
             color: conf.color.raisin_black.to_string(),
             max_width: "350px",
             text_align: "left",
             word_wrap: "break-word",
+            max_height: "100%",
             { children }
         }
     )
@@ -338,7 +339,7 @@ fn HeroSectionBannerSubHeading() -> Element {
             align_items: "start",
             max_width: "250px",
             h2 {
-                font_family: "br cobane",
+                font_family: conf.font.brulia_test,
                 font_weight: "normal",
                 color: conf.color.raisin_black.to_string(),
                 "It's time for a better web3 experience"
@@ -379,7 +380,8 @@ fn HeroSectionBannerFeature(heading: String) -> Element {
                 flex_direction: "row",
                 justify_content: "center",
                 align_items: "center",
-                font_family: "alien android",
+                font_size: "20px",
+                font_family: conf.font.borneox,
                 font_weight: "bold",
                 color: conf.color.timberwolf.to_string(),
                 { heading }
@@ -440,8 +442,8 @@ fn Card(label: Option<Element>, children: Option<Element>) -> Element {
                     justify_content: "center",
                     align_items: "center",
                     min_width: "100%",
-                    font_size: "32px",
-                    font_family: conf.font.br_cobane,
+                    font_size: "16px",
+                    font_family: conf.font.borneox,
                     font_weight: "normal",
                     color: conf.color.raisin_black.to_string(),
                     { label }
@@ -488,7 +490,7 @@ fn BulletPoint(
                 justify_content: "start",
                 align_items: "center",
                 font_size: "2em",
-                font_family: conf.font.br_cobane,
+                font_family: conf.font.brulia_test,
                 font_weight: "normal",
                 color: conf.color.timberwolf.to_string(),
                 { children }

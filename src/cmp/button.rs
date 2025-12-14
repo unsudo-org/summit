@@ -14,7 +14,7 @@ pub fn Button(children: Option<Element>) -> Element {
             flex_direction: "row",
             justify_content: "start",
             align_items: "start",
-            font_family: conf.font.br_cobane,
+            font_family: conf.font.brulia_test,
             font_weight: "normal",
             color: if *hover.read() {
                 conf.color.timberwolf.to_string()
