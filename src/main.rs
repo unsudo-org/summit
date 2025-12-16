@@ -1,16 +1,16 @@
 use ::dioxus::prelude::*;
+use ::std::time;
 use ::std::sync;
 use ::std::rc;
 use ::std::cell;
-use ::gloo_timers::callback as cb;
+use ::gloo_timers::callback as gloo_callback;
+use ::gloo_timers::future as gloo_future;
 
 use route::*;
 
 mod cmp;
 mod conf;
 mod route;
-
-mod machine;
 
 pub type Hex = ::kore::color::Hex<2, u128>;
 

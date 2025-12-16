@@ -4,6 +4,7 @@ use super::*;
 
 ::modwire::expose!(
     pub button
+    pub counter
     pub pointer_lock
     pub cta_button
     pub flex

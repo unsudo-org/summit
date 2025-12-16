@@ -9,6 +9,7 @@ dependencies.once_cell.version = ">=1.0.0,<2.0.0"
 dependencies.fastrand.version = "=2.3.0"
 dependencies.kore.git = "https://github.com/unsudo-org/kore.git"
 dependencies.gloo-timers.version = "0.3.0"
+dependencies.gloo-timers.features = ["futures"]
 dependencies.wasm-bindgen.version = "*"
 dependencies.web-sys.version = "*"
 features.default = ["web"]

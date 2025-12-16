@@ -100,15 +100,35 @@ pub fn Home() -> Element {
                         min_height: "100%",
                         max_height: "100%",
                         padding: "16px",
+
                         div {
                             display: "flex",
-                            min_width: "500px",
-                            max_width: "500px",
-                            font_family: conf.font.brulia_test,
-                            font_weight: "normal",
-                            color: conf.color.rose_pompadour.to_string(),
-                            "Web3 is in trouble, our digital town squares are being attacked. We need to do better... We are weakened by red tape and corruption."
+                            flex_direction: "column",
+                            justify_content: "start",
+                            align_items: "start",
+                            h2 {
+                                display: "flex",
+                                flex_direction: "row",
+                                font_family: conf.font.brulia_test,
+                                font_weight: "normal",
+                                color: conf.color.timberwolf.to_string(),
+                                gap: "4px",
+                                span {
+                                    cmp::Counter {
+                                        from: 0.0,
+                                        to: 9.0,
+                                        ms: 3000.0
+                                    }
+                                }
+                            }
+                            h2 {
+                                font_family: conf.font.borneox,
+                                font_weight: "normal",
+                                color: conf.color.timberwolf.to_string(),
+                                "Billion People"
+                            }
                         }
+
                     }
                     cmp::HazardStripe {
                         min_w: "100vw",
@@ -128,15 +148,32 @@ pub fn Home() -> Element {
                     div {
                         display: "flex",
                         flex_direction: "row",
-                        justify_content: "center",
+                        justify_content: "space-between",
                         align_items: "center",
                         min_width: "100%",
                         max_width: "100%",
+                        padding: "16px",
+                        div {
+                            display: "flex",
+                            flex: "1",
+                            h4 {
+                                display: "flex",
+                                min_width: "500px",
+                                max_width: "500px",
+                                font_family: conf.font.brulia_test,
+                                font_weight: "normal",
+                                color: conf.color.timberwolf.to_string(),
+                                "Web3 is in trouble, our digital town squares are being attacked. We need to do better... We are weakened by red tape and corruption."
+                            }
+                        }
                         cmp::Shape {
                             w: "258px",
                             h: "258px",
                             fill: conf.color.timberwolf.to_owned(),
                             model: cmp::ShapeModel::AngularStar
+                        }
+                        div {
+                            flex: "1"
                         }
                     }
                     cmp::HazardStripe {
