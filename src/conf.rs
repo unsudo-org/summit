@@ -7,8 +7,6 @@ pub struct Conf {
     pub cursor: CursorAssetSheet
 }
 
-pub type Hex = ::kore::color::Hex<2, u128>;
-
 #[derive(Clone)]
 pub struct ColorPalette {
     pub raisin_black: Hex,

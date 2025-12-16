@@ -1,4 +1,4 @@
-use dioxus::html::{g::font_family, u::{flex_direction, max_height}};
+use dioxus::html::g::{font_family, font_weight};
 
 use super::*;
 
@@ -9,30 +9,25 @@ pub fn Home() -> Element {
     rsx!(
         cmp::Page {
             scroll_snap: cmp::PageScrollSnap::Proximity,
-            bg_color: conf.color.raisin_black.to_owned(),
-            surface: rsx!(),
+            bg: conf.color.raisin_black.to_owned(),
             cmp::PageItem {
                 div {
                     display: "flex",
                     flex_direction: "column",
-                    justify_content: "start",
+                    justify_content: "space-between",
                     align_items: "start",
                     min_width: "100vw",
                     max_width: "100vw",
                     min_height: "100vh",
                     max_height: "100vh",
                     div {
+                        display: "flex",
+                        flex_direction: "row",
+                        
                         cmp::NavbarBuild {}
                     }
                     div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "center",
-                        align_items: "center",
-                        min_width: "100%",
-                        max_width: "100%",
-                        flex: "1",
-                        HeroSection {}
+                        min_height: "32px"
                     }
                     div {
                         display: "flex",
@@ -41,7 +36,32 @@ pub fn Home() -> Element {
                         align_items: "center",
                         min_width: "100%",
                         max_width: "100%",
-                        flex: "1",
+                        Banner {}
+                    }
+                    div {
+                        flex: "1"
+                    }
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "center",
+                        align_items: "center",
+                        min_width: "100vw",
+                        max_width: "100vw",
+                        padding: "16px",
+                        background: conf.color.medium_slate_blue.to_string(),
+                        Routing {}
+                    }
+                    div {
+                        flex: "1"
+                    }
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "center",
+                        align_items: "center",
+                        min_width: "100%",
+                        max_width: "100%",
                         div {
                             class: "soft_flicker",
                             display: "flex",
@@ -55,156 +75,87 @@ pub fn Home() -> Element {
                             "↡"
                         }
                     }
+                    div {
+                        min_height: "8px"
+                    }
                 }
             }
             cmp::PageItem {
                 div {
                     display: "flex",
                     flex_direction: "column",
-                    justify_content: "start",
+                    justify_content: "space-between",
                     align_items: "start",
                     min_width: "100vw",
                     max_width: "100vw",
                     min_height: "100vh",
                     max_height: "100vh",
-                    padding: "32px",
-
                     div {
                         display: "flex",
                         flex_direction: "row",
-                        justify_content: "start",
+                        justify_content: "space-between",
                         align_items: "center",
+                        min_width: "100%",
+                        max_width: "100%",
+                        min_height: "100%",
+                        max_height: "100%",
+                        padding: "16px",
                         div {
                             display: "flex",
-                            background: conf.color.timberwolf.to_string(),
-                            padding: "8px",
-                            font_size: "64px",
-                            font_family: conf.font.borneox,
+                            min_width: "500px",
+                            max_width: "500px",
+                            font_family: conf.font.brulia_test,
                             font_weight: "normal",
-                            color: conf.color.raisin_black.to_string(),
-                            border_radius: "4px",
-                            min_width: "100%",
-                            "Web3 for Web2"
+                            color: conf.color.rose_pompadour.to_string(),
+                            "Web3 is in trouble, our digital town squares are being attacked. We need to do better... We are weakened by red tape and corruption."
                         }
+                    }
+                    cmp::HazardStripe {
+                        min_w: "100vw",
+                        max_w: "100vw",
+                        min_h: "32px",
+                        max_h: "32px",
+                        color_0: conf.color.rose_pompadour.to_owned(),
+                        color_1: conf.color.rose_pompadour.to_owned(),
+                        color_2: conf.color.raisin_black.to_owned(),
+                        color_3: conf.color.raisin_black.to_owned(),
+                        size_0: 0,
+                        size_1: 20,
+                        size_2: 0,
+                        size_3: 32,
+                        animation_speed_seconds: 64
                     }
                     div {
                         display: "flex",
                         flex_direction: "row",
                         justify_content: "center",
                         align_items: "center",
-                        flex: "1",
                         min_width: "100%",
-                        div {
-                            display: "flex",
-                            flex_direction: "row",
-                            justify_content: "center",
-                            align_items: "center",
-                            font_size: "128px",
-                            font_family: conf.font.br_cobane,
-                            font_weight: "normal",
-                            color: conf.color.timberwolf.to_string(),
-
+                        max_width: "100%",
+                        cmp::Shape {
+                            w: "258px",
+                            h: "258px",
+                            fill: conf.color.timberwolf.to_owned(),
+                            model: cmp::ShapeModel::AngularStar
                         }
                     }
-                    cmp::Shape {
-                        w: "256px",
-                        h: "256px",
-                        fill: conf.color.timberwolf.to_owned(),
-                        model: cmp::ShapeModel::RoundedTab
+                    cmp::HazardStripe {
+                        min_w: "100vw",
+                        max_w: "100vw",
+                        min_h: "32px",
+                        max_h: "32px",
+                        color_0: conf.color.rose_pompadour.to_owned(),
+                        color_1: conf.color.rose_pompadour.to_owned(),
+                        color_2: conf.color.raisin_black.to_owned(),
+                        color_3: conf.color.raisin_black.to_owned(),
+                        size_0: 0,
+                        size_1: 20,
+                        size_2: 0,
+                        size_3: 32,
+                        animation_speed_seconds: 64
                     }
                     div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "start",
-                        align_items: "start",
-                        gap: "64px",
 
-                        div {
-                            min_height: "16px"
-                        }
-                        div {
-                            font_size: "16px",
-                            font_family: conf.font.br_cobane,
-                            font_weight: "normal",
-                            color: conf.color.timberwolf.to_string(),
-                            text_align: "justify",
-                            max_width: "400px",
-                            "While Web3 promises decentralization, 17% of it is driven purely by speculation—focused on hype and short-term gains rather than real utility. This imbalance slows meaningful adoption and distracts from building products people actually use."
-                        }
-                        div {
-                            font_size: "16px",
-                            font_family: conf.font.brulia_test,
-                            font_weight: "normal",
-                            color: conf.color.timberwolf.to_string(),
-                            text_align: "justify",
-                            max_width: "400px",
-                            "Web3 aims to create real ownership and value, yet 17% of the space is dominated by speculation. This focus on hype over utility limits trust, usability, and long-term impact."
-                        }
-                    }
-                }
-            }
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "start",
-                    align_items: "start",
-                    min_width: "100vw",
-                    max_width: "100vw",
-                    min_height: "100vh",
-                    max_height: "100vh",
-                    padding: "32px",
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "start",
-                        align_items: "start",
-                        gap: "20px",
-                        Card {
-                            label: rsx!(
-                                "Why Us"
-                            ),
-                            div {
-                                display: "flex",
-                                flex_direction: "column",
-                                justify_content: "start",
-                                align_items: "start",
-                                gap: "16px",
-                                BulletPoint { "Onchain Infrastructure" }
-                                BulletPoint { "Robust" }
-                                BulletPoint { "Modularity" }
-                            }
-                        }
-                        Card {
-                            label: rsx!(
-                                "Why It Matters"
-                            ),
-                            div {
-                                display: "flex",
-                                flex_direction: "column",
-                                justify_content: "start",
-                                align_items: "start",
-                                gap: "16px",
-                                BulletPoint { "Onchain Infrastructure" }
-                                BulletPoint { "Robust" }
-                                BulletPoint { "Modularity" }
-                            }
-                        }
-                        Card {
-                            label: rsx!(
-                                "What can you do?"
-                            ),
-                            div {
-                                display: "flex",
-                                flex_direction: "column",
-                                justify_content: "start",
-                                align_items: "start",
-                                gap: "16px",
-                                BulletPoint { "Onchain Infrastructure" }
-                                BulletPoint { "Robust" }
-                                BulletPoint { "Modularity" }
-                            }
-                        }
                     }
                 }
             }
@@ -212,9 +163,28 @@ pub fn Home() -> Element {
     )
 }
 
+#[derive(Debug)]
+#[derive(Clone)]
+#[derive(Copy)]
+#[derive(PartialEq)]
+#[derive(Eq)]
+#[derive(Default)]
+enum BannerState {
+    #[default]
+    Spawn,
+    Idle,
+    Explore,
+    LearnMore
+}
+
 #[component]
-fn HeroSection() -> Element {
+fn Banner() -> Element {
     let conf: conf::Conf = use_context();
+    let mut state: Signal<_> = use_signal(BannerState::default);
+
+    use_effect(move || {
+        *state.write() = BannerState::Idle;
+    });
 
     rsx!(
         div {
@@ -222,81 +192,293 @@ fn HeroSection() -> Element {
             flex_direction: "column",
             justify_content: "start",
             align_items: "start",
-            HeroSectionBanner {}
+            gap: "8px",
             div {
-                min_height: "8px"
-            }
-            div {
+                onmouseleave: move |_| *state.write() = BannerState::Idle,
+                z_index: "1",
                 display: "flex",
                 flex_direction: "row",
-                gap: "8px",
+                justify_content: "space-between",
+                align_items: "start",
+                padding: "16px",
+                overflow_x: "hidden",
+                overflow_y: "hidden",
                 min_width: "100%",
-                HeroSectionBannerFeature {
-                    heading: "TRANSPARENCY"
+                border_radius: "2px",
+                background: conf.color.timberwolf.to_string(),
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "end",
+                    align_items: "start",
+                    h1 {
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "start",
+                        align_items: "start",
+                        font_family: conf.font.borneox,
+                        font_weight: "normal",
+                        color: conf.color.raisin_black.to_string(),
+                        min_height: "100%",
+                        max_width: "256px",
+                        text_align: "left",
+                        word_wrap: "break-word",
+                        transition: "transform 1s, opacity 1s, display 1s 4s",
+                        transform: if let BannerState::Idle = *state.read() {
+                            "translate(0, 0)"
+                        } else {
+                            "translate(-200%, 0)"
+                        },
+                        opacity: if let BannerState::Idle = *state.read() {
+                            "1"
+                        } else {
+                            "0"
+                        },
+                        "A Layer 1.5 For Polkadot"
+                    }
                 }
-                HeroSectionBannerFeature {
-                    heading: "RESILIENCE"
+                div {
+                    min_width: "64px"
                 }
-                HeroSectionBannerFeature {
-                    heading: "24/7 UPTIME"
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    justify_content: "end",
+                    align_items: "end",
+                    transition: "all 1s",
+                    transform: match *state.read() {
+                        BannerState::Idle => "translate(0, 0)",
+                        _ => "translate(500px, 0)"
+                    },
+                    div {
+                        class: "float",
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "start",
+                        align_items: "start",
+                        max_width: "256px",
+                        h3 {
+                            font_family: conf.font.brulia_test,
+                            font_weight: "normal",
+                            color: conf.color.raisin_black.to_string(),
+                            "It's time for a better web3 experience"
+                        }
+                        div {
+                            min_height: "16px"
+                        }
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "center",
+                            align_items: "start",
+                            gap: "8px",
+                            div {
+                                onclick: move |_| *state.write() = BannerState::Explore,
+                                cmp::Button {
+                                    "explore"
+                                }
+                            }
+                            cmp::Button {
+                                "learn more"
+                            }
+                        }
+                    }
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "start",
+                        align_items: "start",
+                        cmp::Shape {
+                            w: "200px",
+                            h: "auto",
+                            fill: conf.color.raisin_black.to_owned(),
+                            model: cmp::ShapeModel::FourLobedRoundedSquare
+                        }
+                    }
                 }
-                HeroSectionBannerFeature {
-                    heading: "CROSS BORDER"
+                div {
+                    position: "absolute",
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "start",
+                    min_width: "100%",
+                    min_height: "100%",
+                    pointer_events: if let BannerState::Explore = *state.read() {
+                        "auto"
+                    } else {
+                        "none"
+                    },
+                    transition: "transform 1s",
+                    transform: if let BannerState::Explore = *state.read() {
+                        "translate(0, 0)"
+                    } else {
+                        "translate(0, -100vh)"
+                    },
+                    div {
+                        class: "float",
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "start",
+                        align_items: "start",
+                        max_width: "256px",
+                        h3 {
+                            font_family: conf.font.brulia_test,
+                            font_weight: "normal",
+                            color: conf.color.raisin_black.to_string(),
+                            "It's time for a better web3 experience"
+                        }
+                        div {
+                            min_height: "16px"
+                        }
+                        div {
+                            display: "flex",
+                            flex_direction: "row",
+                            justify_content: "center",
+                            align_items: "start",
+                            gap: "8px",
+                            div {
+                                onclick: move |_| *state.write() = BannerState::Idle,
+                                cmp::Button {
+                                    "not ready yet"
+                                }
+                            }
+                            cmp::Button {
+                                "learn more"
+                            }
+                        }
+                    }
                 }
             }
             div {
                 display: "flex",
                 flex_direction: "row",
-                font_size: "1em",
-                font_family: "",
-                font_weight: "normal",
-                color: conf.color.timberwolf.to_string(),
-                "bla bla bla"
+                justify_content: "start",
+                align_items: "center",
+                gap: "8px",
+                transition: "transform 1s, opacity 1s",
+                transform: if let BannerState::Idle = *state.read() {
+                    "translate(0, 0)"
+                } else {
+                    "translate(0, -250px)"
+                },
+                opacity: if let BannerState::Idle = *state.read() {
+                    "1"
+                } else {
+                    "0"
+                },
+                Feature {
+                    "Transparency"
+                }
+                Feature {
+                    "Resilience"
+                }
+                Feature {
+                    "24/7 Uptime"
+                }
+                Feature {
+                    "Cross Border"
+                }
             }
         }
     )
 }
 
+
+
+
+// MARK: R
+
+#[derive(Default)]
+enum RouteState {
+    #[default]
+    Spawn,
+    Idle
+}
+
 #[component]
-fn HeroSectionBanner() -> Element {
+fn Routing() -> Element {
     let conf: conf::Conf = use_context();
+    let mut state: Signal<_> = use_signal(RouteState::default);
+
+    use_effect(move || {
+        *state.write() = RouteState::Idle;
+    });
 
     rsx!(
         div {
             display: "flex",
             flex_direction: "row",
-            justify_content: "space-between",
-            align_items: "start",
-            border_radius: "2px",
-            background: conf.color.timberwolf.to_string(),
-            padding_top: "16px",
-            padding_bottom: "16px",
-            padding_left: "16px",
-            padding_right: "16px",
-            min_width: "100%",
+            justify_content: "center",
+            align_items: "center",
+            min_width: "100vw",
+            max_width: "100vw",
+            padding: "16px",
+            background: conf.color.medium_slate_blue.to_string(),
             div {
-                display: "flex",
-                flex_direction: "column",
-                justify_content: "end",
-                align_items: "start",
-                HeroSectionBannerHeading {
-                    "AN L1.5 FOR POLKADOT"
-                }
-            }
-            div {
-                min_width: "200px"
-            }
-            div {
+                class: "float",
                 display: "flex",
                 flex_direction: "row",
-                justify_content: "end",
-                align_items: "end",
-                HeroSectionBannerSubHeading {}
-                cmp::Shape {
-                    w: "200px",
-                    h: "auto",
-                    fill: Some(conf.color.raisin_black.to_owned()),
-                    model: cmp::ShapeModel::FourLobedRoundedSquare
+                justify_content: "center",
+                align_items: "center",
+                min_width: "100%",
+                max_width: "100%",
+                min_height: "100%",
+                max_height: "100%",
+                gap: "8px",
+                transition: "transform 1s",
+                transform: if let RouteState::Idle = *state.read() {
+                    "translate(0, 0)"
+                } else {
+                    "translate(-100vw, 0)"
+                },
+                cmp::Spacer {
+                    min_w: "2px",
+                    max_w: "2px",
+                    min_h: "128px",
+                    max_h: "128px",
+                    fill: conf.color.raisin_black.to_owned()
+                }
+                GuideCard {
+                    label: "Build",
+                    description: "Write your synth using rust compile to WASM.",
+                    label_button: "build"
+                }
+                cmp::Spacer {
+                    min_w: "2px",
+                    max_w: "2px",
+                    min_h: "128px",
+                    max_h: "128px",
+                    fill: conf.color.raisin_black.to_owned()
+                }
+                GuideCard {
+                    label: "Deployment",
+                    description: "Start deploying",
+                    label_button: "deploy"
+                }
+                cmp::Spacer {
+                    min_w: "2px",
+                    max_w: "2px",
+                    min_h: "128px",
+                    max_h: "128px",
+                    fill: conf.color.raisin_black.to_owned()
+                }
+                GuideCard {
+                    label: "Maintainance",
+                    description: "Start deploying",
+                    label_button: "maintain"
+                }
+                cmp::Spacer {
+                    min_w: "2px",
+                    max_w: "2px",
+                    min_h: "128px",
+                    max_h: "128px",
+                    fill: conf.color.raisin_black.to_owned()
+                }
+                GuideCard {
+                    label: "Funding",
+                    description: "Start deploying",
+                    label_button: "fund"
                 }
             }
         }
@@ -304,66 +486,70 @@ fn HeroSectionBanner() -> Element {
 }
 
 #[component]
-fn HeroSectionBannerHeading(children: Element) -> Element {
-    let conf: conf::Conf = use_context();
-
-    rsx!(
-        h1 {
-            display: "flex",
-            flex_direction: "column",
-            justify_content: "start",
-            align_items: "start",
-            font_size: "36px",
-            font_family: conf.font.borneox,
-            font_weight: "normal",
-            color: conf.color.raisin_black.to_string(),
-            max_width: "350px",
-            text_align: "left",
-            word_wrap: "break-word",
-            max_height: "100%",
-            { children }
-        }
-    )
-}
-
-#[component]
-fn HeroSectionBannerSubHeading() -> Element {
+fn GuideCard(
+    label: String,
+    label_button: String,
+    description: String,
+) -> Element {
     let conf: conf::Conf = use_context();
 
     rsx!(
         div {
-            class: "float",
             display: "flex",
             flex_direction: "column",
-            justify_content: "start",
-            align_items: "start",
-            max_width: "250px",
-            h2 {
-                font_family: conf.font.brulia_test,
-                font_weight: "normal",
-                color: conf.color.raisin_black.to_string(),
-                "It's time for a better web3 experience"
+            padding: "16px",
+            min_width: "300px",
+            max_width: "300px",
+            min_height: "100%",
+            div {
+                cmp::Shape {
+                    w: "16px",
+                    h: "auto",
+                    fill: conf.color.raisin_black.to_owned(),
+                    model: cmp::ShapeModel::FourLobedFlower
+                }
+            }
+            div {
+                min_height: "2px"
+            }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                h4 {
+                    font_family: conf.font.borneox,
+                    font_weight: "normal",
+                    color: conf.color.raisin_black.to_string(),
+                    { label }
+                }
+                div {
+                    min_height: "2px"
+                }
+                h4 {
+                    font_family: conf.font.brulia_test,
+                    font_weight: "normal",
+                    color: conf.color.raisin_black.to_string(),
+                    text_align: "start",
+                    { description }
+                }
             }
             div {
                 min_height: "16px"
             }
             div {
-                display: "flex",
-                flex_direction: "row",
-                justify_content: "center",
-                align_items: "start",
-                gap: "8px",
-                cmp::Button { "explore" }
-                cmp::Button { "learn more" }
+                cmp::Button {
+                    { label_button }
+                }
             }
         }
     )
 }
 
 #[component]
-fn HeroSectionBannerFeature(heading: String) -> Element {
+fn Feature(children: Element) -> Element {
     let conf: conf::Conf = use_context();
-
+    
     rsx!(
         div {
             display: "flex",
@@ -375,132 +561,16 @@ fn HeroSectionBannerFeature(heading: String) -> Element {
             border_style: "solid",
             border_color: conf.color.timberwolf.to_string(),
             border_radius: "2px",
-            h1 {
+            h3 {
                 display: "flex",
                 flex_direction: "row",
                 justify_content: "center",
                 align_items: "center",
-                font_size: "20px",
                 font_family: conf.font.borneox,
                 font_weight: "bold",
                 color: conf.color.timberwolf.to_string(),
-                { heading }
-            }
-        }
-    )
-}
-
-#[component]
-fn HeroSectionSoftFlickerDownArrow() -> Element {
-    let conf: conf::Conf = use_context();
-
-    rsx!(
-        div {
-            class: "soft_flicker",
-            display: "flex",
-            flex_direction: "column",
-            justify_content: "center",
-            align_items: "center",
-            font_size: "32px",
-            font_family: conf.font.br_cobane,
-            font_weight: "normal",
-            color: conf.color.timberwolf.to_string(),
-            "↡"
-        }
-    )
-}
-
-
-
-
-#[component]
-fn Card(label: Option<Element>, children: Option<Element>) -> Element {
-    let conf: conf::Conf = use_context();
-
-    rsx!(
-        div {
-            display: "flex",
-            flex_direction: "column",
-            justify_content: "start",
-            align_items: "start",
-            border_width: "2px",
-            border_style: "solid",
-            border_color: conf.color.timberwolf.to_string(),
-            border_radius: "4px",
-            div {
-                display: "flex",
-                flex_direction: "row",
-                justify_content: "center",
-                align_items: "center",
-                background: conf.color.timberwolf.to_string(),
-                min_width: "100%",
-                max_width: "100%",
-                padding: "8px",
-                div {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "center",
-                    align_items: "center",
-                    min_width: "100%",
-                    font_size: "16px",
-                    font_family: conf.font.borneox,
-                    font_weight: "normal",
-                    color: conf.color.raisin_black.to_string(),
-                    { label }
-                }
-            }
-            div {
-                display: "flex",
-                flex_direction: "column",
-                justify_content: "start",
-                align_items: "start",
-                padding: "8px",
                 { children }
             }
         }
     )
 }
-
-
-
-
-
-#[component]
-fn BulletPoint(
-    children: Option<Element>
-) -> Element {
-    let conf: conf::Conf = use_context();
-
-    rsx!(
-        div {
-            display: "flex",
-            flex_direction: "row",
-            justify_content: "start",
-            align_items: "center",
-            gap: "16px",
-            cmp::Shape {
-                w: "32px",
-                h: "32px",
-                model: cmp::ShapeModel::QuatrefoilFlower,
-                fill: conf.color.timberwolf.to_owned()
-            }
-            div {
-                display: "flex",
-                flex_direction: "row",
-                justify_content: "start",
-                align_items: "center",
-                font_size: "2em",
-                font_family: conf.font.brulia_test,
-                font_weight: "normal",
-                color: conf.color.timberwolf.to_string(),
-                { children }
-            }
-        }
-    )
-}
-
-
-
-
-
-

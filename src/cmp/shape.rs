@@ -136,7 +136,7 @@ pub fn Shape(
     w: Option<String>, 
     h: Option<String>,
     model: ShapeModel,
-    fill: Option<conf::Hex>
+    fill: Option<Hex>
 ) -> Element {
     rsx!(
         svg {

@@ -1,12 +1,18 @@
-use dioxus::html::{g::color, u::{align_items, justify_content}};
 use ::dioxus::prelude::*;
 use ::std::sync;
+use ::std::rc;
+use ::std::cell;
+use ::gloo_timers::callback as cb;
 
 use route::*;
 
 mod cmp;
 mod conf;
 mod route;
+
+mod machine;
+
+pub type Hex = ::kore::color::Hex<2, u128>;
 
 #[derive(Debug)]
 #[derive(Clone)]

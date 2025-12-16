@@ -12,7 +12,7 @@ pub enum PageScrollSnap {
 pub fn Page(
     scroll_snap: Option<PageScrollSnap>, 
     surface: Option<Element>,
-    bg_color: Option<conf::Hex>,
+    bg: Option<Hex>,
     children: Option<Element>
 ) -> Element {
     let conf: conf::Conf = use_context();
@@ -30,8 +30,10 @@ pub fn Page(
             max_height: "100vh",
             overflow_x: "hidden",
             overflow_y: "hidden",
+            background: if let Some(bg) = bg {
+                format!("{}", bg)
+            },
             cursor: format!("url('{}'), auto", conf.cursor.default),
-            background: bg_color.unwrap_or_default().to_string(),
             if let Some(surface) = surface {
                 div {
                     position: "absolute",
@@ -75,7 +77,7 @@ pub fn Page(
 pub fn PageItem(children: Option<Element>) -> Element {
     rsx!(
         div {
-            style: "scroll-snap-align: start;",
+            style: "scroll_snap_align: start",
             display: "flex",
             flex_direction: "column",
             justify_content: "start",
