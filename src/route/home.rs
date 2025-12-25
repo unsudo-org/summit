@@ -1,10 +1,30 @@
-use dioxus::html::g::{font_family, font_weight};
-
 use super::*;
+
+#[derive(Default)]
+#[derive(Clone)]
+#[derive(PartialEq)]
+#[derive(Eq)]
+enum ProblemPageTopInfographicState {
+    #[default]
+    Spawn,
+    Idle
+}
+
+#[derive(Default)]
+#[derive(Clone)]
+#[derive(PartialEq)]
+#[derive(Eq)]
+enum ProblemPageBottomInfographicState {
+    #[default]
+    Spawn,
+    Idle
+}
 
 #[component]
 pub fn Home() -> Element {
     let conf: conf::Conf = use_context();
+    let mut problem_page_top_infographic_state: Signal<ProblemPageTopInfographicState> = use_signal(ProblemPageTopInfographicState::default);
+    let mut problem_page_bottom_infographic_stte: Signal<ProblemPageBottomInfographicState> = use_signal(ProblemPageBottomInfographicState::default);
 
     rsx!(
         cmp::Page {
@@ -40,17 +60,6 @@ pub fn Home() -> Element {
                     }
                     div {
                         flex: "1"
-                    }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "center",
-                        align_items: "center",
-                        min_width: "100vw",
-                        max_width: "100vw",
-                        padding: "16px",
-                        background: conf.color.medium_slate_blue.to_string(),
-                        Routing {}
                     }
                     div {
                         flex: "1"
@@ -100,35 +109,10 @@ pub fn Home() -> Element {
                         min_height: "100%",
                         max_height: "100%",
                         padding: "16px",
-
-                        div {
-                            display: "flex",
-                            flex_direction: "column",
-                            justify_content: "start",
-                            align_items: "start",
-                            h2 {
-                                display: "flex",
-                                flex_direction: "row",
-                                font_family: conf.font.brulia_test,
-                                font_weight: "normal",
-                                color: conf.color.timberwolf.to_string(),
-                                gap: "4px",
-                                span {
-                                    cmp::Counter {
-                                        from: 0.0,
-                                        to: 9.0,
-                                        ms: 3000.0
-                                    }
-                                }
-                            }
-                            h2 {
-                                font_family: conf.font.borneox,
-                                font_weight: "normal",
-                                color: conf.color.timberwolf.to_string(),
-                                "Billion People"
-                            }
-                        }
-
+                        transition: "transform 1s",
+                        ProblemCard {}
+                        ProblemCard {}
+                        ProblemCard {}
                     }
                     cmp::HazardStripe {
                         min_w: "100vw",
@@ -192,12 +176,56 @@ pub fn Home() -> Element {
                         animation_speed_seconds: 64
                     }
                     div {
-
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "space-between",
+                        align_items: "center",
+                        min_width: "100%",
+                        max_width: "100%",
+                        min_height: "100%",
+                        max_height: "100%",
+                        padding: "16px",
+                        transition: "transform 1s",
+                        ProblemCard {}
+                        ProblemCard {}
+                        ProblemCard {}
                     }
+                }
+            }
+            cmp::PageItem {
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "space-between",
+                    align_items: "start",
+                    min_width: "100vw",
+                    max_width: "100vw",
+                    min_height: "100vh",
+                    max_height: "100vh",
+                    
                 }
             }
         }
     )
+}
+
+
+
+
+
+
+#[derive(Debug)]
+#[derive(Clone)]
+#[derive(Copy)]
+#[derive(PartialEq)]
+#[derive(Eq)]
+#[derive(Default)]
+enum BannerMode {
+    #[default]
+    None,
+    Idle,
+    Explore,
+    FeatureDescription
 }
 
 #[derive(Debug)]
@@ -206,21 +234,23 @@ pub fn Home() -> Element {
 #[derive(PartialEq)]
 #[derive(Eq)]
 #[derive(Default)]
-enum BannerState {
+enum BannerFeatureSelection {
     #[default]
-    Spawn,
-    Idle,
-    Explore,
-    LearnMore
+    None,
+    First,
+    Second,
+    Third,
+    Fourth
 }
 
 #[component]
 fn Banner() -> Element {
     let conf: conf::Conf = use_context();
-    let mut state: Signal<_> = use_signal(BannerState::default);
-
+    let mut mode: Signal<_> = use_signal(BannerMode::default);
+    let mut feature_selection: Signal<_> = use_signal(BannerFeatureSelection::default);
+    
     use_effect(move || {
-        *state.write() = BannerState::Idle;
+        *mode.write() = BannerMode::Idle;
     });
 
     rsx!(
@@ -231,15 +261,12 @@ fn Banner() -> Element {
             align_items: "start",
             gap: "8px",
             div {
-                onmouseleave: move |_| *state.write() = BannerState::Idle,
-                z_index: "1",
+                onmouseleave: move |_| *mode.write() = BannerMode::Idle,
                 display: "flex",
                 flex_direction: "row",
                 justify_content: "space-between",
-                align_items: "start",
+                align_items: "end",
                 padding: "16px",
-                overflow_x: "hidden",
-                overflow_y: "hidden",
                 min_width: "100%",
                 border_radius: "2px",
                 background: conf.color.timberwolf.to_string(),
@@ -256,36 +283,63 @@ fn Banner() -> Element {
                         font_family: conf.font.borneox,
                         font_weight: "normal",
                         color: conf.color.raisin_black.to_string(),
-                        min_height: "100%",
                         max_width: "256px",
                         text_align: "left",
                         word_wrap: "break-word",
-                        transition: "transform 1s, opacity 1s, display 1s 4s",
-                        transform: if let BannerState::Idle = *state.read() {
-                            "translate(0, 0)"
-                        } else {
-                            "translate(-200%, 0)"
+                        transition: "transform 1s, opacity 1s",
+                        transform: match *mode.read() {
+                            BannerMode::None => "translate(-200%, 0)",
+                            BannerMode::Idle => "translate(0, 0)",
+                            BannerMode::Explore => "translate(-200%, 0)",
+                            BannerMode::FeatureDescription => "translate(-200%, 0)"
                         },
-                        opacity: if let BannerState::Idle = *state.read() {
-                            "1"
-                        } else {
-                            "0"
+                        opacity: match *mode.read() {
+                            BannerMode::None => "0",
+                            BannerMode::Idle => "1",
+                            BannerMode::Explore => "0",
+                            BannerMode::FeatureDescription => "0"
                         },
                         "A Layer 1.5 For Polkadot"
                     }
-                }
-                div {
-                    min_width: "64px"
+                    h3 {
+                        class: "float",
+                        position: "absolute",
+                        font_family: conf.font.brulia_test,
+                        font_weight: "normal",
+                        color: conf.color.raisin_black.to_string(),
+                        transition: "transform 1s, opacity 1s",
+                        transform: match *mode.read() {
+                            BannerMode::None => "translate(0, -200%)",
+                            BannerMode::Idle => "translate(0, -200%)",
+                            BannerMode::Explore => "translate(0, -200%)",
+                            BannerMode::FeatureDescription => "translate(0, 0)"
+                        },
+                        opacity: match *mode.read() {
+                            BannerMode::None => "0",
+                            BannerMode::Idle => "0",
+                            BannerMode::Explore => "0",
+                            BannerMode::FeatureDescription => "1"
+                        },
+                        match *feature_selection.read() {
+                            BannerFeatureSelection::None => "",
+                            BannerFeatureSelection::First => "You are no longer constrained, view state changes through our event driven framework.",
+                            BannerFeatureSelection::Second => "blaa bla bla",
+                            BannerFeatureSelection::Third => "oonjo pj p s",
+                            BannerFeatureSelection::Fourth => "o ijs pjps d"
+                        }
+                    }
                 }
                 div {
                     display: "flex",
                     flex_direction: "row",
                     justify_content: "end",
                     align_items: "end",
-                    transition: "all 1s",
-                    transform: match *state.read() {
-                        BannerState::Idle => "translate(0, 0)",
-                        _ => "translate(500px, 0)"
+                    transition: "transform 1s",
+                    transform: match *mode.read() {
+                        BannerMode::None => "translate(200%, 0)",
+                        BannerMode::Idle => "translate(0, 0)",
+                        BannerMode::Explore => "translate(200%, 0)",
+                        BannerMode::FeatureDescription => "translate(200%, 0)"
                     },
                     div {
                         class: "float",
@@ -294,6 +348,7 @@ fn Banner() -> Element {
                         justify_content: "start",
                         align_items: "start",
                         max_width: "256px",
+                        gap: "16px",
                         h3 {
                             font_family: conf.font.brulia_test,
                             font_weight: "normal",
@@ -301,22 +356,22 @@ fn Banner() -> Element {
                             "It's time for a better web3 experience"
                         }
                         div {
-                            min_height: "16px"
-                        }
-                        div {
                             display: "flex",
                             flex_direction: "row",
-                            justify_content: "center",
+                            justify_content: "start",
                             align_items: "start",
                             gap: "8px",
                             div {
-                                onclick: move |_| *state.write() = BannerState::Explore,
+                                onclick: move |_| *mode.write() = BannerMode::Explore,
                                 cmp::Button {
                                     "explore"
                                 }
                             }
-                            cmp::Button {
-                                "learn more"
+                            div {
+                                // external link
+                                cmp::Button {
+                                    "learn more"
+                                }
                             }
                         }
                     }
@@ -333,93 +388,84 @@ fn Banner() -> Element {
                         }
                     }
                 }
-                div {
-                    position: "absolute",
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "start",
-                    align_items: "start",
-                    min_width: "100%",
-                    min_height: "100%",
-                    pointer_events: if let BannerState::Explore = *state.read() {
-                        "auto"
-                    } else {
-                        "none"
-                    },
-                    transition: "transform 1s",
-                    transform: if let BannerState::Explore = *state.read() {
-                        "translate(0, 0)"
-                    } else {
-                        "translate(0, -100vh)"
-                    },
-                    div {
-                        class: "float",
-                        display: "flex",
-                        flex_direction: "column",
-                        justify_content: "start",
-                        align_items: "start",
-                        max_width: "256px",
-                        h3 {
-                            font_family: conf.font.brulia_test,
-                            font_weight: "normal",
-                            color: conf.color.raisin_black.to_string(),
-                            "It's time for a better web3 experience"
-                        }
-                        div {
-                            min_height: "16px"
-                        }
-                        div {
-                            display: "flex",
-                            flex_direction: "row",
-                            justify_content: "center",
-                            align_items: "start",
-                            gap: "8px",
-                            div {
-                                onclick: move |_| *state.write() = BannerState::Idle,
-                                cmp::Button {
-                                    "not ready yet"
-                                }
-                            }
-                            cmp::Button {
-                                "learn more"
-                            }
-                        }
-                    }
-                }
             }
             div {
                 display: "flex",
                 flex_direction: "row",
                 justify_content: "start",
-                align_items: "center",
+                align_items: "start",
                 gap: "8px",
                 transition: "transform 1s, opacity 1s",
-                transform: if let BannerState::Idle = *state.read() {
-                    "translate(0, 0)"
-                } else {
-                    "translate(0, -250px)"
+                transform: match *mode.read() {
+                    BannerMode::None => "translate(0, -200%)",
+                    BannerMode::Idle => "translate(0, 0)",
+                    BannerMode::Explore => "translate(0, -200%)",
+                    BannerMode::FeatureDescription => "translate(0, 0)"
                 },
-                opacity: if let BannerState::Idle = *state.read() {
-                    "1"
-                } else {
-                    "0"
+                opacity: match *mode.read() {
+                    BannerMode::None => "0",
+                    BannerMode::Idle => "1",
+                    BannerMode::Explore => "0",
+                    BannerMode::FeatureDescription => "1"
                 },
-                Feature {
-                    "Transparency"
+                div {
+                    onmouseenter: move |_| {
+                        *feature_selection.write() = BannerFeatureSelection::First;
+                        *mode.write() = BannerMode::FeatureDescription;
+                    },
+                    onmouseleave: move |_| {
+                        *mode.write() = BannerMode::Idle;
+                        *feature_selection.write() = BannerFeatureSelection::None;
+                    },
+                    Feature {
+                        "Transparency"
+                    }
                 }
-                Feature {
-                    "Resilience"
+                div {
+                    onmouseenter: move |_| {
+                        *feature_selection.write() = BannerFeatureSelection::Second;
+                        *mode.write() = BannerMode::FeatureDescription;
+                    },
+                    onmouseleave: move |_| {
+                        *mode.write() = BannerMode::Idle;
+                        *feature_selection.write() = BannerFeatureSelection::None;
+                    },
+                    Feature {
+                        "Resilience"
+                    }
                 }
-                Feature {
-                    "24/7 Uptime"
+                div {
+                    onmouseenter: move |_| {
+                        *feature_selection.write() = BannerFeatureSelection::Third;
+                        *mode.write() = BannerMode::FeatureDescription;
+                    },
+                    onmouseleave: move |_| {
+                        *mode.write() = BannerMode::Idle;
+                        *feature_selection.write() = BannerFeatureSelection::None;
+                    },
+                    Feature {
+                        "100% Uptime"
+                    }
                 }
-                Feature {
-                    "Cross Border"
+                div {
+                    onmouseenter: move |_| {
+                        *feature_selection.write() = BannerFeatureSelection::Fourth;
+                        *mode.write() = BannerMode::FeatureDescription;
+                    },
+                    onmouseleave: move |_| {
+                        *mode.write() = BannerMode::Idle;
+                        *feature_selection.write() = BannerFeatureSelection::None;
+                    },
+                    Feature {
+                        "Cross Border"
+                    }
                 }
             }
         }
     )
 }
+
+
 
 
 
@@ -448,18 +494,18 @@ fn Routing() -> Element {
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            min_width: "100vw",
-            max_width: "100vw",
+            min_width: "1050px",
             padding: "16px",
             background: conf.color.medium_slate_blue.to_string(),
+            border_width: "2px",
+            border_style: "solid",
+            border_color: conf.color.timberwolf.to_string(),
             div {
                 class: "float",
                 display: "flex",
                 flex_direction: "row",
                 justify_content: "center",
                 align_items: "center",
-                min_width: "100%",
-                max_width: "100%",
                 min_height: "100%",
                 max_height: "100%",
                 gap: "8px",
@@ -535,8 +581,8 @@ fn GuideCard(
             display: "flex",
             flex_direction: "column",
             padding: "16px",
-            min_width: "300px",
-            max_width: "300px",
+            min_width: "200px",
+            max_width: "200px",
             min_height: "100%",
             div {
                 cmp::Shape {
@@ -554,7 +600,7 @@ fn GuideCard(
                 flex_direction: "column",
                 justify_content: "start",
                 align_items: "start",
-                h4 {
+                h5 {
                     font_family: conf.font.borneox,
                     font_weight: "normal",
                     color: conf.color.raisin_black.to_string(),
@@ -563,7 +609,7 @@ fn GuideCard(
                 div {
                     min_height: "2px"
                 }
-                h4 {
+                h5 {
                     font_family: conf.font.brulia_test,
                     font_weight: "normal",
                     color: conf.color.raisin_black.to_string(),
@@ -607,6 +653,76 @@ fn Feature(children: Element) -> Element {
                 font_weight: "bold",
                 color: conf.color.timberwolf.to_string(),
                 { children }
+            }
+        }
+    )
+}
+
+
+#[derive(Props)]
+#[derive(Clone)]
+#[derive(PartialEq)]
+struct ProblemInfograhicProps {
+    pub children: Option<Element>
+}
+
+#[component]
+fn ProblemInfograhic(props: ProblemInfograhicProps) -> Element {
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "space-between",
+            align_items: "center",
+            min_width: "100%",
+            max_width: "100%",
+            min_height: "100%",
+            max_height: "100%",
+            padding: "16px",
+            transition: "transform 1s",
+            { props.children }
+        }
+    )
+}
+
+
+
+fn ProblemCard() -> Element {
+    let conf: conf::Conf = use_context();
+
+    let mut is_visible: Signal<bool> = use_signal(|| {
+        false
+    });
+
+    rsx!(
+        div {
+            onvisible: move |_| *is_visible.write() = true,
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            h2 {
+                display: "flex",
+                flex_direction: "row",
+                font_family: conf.font.brulia_test,
+                font_weight: "normal",
+                color: conf.color.timberwolf.to_string(),
+                gap: "4px",
+                if *is_visible.read() {
+                    span {
+                        cmp::Counter {
+                            from: 0.0,
+                            to: 9000000000.0,
+                            ms: 3000.0
+                        }
+                    }
+                }
+            }
+            h2 {
+                font_family: conf.font.borneox,
+                font_weight: "normal",
+                color: conf.color.timberwolf.to_string(),
+                "Billion People"
             }
         }
     )
