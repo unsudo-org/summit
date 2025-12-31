@@ -2,19 +2,16 @@ use super::*;
 
 #[component]
 pub fn NavbarBuild() -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
 
     rsx!(
         Navbar {
             left: rsx!(
                 Logo {}
             ),
-            right: rsx!(
-                button {
-                    all: "unset",
-
-                }
-            )
+            right: rsx! {
+                
+            }
         }
     )
 }
@@ -59,7 +56,7 @@ pub fn Navbar(left: Option<Element>, right: Option<Element>, center: Option<Elem
 
 #[component]
 pub fn NavbarGotoButton(children: Option<Element>) -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
     rsx!(
         button {
             all: "unset",

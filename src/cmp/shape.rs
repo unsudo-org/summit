@@ -1,12 +1,12 @@
 //! https://www.shapes.gallery/
 
-use dioxus::html::u::aspect_ratio;
-
 use super::*;
 
 #[derive(Clone)]
 #[derive(PartialEq)]
+#[derive(Default)]
 pub enum ShapeModel {
+    #[default]
     CrossFlow,
     QuadCore,
     Eclipse,
@@ -47,7 +47,7 @@ pub enum ShapeModel {
 impl ShapeModel {
     pub fn random() -> Self {
         let n: usize = 36;
-        match ::fastrand::usize(..n) {
+        match fastrand::usize(..n) {
             0 => Self::CrossFlow,
             1 => Self::QuadCore,
             2 => Self::Eclipse,
@@ -88,8 +88,8 @@ impl ShapeModel {
     }
 }
 
-impl ::std::fmt::Display for ShapeModel {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+impl std::fmt::Display for ShapeModel {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let s: &str = match self {
             Self::CrossFlow => "M 228 0 C 172.772 0 128 44.772 128 100 L 128 0 L 0 0 L 0 28 C 0 83.228 44.772 128 100 128 L 0 128 L 0 256 L 28 256 C 83.228 256 128 211.228 128 156 L 128 256 L 256 256 L 256 228 C 256 172.772 211.228 128 156 128 L 256 128 L 256 0 Z",
             Self::QuadCore => "M 128 192 C 92.654 192 64 220.654 64 256 L 0 256 C 0 185.308 57.308 128 128 128 Z M 256 128 C 256 198.692 198.692 256 128 256 L 128 192 C 163.346 192 192 163.346 192 128 Z M 128 64 C 92.654 64 64 92.654 64 128 L 0 128 C 0 57.308 57.308 0 128 0 Z M 256 0 C 256 70.692 198.692 128 128 128 L 128 64 C 163.346 64 192 35.346 192 0 Z",
@@ -133,11 +133,20 @@ impl ::std::fmt::Display for ShapeModel {
 
 #[component]
 pub fn Shape(
-    w: Option<String>, 
+    #[props(default = None)]
+    w: Option<String>,
+    
+    #[props(default = None)]
     h: Option<String>,
+
+    #[props(default = Shape::default())]
     model: ShapeModel,
-    fill: Option<Hex>
+
+    #[props(default = None)]
+    color: Option<Hex>
 ) -> Element {
+    let theme: theme::Theme = use_context();
+
     rsx!(
         svg {
             xmlns: "http://www.w3.org/2000/svg",
@@ -147,8 +156,12 @@ pub fn Shape(
             preserve_aspect_ratio: "xMidYMid meet",
             fill: "none",
             path {
-                fill: fill.unwrap_or_default().to_string(),
-                d: model.to_string()
+                fill: if let Some(color) = color {
+                    format!("{}", color)
+                } else {
+                    format!("{}", theme.color.foreground)
+                },
+                d: format!("{}", model)
             }
         }
     )

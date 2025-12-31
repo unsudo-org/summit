@@ -6,7 +6,7 @@ pub fn CtaButton(
     style: Option<String>,
     children: Option<Element>
 ) -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
     let mut hover: Signal<bool> = use_signal(|| false);
 
     rsx!(

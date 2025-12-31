@@ -2,19 +2,17 @@
 
 use super::*;
 
-::modwire::expose!(
+mod frame;
+
+modwire::expose!(
+    pub col
     pub button
-    pub counter
-    pub pointer_lock
-    pub cta_button
-    pub flex
-    pub grid
-    pub hazard_stripe
     pub icon
-    pub logo
-    pub navbar
+    pub counter
+    pub grid
+    pub fieldset
+    pub fill
+    pub hazard_stripe
     pub page
     pub shape
-    pub spacer
-    pub z
 );

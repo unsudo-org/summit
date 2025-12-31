@@ -1,77 +1,49 @@
 use super::*;
 
 #[component]
-pub fn Button(children: Option<Element>) -> Element {
-    let conf: conf::Conf = use_context();
-    let mut hover: Signal<bool> = use_signal(|| false);
+pub fn Button(
+    #[props(default = None)]
+    children: Option<Element>,
 
-    rsx!(
+    #[props(extends = GlobalAttributes)]
+    attr: Vec<Attribute>
+) -> Element {
+    let mut hovering: Signal<bool> = use_signal(|| {
+        false
+    });
+
+    let theme: theme::Theme = use_context();
+
+    rsx! {
         button {
-            onmouseenter: move |_| *hover.write() = true,
-            onmouseleave: move |_| *hover.write() = false,
+            onmouseenter: move |_| *hovering.write() = true,
+            onmouseleave: move |_| *hovering.write() = false,
             all: "unset",
             display: "flex",
-            flex_direction: "row",
+            flex_direction: "column",
             justify_content: "start",
             align_items: "start",
-            font_family: conf.font.brulia_test,
+            font_family: format!("{}", theme.font.body),
             font_weight: "normal",
-            color: if *hover.read() {
-                conf.color.timberwolf.to_string()
+            color: if *hovering.read() {
+                format!("{}", theme.color.foreground)
             } else {
-                conf.color.raisin_black.to_string()
+                format!("{}", theme.color.background)
             },
             border_width: "2px",
             border_style: "solid",
-            border_image: format!("linear-gradient(to bottom right, {}) 1", conf.color.raisin_black),
+            border_image: format!("linear-gradient(to bottom right, {}) 1", theme.color.background),
             border_radius: "2px",
-            background: if *hover.read() {
-                conf.color.raisin_black.to_string()
+            background: if *hovering.read() {
+                format!("{}", theme.color.background)
             } else {
-                "transparent".to_owned()
+                format!("{}", "transparent")
             },
-            cursor: format!("url('{}'), auto", conf.cursor.finger),
+            cursor: format!("url('{}'), auto", theme.cursor.finger),
             padding: "8px",
-            transition: "linear 0.1s",
+            transition: "color linear 0.1s, background linear 0.1s",
+            ..attr,
             { children }
         }
-    )
-}
-
-#[component]
-pub fn ButtonDashed(children: Option<Element>) -> Element {
-    let conf: conf::Conf = use_context();
-    let mut hover: Signal<bool> = use_signal(|| false);
-
-    rsx!(
-        button {
-            onmouseenter: move |_| *hover.write() = true,
-            onmouseleave: move |_| *hover.write() = false,
-            all: "unset",
-            display: "flex",
-            flex_direction: "row",
-            justify_content: "start",
-            align_items: "start",
-            font_family: conf.font.br_cobane,
-            font_weight: "normal",
-            color: if *hover.read() {
-                conf.color.timberwolf.to_string()
-            } else {
-                conf.color.raisin_black.to_string()
-            },
-            border_width: "1px",
-            border_style: "dashed",
-            border_color: conf.color.raisin_black.to_string(),
-            border_radius: "2px",
-            background: if *hover.read() {
-                conf.color.raisin_black.to_string()
-            } else {
-                "transparent".to_owned()
-            },
-            cursor: format!("url('{}'), auto", conf.cursor.finger),
-            padding: "8px",
-            transition: "linear 0.1s",
-            { children }
-        }
-    )
+    }
 }

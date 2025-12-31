@@ -1,30 +1,25 @@
 use super::*;
 
 #[component]
-pub fn Grid(
+pub fn AutoGrid(
+    #[props(default = 1)]
     col_count: usize,
+
+    #[props(default = 1)]
     row_count: usize,
-    w: Option<String>,
-    h: Option<String>,
-    min_w: Option<String>,
-    max_w: Option<String>,
-    min_h: Option<String>,
-    max_h: Option<String>,
-    gap: Option<String>,
-    children: Option<Element>
+
+    #[props(default = None)]
+    children: Option<Element>,
+
+    #[props(extends = GlobalAttributes)]
+    attr: Vec<Attribute>
 ) -> Element {
     rsx!(
         div {
             display: "grid",
             grid_template_columns: format!("repeat({}, 1fr)", col_count),
             grid_template_rows: format!("repeat({}, 1fr)", row_count),
-            width: w,
-            height: h,
-            min_width: min_w,
-            max_width: max_w,
-            min_height: min_h,
-            max_height: max_h,
-            gap: gap,
+            ..attr,
             { children }
         }
     )
@@ -32,18 +27,35 @@ pub fn Grid(
 
 #[component]
 pub fn GridItem(
+    #[props(default = 0)]
     from_x: usize,
+
+    #[props(default = 0)]
     from_y: usize,
+
+    #[props(default = 1)]
     to_x: usize,
+
+    #[props(default = 1)]
     to_y: usize,
-    children: Option<Element>
+
+    #[props(default = None)]
+    children: Option<Element>,
+
+    #[props(extends = GlobalAttributes)]
+    attr: Vec<Attribute>
 ) -> Element {
+    let from_x: usize = from_x + 1;
+    let from_y: usize = from_y + 1;
+    let to_x: usize = to_x + 1;
+    let to_y: usize = to_y + 1;
     rsx!(
         div {
             grid_column_start: format!("{}", from_x),
             grid_column_end: format!("{}", to_x),
-            grid_row_start: format!("{}", from_x),
+            grid_row_start: format!("{}", from_y),
             grid_row_end: format!("{}", to_y),
+            ..attr,
             { children }
         }
     )

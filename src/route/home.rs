@@ -1,469 +1,190 @@
 use super::*;
 
-#[derive(Default)]
-#[derive(Clone)]
-#[derive(PartialEq)]
-#[derive(Eq)]
-enum ProblemPageTopInfographicState {
-    #[default]
-    Spawn,
-    Idle
-}
-
-#[derive(Default)]
-#[derive(Clone)]
-#[derive(PartialEq)]
-#[derive(Eq)]
-enum ProblemPageBottomInfographicState {
-    #[default]
-    Spawn,
-    Idle
+modwire::expose! {
+    pub banner
+    pub flickering_down_arrow_icon
 }
 
 #[component]
 pub fn Home() -> Element {
-    let conf: conf::Conf = use_context();
-    let mut problem_page_top_infographic_state: Signal<ProblemPageTopInfographicState> = use_signal(ProblemPageTopInfographicState::default);
-    let mut problem_page_bottom_infographic_stte: Signal<ProblemPageBottomInfographicState> = use_signal(ProblemPageBottomInfographicState::default);
+    let conf: theme::Conf = use_context();
 
-    rsx!(
+    rsx! {
         cmp::Page {
-            scroll_snap: cmp::PageScrollSnap::Proximity,
-            bg: conf.color.raisin_black.to_owned(),
             cmp::PageItem {
+                cmp::NavbarBuild {}
                 div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "space-between",
-                    align_items: "start",
-                    min_width: "100vw",
-                    max_width: "100vw",
-                    min_height: "100vh",
-                    max_height: "100vh",
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        
-                        cmp::NavbarBuild {}
-                    }
-                    div {
-                        min_height: "32px"
-                    }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "center",
-                        align_items: "center",
-                        min_width: "100%",
-                        max_width: "100%",
-                        Banner {}
-                    }
-                    div {
-                        flex: "1"
-                    }
-                    div {
-                        flex: "1"
-                    }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "center",
-                        align_items: "center",
-                        min_width: "100%",
-                        max_width: "100%",
-                        div {
-                            class: "soft_flicker",
-                            display: "flex",
-                            flex_direction: "column",
-                            justify_content: "center",
-                            align_items: "center",
-                            font_size: "32px",
-                            font_family: conf.font.br_cobane,
-                            font_weight: "normal",
-                            color: conf.color.timberwolf.to_string(),
-                            "↡"
-                        }
-                    }
-                    div {
-                        min_height: "8px"
-                    }
-                }
-            }
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "space-between",
-                    align_items: "start",
-                    min_width: "100vw",
-                    max_width: "100vw",
-                    min_height: "100vh",
-                    max_height: "100vh",
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "space-between",
-                        align_items: "center",
-                        min_width: "100%",
-                        max_width: "100%",
-                        min_height: "100%",
-                        max_height: "100%",
-                        padding: "16px",
-                        transition: "transform 1s",
-                        ProblemCard {}
-                        ProblemCard {}
-                        ProblemCard {}
-                    }
-                    cmp::HazardStripe {
-                        min_w: "100vw",
-                        max_w: "100vw",
-                        min_h: "32px",
-                        max_h: "32px",
-                        color_0: conf.color.rose_pompadour.to_owned(),
-                        color_1: conf.color.rose_pompadour.to_owned(),
-                        color_2: conf.color.raisin_black.to_owned(),
-                        color_3: conf.color.raisin_black.to_owned(),
-                        size_0: 0,
-                        size_1: 20,
-                        size_2: 0,
-                        size_3: 32,
-                        animation_speed_seconds: 64
-                    }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "space-between",
-                        align_items: "center",
-                        min_width: "100%",
-                        max_width: "100%",
-                        padding: "16px",
-                        div {
-                            display: "flex",
-                            flex: "1",
-                            h4 {
-                                display: "flex",
-                                min_width: "500px",
-                                max_width: "500px",
-                                font_family: conf.font.brulia_test,
-                                font_weight: "normal",
-                                color: conf.color.timberwolf.to_string(),
-                                "Web3 is in trouble, our digital town squares are being attacked. We need to do better... We are weakened by red tape and corruption."
-                            }
-                        }
-                        cmp::Shape {
-                            w: "258px",
-                            h: "258px",
-                            fill: conf.color.timberwolf.to_owned(),
-                            model: cmp::ShapeModel::AngularStar
-                        }
-                        div {
-                            flex: "1"
-                        }
-                    }
-                    cmp::HazardStripe {
-                        min_w: "100vw",
-                        max_w: "100vw",
-                        min_h: "32px",
-                        max_h: "32px",
-                        color_0: conf.color.rose_pompadour.to_owned(),
-                        color_1: conf.color.rose_pompadour.to_owned(),
-                        color_2: conf.color.raisin_black.to_owned(),
-                        color_3: conf.color.raisin_black.to_owned(),
-                        size_0: 0,
-                        size_1: 20,
-                        size_2: 0,
-                        size_3: 32,
-                        animation_speed_seconds: 64
-                    }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "space-between",
-                        align_items: "center",
-                        min_width: "100%",
-                        max_width: "100%",
-                        min_height: "100%",
-                        max_height: "100%",
-                        padding: "16px",
-                        transition: "transform 1s",
-                        ProblemCard {}
-                        ProblemCard {}
-                        ProblemCard {}
-                    }
-                }
-            }
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "space-between",
-                    align_items: "start",
-                    min_width: "100vw",
-                    max_width: "100vw",
-                    min_height: "100vh",
-                    max_height: "100vh",
-                    
-                }
-            }
-        }
-    )
-}
-
-
-
-
-
-
-#[derive(Debug)]
-#[derive(Clone)]
-#[derive(Copy)]
-#[derive(PartialEq)]
-#[derive(Eq)]
-#[derive(Default)]
-enum BannerMode {
-    #[default]
-    None,
-    Idle,
-    Explore,
-    FeatureDescription
-}
-
-#[derive(Debug)]
-#[derive(Clone)]
-#[derive(Copy)]
-#[derive(PartialEq)]
-#[derive(Eq)]
-#[derive(Default)]
-enum BannerFeatureSelection {
-    #[default]
-    None,
-    First,
-    Second,
-    Third,
-    Fourth
-}
-
-#[component]
-fn Banner() -> Element {
-    let conf: conf::Conf = use_context();
-    let mut mode: Signal<_> = use_signal(BannerMode::default);
-    let mut feature_selection: Signal<_> = use_signal(BannerFeatureSelection::default);
-    
-    use_effect(move || {
-        *mode.write() = BannerMode::Idle;
-    });
-
-    rsx!(
-        div {
-            display: "flex",
-            flex_direction: "column",
-            justify_content: "start",
-            align_items: "start",
-            gap: "8px",
-            div {
-                onmouseleave: move |_| *mode.write() = BannerMode::Idle,
-                display: "flex",
-                flex_direction: "row",
-                justify_content: "space-between",
-                align_items: "end",
-                padding: "16px",
-                min_width: "100%",
-                border_radius: "2px",
-                background: conf.color.timberwolf.to_string(),
-                div {
-                    display: "flex",
-                    flex_direction: "column",
-                    justify_content: "end",
-                    align_items: "start",
-                    h1 {
-                        display: "flex",
-                        flex_direction: "column",
-                        justify_content: "start",
-                        align_items: "start",
-                        font_family: conf.font.borneox,
-                        font_weight: "normal",
-                        color: conf.color.raisin_black.to_string(),
-                        max_width: "256px",
-                        text_align: "left",
-                        word_wrap: "break-word",
-                        transition: "transform 1s, opacity 1s",
-                        transform: match *mode.read() {
-                            BannerMode::None => "translate(-200%, 0)",
-                            BannerMode::Idle => "translate(0, 0)",
-                            BannerMode::Explore => "translate(-200%, 0)",
-                            BannerMode::FeatureDescription => "translate(-200%, 0)"
-                        },
-                        opacity: match *mode.read() {
-                            BannerMode::None => "0",
-                            BannerMode::Idle => "1",
-                            BannerMode::Explore => "0",
-                            BannerMode::FeatureDescription => "0"
-                        },
-                        "A Layer 1.5 For Polkadot"
-                    }
-                    h3 {
-                        class: "float",
-                        position: "absolute",
-                        font_family: conf.font.brulia_test,
-                        font_weight: "normal",
-                        color: conf.color.raisin_black.to_string(),
-                        transition: "transform 1s, opacity 1s",
-                        transform: match *mode.read() {
-                            BannerMode::None => "translate(0, -200%)",
-                            BannerMode::Idle => "translate(0, -200%)",
-                            BannerMode::Explore => "translate(0, -200%)",
-                            BannerMode::FeatureDescription => "translate(0, 0)"
-                        },
-                        opacity: match *mode.read() {
-                            BannerMode::None => "0",
-                            BannerMode::Idle => "0",
-                            BannerMode::Explore => "0",
-                            BannerMode::FeatureDescription => "1"
-                        },
-                        match *feature_selection.read() {
-                            BannerFeatureSelection::None => "",
-                            BannerFeatureSelection::First => "You are no longer constrained, view state changes through our event driven framework.",
-                            BannerFeatureSelection::Second => "blaa bla bla",
-                            BannerFeatureSelection::Third => "oonjo pj p s",
-                            BannerFeatureSelection::Fourth => "o ijs pjps d"
-                        }
-                    }
+                    min_height: "32px"
                 }
                 div {
                     display: "flex",
                     flex_direction: "row",
-                    justify_content: "end",
-                    align_items: "end",
-                    transition: "transform 1s",
-                    transform: match *mode.read() {
-                        BannerMode::None => "translate(200%, 0)",
-                        BannerMode::Idle => "translate(0, 0)",
-                        BannerMode::Explore => "translate(200%, 0)",
-                        BannerMode::FeatureDescription => "translate(200%, 0)"
-                    },
-                    div {
-                        class: "float",
-                        display: "flex",
-                        flex_direction: "column",
-                        justify_content: "start",
-                        align_items: "start",
-                        max_width: "256px",
-                        gap: "16px",
-                        h3 {
-                            font_family: conf.font.brulia_test,
-                            font_weight: "normal",
-                            color: conf.color.raisin_black.to_string(),
-                            "It's time for a better web3 experience"
-                        }
-                        div {
-                            display: "flex",
-                            flex_direction: "row",
-                            justify_content: "start",
-                            align_items: "start",
-                            gap: "8px",
-                            div {
-                                onclick: move |_| *mode.write() = BannerMode::Explore,
-                                cmp::Button {
-                                    "explore"
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    cmp::Cross {
+                        padding: cmp::CrossFieldsetPadding::Normal,
+                        Banner {
+                            heading: rsx! {
+                                "A Layer 1.5 For Polkadot"
+                            },
+                            call_to_action_heading: rsx! {
+                                "It's time for a better web3 experience"
+                            },
+                            call_to_action_button_group: rsx! {
+                                Link {
+                                    all: "unset",
+                                    to: "/explore",
+                                    cmp::Button { { "explore" } }
                                 }
+                                Link {
+                                    all: "unset",
+                                    to: "/learn_more",
+                                    cmp::Button { { "learn more" } }
+                                }
+                            },
+                            call_to_action_image: rsx! {
+                                cmp::Shape {
+                                    w: "200px",
+                                    h: "auto",
+                                    fill: conf.color.raisin_black.to_owned(),
+                                    model: cmp::ShapeModel::FourLobedRoundedSquare
+                                }
+                            },
+                            highlights: vec![
+                                rsx! { "Transparency" },
+                                rsx! { "Resilience" },
+                                rsx! { "100% Uptime" },
+                                rsx! { "Gassless" }
+                            ]
+                        }   
+                    }
+                }
+                div {
+                    flex: "1"
+                }
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    max_width: "100%",
+                    FlickeringDownArrowIcon {}
+                }
+                div {
+                    min_height: "8px"
+                }
+            }
+
+            cmp::Fieldset {
+                label: rsx! { "Council Members" },
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    flex_wrap: "wrap",
+                    justify_content: "center",
+                    align_items: "center",
+                    gap: "8px",
+                    CouncilMemberRoleCard {
+                        name: rsx!(
+                            "PascalCase"
+                        ),
+                        role: rsx!(
+                            "Lead Engineer"
+                        ),
+                        image: rsx!(
+                            cmp::Shape {
+                                w: "128px",
+                                h: "128px",
+                                model: cmp::ShapeModel::FivePointCircleGrid,
+                                fill: conf.color.timberwolf.to_owned()
                             }
-                            div {
-                                // external link
-                                cmp::Button {
-                                    "learn more"
-                                }
+                        )
+                    }
+                    CouncilMemberRoleCard {
+                        name: rsx! { "Jza" },
+                        role: rsx! { "Product Manager" },
+                        image: rsx! {
+                            cmp::Shape {
+                                w: "128px",
+                                h: "128px",
+                                model: cmp::ShapeModel::FourLobedFlower,
+                                fill: conf.color.timberwolf.to_owned()
                             }
                         }
                     }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "start",
-                        align_items: "start",
-                        cmp::Shape {
-                            w: "200px",
-                            h: "auto",
-                            fill: conf.color.raisin_black.to_owned(),
-                            model: cmp::ShapeModel::FourLobedRoundedSquare
+                    CouncilMemberRoleCard {
+                        name: rsx! { "Frosty" },
+                        role: rsx! { "Project Lead" },
+                        image: rsx! {
+                            cmp::Shape {
+                                w: "128px",
+                                h: "128px",
+                                model: cmp::ShapeModel::FourLobedRoundedSquare,
+                                fill: conf.color.timberwolf.to_owned()
+                            }
                         }
+                    }
+                }   
+            }
+            cmp::Fieldset {
+                label: rsx! { "Core Contributors" },
+                div {
+                    CoreContributorCard {
+                        model: cmp::ShapeModel::DoubleBean,
+                        name: "Autismo",
+                        description: "Engineer"
                     }
                 }
             }
-            div {
-                display: "flex",
-                flex_direction: "row",
-                justify_content: "start",
-                align_items: "start",
-                gap: "8px",
-                transition: "transform 1s, opacity 1s",
-                transform: match *mode.read() {
-                    BannerMode::None => "translate(0, -200%)",
-                    BannerMode::Idle => "translate(0, 0)",
-                    BannerMode::Explore => "translate(0, -200%)",
-                    BannerMode::FeatureDescription => "translate(0, 0)"
-                },
-                opacity: match *mode.read() {
-                    BannerMode::None => "0",
-                    BannerMode::Idle => "1",
-                    BannerMode::Explore => "0",
-                    BannerMode::FeatureDescription => "1"
-                },
-                div {
-                    onmouseenter: move |_| {
-                        *feature_selection.write() = BannerFeatureSelection::First;
-                        *mode.write() = BannerMode::FeatureDescription;
-                    },
-                    onmouseleave: move |_| {
-                        *mode.write() = BannerMode::Idle;
-                        *feature_selection.write() = BannerFeatureSelection::None;
-                    },
-                    Feature {
-                        "Transparency"
+            cmp::PageItem {
+                HonourableMentionCard {
+                    name: rsx! { "Unsudo" },
+                    icon: rsx! {
+                        cmp::Shape {
+                            w: "16px",
+                            h: "16px",
+                            model: cmp::ShapeModel::TwoPartEmblem,
+                            fill: conf.color.timberwolf.to_owned()
+                        }
                     }
                 }
                 div {
-                    onmouseenter: move |_| {
-                        *feature_selection.write() = BannerFeatureSelection::Second;
-                        *mode.write() = BannerMode::FeatureDescription;
-                    },
-                    onmouseleave: move |_| {
-                        *mode.write() = BannerMode::Idle;
-                        *feature_selection.write() = BannerFeatureSelection::None;
-                    },
-                    Feature {
-                        "Resilience"
-                    }
-                }
-                div {
-                    onmouseenter: move |_| {
-                        *feature_selection.write() = BannerFeatureSelection::Third;
-                        *mode.write() = BannerMode::FeatureDescription;
-                    },
-                    onmouseleave: move |_| {
-                        *mode.write() = BannerMode::Idle;
-                        *feature_selection.write() = BannerFeatureSelection::None;
-                    },
-                    Feature {
-                        "100% Uptime"
-                    }
-                }
-                div {
-                    onmouseenter: move |_| {
-                        *feature_selection.write() = BannerFeatureSelection::Fourth;
-                        *mode.write() = BannerMode::FeatureDescription;
-                    },
-                    onmouseleave: move |_| {
-                        *mode.write() = BannerMode::Idle;
-                        *feature_selection.write() = BannerFeatureSelection::None;
-                    },
-                    Feature {
-                        "Cross Border"
+                    padding: "64px",
+                    cmp::Fieldset {
+                        label: rsx! { "Core" },
+                        "aaaaaaaaaaaaaa bbbbb bbbbb bbbbb cccccccc ccccccccccccc ddddddddddddd ddddd ddddd"
                     }
                 }
             }
         }
-    )
+    }
 }
+
+
+
+#[component]
+fn MoreIcon() -> Element {
+    let conf = use_context::<theme::Conf>();
+
+    rsx! {
+        div {
+            class: "soft_flicker",
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "center",
+            align_items: "center",
+            font_size: "32px",
+            font_family: conf.font.br_cobane,
+            font_weight: "normal",
+            color: conf.color.timberwolf.to_string(),
+            "↡"
+        }
+    }
+}
+
+
 
 
 
@@ -481,7 +202,7 @@ enum RouteState {
 
 #[component]
 fn Routing() -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
     let mut state: Signal<_> = use_signal(RouteState::default);
 
     use_effect(move || {
@@ -574,7 +295,7 @@ fn GuideCard(
     label_button: String,
     description: String,
 ) -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
 
     rsx!(
         div {
@@ -631,7 +352,7 @@ fn GuideCard(
 
 #[component]
 fn Feature(children: Element) -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
     
     rsx!(
         div {
@@ -686,9 +407,9 @@ fn ProblemInfograhic(props: ProblemInfograhicProps) -> Element {
 }
 
 
-
+#[component]
 fn ProblemCard() -> Element {
-    let conf: conf::Conf = use_context();
+    let conf: theme::Conf = use_context();
 
     let mut is_visible: Signal<bool> = use_signal(|| {
         false
@@ -713,7 +434,8 @@ fn ProblemCard() -> Element {
                         cmp::Counter {
                             from: 0.0,
                             to: 9000000000.0,
-                            ms: 3000.0
+                            duration: time::Duration::from_millis(3000),
+                            detail: Some(cmp::CounterPrecision::Single)
                         }
                     }
                 }
@@ -723,6 +445,375 @@ fn ProblemCard() -> Element {
                 font_weight: "normal",
                 color: conf.color.timberwolf.to_string(),
                 "Billion People"
+            }
+        }
+    )
+}
+
+#[component]
+fn Container(
+    fill: bool,
+    children: Option<Element>
+) -> Element {
+    let conf: theme::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            padding: "16px",
+            min_width: "100%",
+            max_width: "100%",
+            min_height: "100%",
+            max_height: "100%",
+            background: if fill {
+                conf.color.timberwolf.to_string()
+            } else {
+                "transparent".to_owned()
+            },
+            border_width: "1px",
+            border_style: "solid",
+            border_color: if fill {
+                "transparent"
+            } else {
+                conf.color.timberwolf.to_string()
+            },
+            border_radius: "2px",
+            { children }
+        }
+    )
+}
+
+
+
+
+
+
+
+#[component]
+pub fn S() -> Element {
+    let conf: theme::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "center",
+            align_items: "center",
+            gap: "8px",
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "center",
+                gap: "8px",
+                Section {
+                    mode: SectionMode::Full,
+                    h1 {
+                        color: conf.color.raisin_black.to_string(),
+                        font_family: conf.font.brulia_test,
+                        font_weight: "normal",
+                        "Building software to be resilient is important"
+                    }
+                }
+                Section {
+                    mode: SectionMode::Silent,
+                    div {
+                        display: "flex",
+                        flex_direction: "column",
+                        justify_content: "center",
+                        align_items: "center",
+                        min_width: "100%",
+                        flex: "1",
+                        cmp::Shape {
+                            w: "128px",
+                            h: "128px",
+                            model: cmp::ShapeModel::LayeredStructure,
+                            fill: conf.color.timberwolf.to_owned()
+                        }
+                    }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "center",
+                gap: "8px",
+                Section {
+                    mode: SectionMode::Outline,
+
+                }
+                Section {
+                    mode: SectionMode::Full,
+
+                }
+            }
+        }
+    )
+}
+
+
+
+
+
+
+#[derive(Clone)]
+#[derive(PartialEq)]
+enum SectionMode {
+    Outline,
+    Full = 1,
+    Silent
+}
+
+#[component]
+fn Section(
+    mode: SectionMode,
+    children: Option<Element>
+) -> Element {
+    let conf: theme::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            min_width: "700px",
+            max_width: "700px",
+            min_height: "300px",
+            max_height: "300px",
+            padding: "16px",
+            border_width: if let SectionMode::Outline = mode {
+                "2px"
+            },
+            border_style: if let SectionMode::Outline = mode {
+                "solid"
+            },
+            border_color: if let SectionMode::Outline = mode {
+                conf.color.timberwolf.to_string()
+            },
+            border_radius: "2px",
+            background: if let SectionMode::Full = mode {
+                conf.color.timberwolf.to_string()
+            },
+            { children }
+        }
+    )
+}
+
+
+
+
+#[component]
+fn CouncilMemberRoleCard(
+    #[props(default = None)]
+    image: Option<Element>,
+
+    #[props(default = None)]
+    name: Option<Element>,
+
+    #[props(default = None)]
+    role: Option<Element>,
+
+    #[props(extends = GlobalAttributes)]
+    attr: Vec<Attribute>
+) -> Element {
+    let theme: theme::Theme = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            min_width: "450px",
+            max_width: "450px",
+            ..attr,
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                border_width: "2px",
+                border_style: "solid",
+                border_color: format!("{}", theme.color.foreground),
+                border_top_left_radius: "2px",
+                border_top_right_radius: "2px",
+                padding: "16px",
+                min_width: "100%",
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    max_width: "100%",
+                    min_height: "100%",
+                    max_height: "100%",
+                    { image }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                padding: "16px",
+                gap: "16px",
+                min_width: "100%",
+                border_width: "2px",
+                border_style: "solid",
+                border_color: format!("{}", theme.color.foreground),
+                background: format!("{}", theme.color.foreground),
+                h3 {
+                    font_family: format!("{}", theme.font.display),
+                    font_weight: "normal",
+                    color: format!("{}", theme.color.background),
+                    { name }
+                }
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    flex_wrap: "wrap",
+                    justify_content: "start",
+                    align_items: "start",
+                    gap: "8px",
+                    h3 {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "start",
+                        align_items: "start",
+                        font_family: format!("{}", theme.font.body),
+                        font_weight: "normal",
+                        color: format!("{}", theme.color.background),
+                        { role }
+                    }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                padding: "4px",
+                min_width: "100%",
+                border_bottom_left_radius: "2px",
+                border_bottom_right_radius: "2px",
+                background: format!("{}", theme.color.highlight)
+            }
+        }
+    )
+}
+
+
+
+
+
+
+
+#[component]
+fn CoreContributorCard(
+    model: cmp::ShapeModel,
+    name: String,
+    description: String
+) -> Element {
+    let conf: theme::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "start",
+            align_items: "start",
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                border_width: "2px",
+                border_style: "solid",
+                border_color: conf.color.timberwolf.to_string(),
+                border_top_left_radius: "2px",
+                border_bottom_left_radius: "2px",
+                padding: "16px",
+                min_height: "100%",
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    justify_content: "center",
+                    align_items: "center",
+                    min_width: "100%",
+                    max_width: "100%",
+                    min_height: "100%",
+                    max_height: "100%",
+                    cmp::Shape {
+                        model,
+                        w: "64px",
+                        h: "64px",
+                        fill: conf.color.timberwolf.to_owned()
+                    }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                padding: "16px",
+                min_width: "100%",
+                border_width: "2px",
+                border_style: "solid",
+                border_color: conf.color.timberwolf.to_string(),
+                background: conf.color.timberwolf.to_string(),
+                h2 {
+                    font_family: conf.font.borneox,
+                    font_weight: "normal",
+                    color: conf.color.raisin_black.to_string(),
+                    { name }
+                }
+                h4 {
+                    font_family: conf.font.brulia_test,
+                    font_weight: "normal",
+                    color: conf.color.raisin_black.to_string(),
+                    { description }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                padding: "4px",
+                min_height: "100%",
+                border_top_right_radius: "2px",
+                border_bottom_right_radius: "2px",
+                background: conf.color.medium_slate_blue.to_string()
+            }
+        }
+    )
+}
+
+#[component]
+fn HonourableMentionCard(icon: Element, name: Element) -> Element {
+    let conf: theme::Conf = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "start",
+            align_items: "center",
+            padding: "16px",
+            gap: "8px",
+            { icon }
+            h5 {
+                font_family: conf.font.borneox,
+                font_weight: "normal",
+                color: conf.color.timberwolf.to_string(),
+                { name }
             }
         }
     )

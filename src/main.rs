@@ -1,24 +1,23 @@
-use ::dioxus::prelude::*;
-use ::std::time;
-use ::std::sync;
-use ::std::rc;
-use ::std::cell;
-use ::gloo_timers::callback as gloo_callback;
-use ::gloo_timers::future as gloo_future;
+use dioxus::prelude::*;
+use std::time;
+use std::sync;
+use std::rc;
+use std::cell;
+use gloo_timers::callback as gloo_callback;
+use gloo_timers::future as gloo_future;
+use kore::color;
+use kore::color::CommonExt;
 
 use route::*;
 
 mod cmp;
-mod conf;
+mod theme;
 mod route;
 
 pub type Hex = ::kore::color::Hex<2, u128>;
 
-#[derive(Debug)]
-#[derive(Clone)]
-#[derive(PartialEq)]
-#[derive(Routable)]
 #[rustfmt::skip]
+#[derive(Debug, Clone, PartialEq, Routable)]
 enum Route {
     #[route("/")]
     Home {}
@@ -26,25 +25,23 @@ enum Route {
 
 #[component]
 fn Main() -> Element {
+
     use_context_provider(|| {
-        conf::Conf {
-            color: conf::ColorPalette {
-                raisin_black: 0x1A191Eu32.into(),
-                medium_slate_blue: 0x8B72E8u32.into(),
-                rose_pompadour: 0xE87294u32.into(),
-                aquamarine: 0x72E8C6u32.into(),
-                mindaro: 0xCFE872u32.into(),
-                timberwolf: 0xD2D3D2u32.into(),
-                silver: 0xC1C1C1u32.into()
+        theme::Theme {
+            color: theme::Color {
+                foreground: 0xD2D3D2u32.into(),
+                background: 0x1A191Eu32.into(),
+                success: 0x72E8C6u32.into(),
+                failure: 0xE87294u32.into(),
+                warning: 0xCFE872u32.into(),
+                highlight: 0x8B72E8u32.into()
             },
-            font: conf::FontPalette {
-                br_cobane: "br cobane",
-                stray: "stray",
-                alien_skyline: "alien skyline",
-                borneox: "beyonders",
-                brulia_test: "brulia test"
+            font: theme::Font {
+                body: "brulia test",
+                display: "beyonders",
+                monospace: "alien skyline"
             },
-            cursor: conf::CursorAssetSheet {
+            cursor: theme::Cursor {
                 ban: asset!("/asset/icon/cursor/ban.svg"),
                 click: asset!("/asset/icon/cursor/click.svg"),
                 default: asset!("/asset/icon/cursor/default.svg"),

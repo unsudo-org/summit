@@ -10,34 +10,40 @@ pub enum PageScrollSnap {
 
 #[component]
 pub fn Page(
-    scroll_snap: Option<PageScrollSnap>, 
+    #[props(default = None)]
+    scroll_snap: Option<PageScrollSnap>,
+
+    #[props(default = None)]
     surface: Option<Element>,
-    bg: Option<Hex>,
-    children: Option<Element>
+
+    #[props(default = None)]
+    children: Option<Element>,
+
+    #[props(extends = GlobalAttributes)]
+    attr: Vec<Attribute>
 ) -> Element {
-    let conf: conf::Conf = use_context();
+    let theme: theme::Theme = use_context();
 
     rsx!(
         div {
-            position: "relative",
-            display: "flex",
-            flex_direction: "column",
-            justify_content: "start",
-            align_items: "center",
+            display: "grid",
+            grid_template_columns: "1fr",
+            grid_template_rows: "1fr",
             min_width: "100vw",
             max_width: "100vw",
             min_height: "100vh",
             max_height: "100vh",
             overflow_x: "hidden",
             overflow_y: "hidden",
-            background: if let Some(bg) = bg {
-                format!("{}", bg)
-            },
-            cursor: format!("url('{}'), auto", conf.cursor.default),
+            background: format!("{}", theme.color.background),
+            cursor: format!("url('{}'), auto", theme.cursor.default),
+            ..attr,
             if let Some(surface) = surface {
                 div {
-                    position: "absolute",
-                    z_index: "6767676767676767",
+                    grid_column_start: "1",
+                    grid_column_end: "2",
+                    grid_row_start: "1",
+                    grid_row_end: "2",
                     display: "flex",
                     flex_direction: "column",
                     justify_content: "start",
@@ -51,12 +57,16 @@ pub fn Page(
                     pointer_events: "none",
                     { surface }
                 }
-            }
+            },
             div {
+                grid_column_start: "1",
+                grid_column_end: "2",
+                grid_row_start: "1",
+                grid_row_end: "2",
                 display: "flex",
                 flex_direction: "column",
                 justify_content: "start",
-                align_items: "center",
+                align_items: "start",
                 min_width: "100%",
                 max_width: "100%",
                 overflow_x: "hidden",
@@ -74,7 +84,10 @@ pub fn Page(
 }
 
 #[component]
-pub fn PageItem(children: Option<Element>) -> Element {
+pub fn PageItem(
+    #[props(default = None)]
+    children: Option<Element>
+) -> Element {
     rsx!(
         div {
             style: "scroll_snap_align: start",
@@ -86,7 +99,17 @@ pub fn PageItem(children: Option<Element>) -> Element {
             max_width: "100vw",
             min_height: "100vh",
             max_height: "100vh",
-            { children }
+            div {
+                display: "flex",
+                flex_direction: "column",
+                justify_content: "start",
+                align_items: "start",
+                min_width: "100vw",
+                max_width: "100vw",
+                min_height: "100vh",
+                max_height: "100vh",
+                { children }
+            }
         }
     )
 }
