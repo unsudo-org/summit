@@ -1,13 +1,13 @@
 use super::*;
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Theme {
     pub color: Color,
     pub font: Font,
     pub cursor: Cursor
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Color {
     pub foreground: color::Hex<2, u128>,
     pub background: color::Hex<2, u128>,
@@ -17,14 +17,14 @@ pub struct Color {
     pub highlight: color::Hex<2, u128>
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Font {
     pub body: &'static str,
     pub display: &'static str,
     pub monospace: &'static str
 }
 
-#[derive(Debug, Clone)]
+#[derive(Clone)]
 pub struct Cursor {
     pub ban: Asset,
     pub click: Asset,

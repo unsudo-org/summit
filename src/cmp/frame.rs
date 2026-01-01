@@ -16,64 +16,6 @@ pub struct EightLaneScaffoldProps {
 #[component]
 pub fn EightLaneScaffold(props: EightLaneScaffoldProps) -> Element {
     rsx! {
-        AutoGrid {
-            GridItem {
-                { props.children }
-            }
-            GridItem {
-                ColFill {
-                    align: "start",
-                    align_cross: "center",
-                    { props.top }
-                }
-            }
-            GridItem {
-                ColFill {
-                    align: "start",
-                    align_cross: "start",
-                    { props.top_left }
-                }
-            }
-            GridItem {
-                ColFill {
-                    align: "start",
-                    align_cross: "end",
-                    { props.top_right }
-                }
-            }
-            GridItem {
-                ColFill {
-                    align: "end",
-                    align_cross: "center",
-                    { props.bottom }
-                }
-            }
-            GridItem {
-                ColFill {
-                    align: "end",
-                    align_cross: "start",
-                    { props.bottom_left }
-                }
-            }
-            GridItem {
-                Fill {
-                    { props.bottom_right }
-                }
-            }
-            GridItem {
-                Fill {
-                    { props.left }
-                }
-            }
-            GridItem {
-                Fill {
-                    { props.right }
-                }
-            }
-        }
-
-
-
         div {
             display: "grid",
             grid_template_columns: "1fr",

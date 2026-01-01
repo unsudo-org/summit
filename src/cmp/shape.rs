@@ -139,7 +139,6 @@ pub fn Shape(
     #[props(default = None)]
     h: Option<String>,
 
-    #[props(default = Shape::default())]
     model: ShapeModel,
 
     #[props(default = None)]

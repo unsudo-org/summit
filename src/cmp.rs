@@ -4,8 +4,7 @@ use super::*;
 
 mod frame;
 
-modwire::expose!(
-    pub col
+::modwire::expose!(
     pub button
     pub icon
     pub counter
