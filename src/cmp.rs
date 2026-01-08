@@ -6,7 +6,7 @@ pub mod glyph;
 pub mod navbar;
 pub mod logo;
 
-::modwire::expose!(
+modwire::expose!(
     pub button
     pub icon
     pub counter
@@ -19,3 +19,5 @@ pub mod logo;
 );
 
 pub mod typography;
+pub mod table;
+pub mod effect;

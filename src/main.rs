@@ -23,7 +23,10 @@ enum Route {
     Home {},
     
     #[route("/vision")]
-    Vision {}
+    Vision {},
+
+    #[route("/tokenomics")]
+    Tokenomics {}
 }
 
 #[component]

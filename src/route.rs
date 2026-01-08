@@ -1,6 +1,7 @@
 use super::*;
 
-::modwire::expose!(
+modwire::expose!(
     pub home
+    pub tokenomics
     pub vision
 );

@@ -2,7 +2,7 @@ use super::*;
 
 #[derive(Clone)]
 #[derive(PartialEq)]
-pub enum CounterPrecision {
+pub enum Detail {
     Single,
     Double
 }
@@ -14,7 +14,7 @@ pub struct CounterProps {
     from: f64,
     to: f64,
     duration: time::Duration,
-    detail: Option<CounterPrecision>
+    detail: Option<Detail>
 }
 
 #[component]
@@ -40,8 +40,9 @@ pub fn Counter(props: CounterProps) -> Element {
     });
 
     match props.detail {
-        Some(CounterPrecision::Single) => rsx! { { format!("{:.1}", *count.read()) } },
-        Some(CounterPrecision::Double) => rsx! { { format!("{:.2}", *count.read()) } },
+        Some(Detail::Single) => rsx! { { format!("{:.1}", *count.read()) } },
+        Some(Detail::Double) => rsx! { { format!("{:.2}", *count.read()) } },
         None => rsx! { { format!("{:.0}", *count.read()) } }
     }
 }
+
