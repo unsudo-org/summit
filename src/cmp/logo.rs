@@ -1,31 +1,13 @@
 use super::*;
 
-#[derive(Props, Clone, PartialEq)]
-pub struct LogoProps {
-    pub colors: (
-        Hex,
-        Hex,
-        Hex,
-        Hex
-    ),
-    pub size: &'static str
-}
-
 #[component]
-pub fn Logo(props: LogoProps) -> Element {
-    let style: String = format!(
-        r#"
-            background: linear-gradient(to bottom right, {}, {}, {});
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        "#,
-        props.colors.1,
-        props.colors.2,
-        props.colors.3
-    );
+pub fn Logo(
+    color_0: Option<String>,
+    color_1: Option<String>,
+    color_2: Option<String>,
+    font_size: Option<String>
+) -> Element {
+    let theme: theme::Theme = use_context();
 
     rsx!(
         h1 {
@@ -33,14 +15,21 @@ pub fn Logo(props: LogoProps) -> Element {
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            font_size: props.size,
+            font_size: font_size.unwrap_or("32px".to_string()),
             font_family: "alien skyline",
             font_weight: "normal",
-            color: format!("{}", props.colors.0),
-            span { style, "un" }
+            color: color_0.unwrap_or(theme.color.foreground.to_string()),
             span {
-                "SUDO"
+                cmp::typography::Gradient {
+                    bg: format!(
+                        "linear-gradient(to bottom right, {}, {})",
+                        color_1.unwrap_or(theme.color.foreground.to_string()),
+                        color_2.unwrap_or(theme.color.foreground.to_string())
+                    ),
+                    "un"
+                }
             }
+            span { "SUDO" }
         }
     )
 }

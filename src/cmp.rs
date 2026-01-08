@@ -2,7 +2,9 @@
 
 use super::*;
 
-mod frame;
+pub mod glyph;
+pub mod navbar;
+pub mod logo;
 
 ::modwire::expose!(
     pub button
@@ -15,3 +17,5 @@ mod frame;
     pub page
     pub shape
 );
+
+pub mod typography;

@@ -2,14 +2,10 @@ use super::*;
 
 #[component]
 pub fn Fieldset(
-    #[props(default = None)]
     label: Option<Element>,
-
-    #[props(default = None)]
     children: Option<Element>,
-
     #[props(extends = GlobalAttributes)]
-    attr: Vec<Attribute>
+    more: Vec<Attribute>
 ) -> Element {
     let theme: theme::Theme = use_context();
 
@@ -19,7 +15,7 @@ pub fn Fieldset(
             border_style: "solid",
             border_color: format!("{}", theme.color.foreground),
             border_radius: "2px",
-            ..attr,
+            ..more,
             legend {
                 display: "flex",
                 flex_direction: "row",

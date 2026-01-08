@@ -2,11 +2,13 @@ use super::*;
 
 #[component]
 pub fn Button(
+    is_locked: Option<bool>,
+
     #[props(default = None)]
     children: Option<Element>,
 
     #[props(extends = GlobalAttributes)]
-    attr: Vec<Attribute>
+    more: Vec<Attribute>
 ) -> Element {
     let mut hovering: Signal<bool> = use_signal(|| {
         false
@@ -16,7 +18,12 @@ pub fn Button(
 
     rsx! {
         button {
-            onmouseenter: move |_| *hovering.write() = true,
+            onmouseenter: move |_| {
+                if let Some(true) = is_locked {
+                    return
+                }
+                *hovering.write() = true
+            },
             onmouseleave: move |_| *hovering.write() = false,
             all: "unset",
             display: "flex",
@@ -40,10 +47,21 @@ pub fn Button(
                 format!("{}", "transparent")
             },
             cursor: format!("url('{}'), auto", theme.cursor.finger),
-            padding: "8px",
             transition: "color linear 0.1s, background linear 0.1s",
-            ..attr,
-            { children }
+            ..more,
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "start",
+                align_items: "start",
+                padding: "8px",
+                opacity: if let Some(true) = is_locked {
+                    "0.5"
+                } else {
+                    "1"
+                },
+                { children }
+            }
         }
     }
 }

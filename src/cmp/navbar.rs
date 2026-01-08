@@ -1,17 +1,45 @@
 use super::*;
 
 #[component]
-pub fn NavbarBuild() -> Element {
-    let conf: theme::Conf = use_context();
+pub fn Build() -> Element {
+    let theme: theme::Theme = use_context();
 
     rsx!(
         Navbar {
             left: rsx!(
-                Logo {}
-            ),
-            right: rsx! {
-                
-            }
+                div {
+                    display: "flex",
+                    flex_direction: "row",
+                    justify_content: "start",
+                    align_items: "center",
+                    gap: "32px",
+                    logo::Logo {}
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        justify_content: "start",
+                        align_items: "center",
+                        gap: "16px",
+                        Link {
+                            all: "unset",
+                            to: "/vision",
+                            NavbarGotoButton { "Vision" }
+                        }
+                        Link {
+                            all: "unset",
+                            to: "/team",
+                            NavbarGotoButton { "Team" }
+                        }
+                        Link {
+                            all: "unset",
+                            to: "/",
+                            NavbarGotoButton { "Learn More" }
+                        }
+                        
+                    }
+                    
+                }
+            )
         }
     )
 }
@@ -56,7 +84,8 @@ pub fn Navbar(left: Option<Element>, right: Option<Element>, center: Option<Elem
 
 #[component]
 pub fn NavbarGotoButton(children: Option<Element>) -> Element {
-    let conf: theme::Conf = use_context();
+    let theme: theme::Theme = use_context();
+
     rsx!(
         button {
             all: "unset",
@@ -64,10 +93,10 @@ pub fn NavbarGotoButton(children: Option<Element>) -> Element {
             flex_direction: "row",
             justify_content: "center",
             align_items: "center",
-            font_family: conf.font.br_cobane,
+            font_family: theme.font.body,
             font_weight: "normal",
-            color: conf.color.timberwolf.to_string(),
-            cursor: format!("url('{}'), auto", conf.cursor.finger),
+            color: theme.color.foreground.to_string(),
+            cursor: format!("url('{}'), auto", theme.cursor.finger),
             div {
                 { children }
             }

@@ -86,7 +86,10 @@ pub fn Page(
 #[component]
 pub fn PageItem(
     #[props(default = None)]
-    children: Option<Element>
+    children: Option<Element>,
+
+    #[props(extends = GlobalAttributes)]
+    more: Vec<Attribute>
 ) -> Element {
     rsx!(
         div {
@@ -99,6 +102,7 @@ pub fn PageItem(
             max_width: "100vw",
             min_height: "100vh",
             max_height: "100vh",
+            ..more,
             div {
                 display: "flex",
                 flex_direction: "column",

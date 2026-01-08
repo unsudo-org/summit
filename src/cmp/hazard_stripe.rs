@@ -1,48 +1,29 @@
-// hazard-motion.css
-
 use super::*;
 
-#[derive(Props, Clone, PartialEq)]
-pub struct HazardStripeProps {
-    pub min_w: Option<String>,
-    pub max_w: Option<String>,
-    pub min_h: Option<String>,
-    pub max_h: Option<String>,
-    pub color_0: Hex,
-    pub color_1: Hex,
-    pub color_2: Hex,
-    pub color_3: Hex,
-    pub size_0: Hex,
-    pub size_1: Hex,
-    pub size_2: Hex,
-    pub size_3: Hex,
-    pub duration: time::Duration,
-
-    #[props(extends = GlobalAttributes)]
-    pub attr: Vec<Attribute>
-}
-
 #[component]
-pub fn HazardStripe(props: HazardStripeProps) -> Element {
+pub fn HazardStripe(
+    min_w: String,
+    max_w: String,
+    min_h: String,
+    max_h: String,
+    foreground_color: Hex,
+    background_color: Hex,
+    duration: time::Duration
+) -> Element {
     rsx!(
         div {
-            min_width: props.min_w,
-            max_width: props.max_w,
-            min_height: props.min_h,
-            max_height: props.max_h,
+            min_width: min_w,
+            max_width: max_w,
+            min_height: min_h,
+            max_height: max_h,
             background: format!(
-                "repeating-linear-gradient(45deg, {} {}px, {} {}px, {} {}px, {} {}px)",
-                props.color_0,
-                props.size_0,
-                props.color_1,
-                props.size_1,
-                props.color_2,
-                props.size_2,
-                props.color_3,
-                props.size_3
+                "repeating-linear-gradient(45deg, {} 0px, {} 8px, {} 8px, {} 16px)",
+                foreground_color,
+                foreground_color,
+                background_color,
+                background_color
             ),
-            animation: format!("hazard-motion {}s linear infinite", props.duration.as_millis()),
-            ..props.attr
+            animation: format!("hazard-motion {}s linear infinite", duration.as_secs_f32())
         }
     )
 }

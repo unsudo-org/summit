@@ -1,12 +1,12 @@
-use dioxus::prelude::*;
-use std::time;
-use std::sync;
-use std::rc;
-use std::cell;
-use gloo_timers::callback as gloo_callback;
-use gloo_timers::future as gloo_future;
-use kore::color;
-use kore::color::CommonExt;
+use ::dioxus::prelude::*;
+use ::std::time;
+use ::std::sync;
+use ::std::rc;
+use ::std::cell;
+use ::gloo_timers::callback as gloo_callback;
+use ::gloo_timers::future as gloo_future;
+use ::kore::color;
+use ::kore::color::CommonExt as _;
 
 use route::*;
 
@@ -20,7 +20,10 @@ pub type Hex = ::kore::color::Hex<2, u128>;
 #[derive(Debug, Clone, PartialEq, Routable)]
 enum Route {
     #[route("/")]
-    Home {}
+    Home {},
+    
+    #[route("/vision")]
+    Vision {}
 }
 
 #[component]
