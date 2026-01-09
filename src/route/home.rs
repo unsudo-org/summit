@@ -6,518 +6,349 @@ pub fn Home() -> Element {
 
     rsx!(
         cmp::Page {
-            cmp::PageItem {
-                cmp::navbar::Build {}
-                div {
-                    flex: "1"
-                }
-                div {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "center",
-                    align_items: "start",
-                    min_width: "100%",
-                    max_width: "100%",
-                    padding_top: "32px",
-                    padding_bottom: "32px",
-                    div {
-                        display: "flex",
-                        flex_direction: "column",
-                        justify_content: "start",
-                        align_items: "start",
-                        div {
-                            display: "flex",
-                            flex_direction: "row",
-                            justify_content: "start",
-                            align_items: "start",
-                            gap: "8px",
-                            padding_bottom: "32px",
-                            for (asset, to) in vec![
-                                (asset!("asset/icon/social/discord.svg"), "/"),
-                                (asset!("asset/icon/social/github.svg"), "/"),
-                                (asset!("asset/icon/social/telegram.svg"), "/")
-                            ] {
-                                Link {
-                                    to,
-                                    div {
-                                        display: "flex",
-                                        flex_direction: "start",
-                                        align_items: "start",
-                                        min_width: "16px",
-                                        max_width: "16px",
-                                        aspect_ratio: "1 / 1",
-                                        background_image: format!("url({})", asset),
-                                        background_position: "center",
-                                        background_size: "contain",
-                                        background_repeat: "no-repeat",
-                                        color: theme.color.foreground.to_string()
-                                    }
-                                }
-                            }
-                        }
-                        cmp::glyph::Glyph {
-                            top_left: rsx!(
-                                cmp::glyph::TopLeftAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_length: "8px",
-                                    border_radius: "2px"
-                                }
-                            ),
-                            top_right: rsx!(
-                                cmp::glyph::TopRightAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_length: "8px",
-                                    border_radius: "2px"
-                                }
-                            ),
-                            bottom_left: rsx!(
-                                cmp::glyph::BottomLeftAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_length: "8px",
-                                    border_radius: "2px"
-                                }
-                            ),
-                            bottom_right: rsx!(
-                                cmp::glyph::BottomRightAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_length: "8px",
-                                    border_radius: "2px"
-                                }
-                            ),
-                            cmp::glyph::Content {
-                                padding: "16px",
-                                Banner {
-                                    heading: rsx!(
-                                        span {
-                                            "A Layer 1.5 For "
-                                        }
-                                        span {
-                                            background: theme.color.background.to_string(),
-                                            border_radius: "2px",
-                                            cmp::typography::Gradient {
-                                                bg: format!(
-                                                    "linear-gradient(to bottom right, {}, {})",
-                                                    theme.color.failure,
-                                                    theme.color.failure
-                                                ),
-                                                "Polkadot"
-                                            }
-                                        }
-                                    ),
-                                    call_to_action_heading: rsx!("Challenge the status quo"),
-                                    call_to_action_button_group: rsx!(
-                                        Link {
-                                            all: "unset",
-                                            to: "/",
-                                            div {
-                                                display: "flex",
-                                                flex_direction: "column",
-                                                justify_content: "start",
-                                                align_items: "start",
-                                                gap: "8px",
-                                                cmp::Button {
-                                                    is_locked: true,
-                                                    { "explore" }
-                                                }
-                                                div {
-                                                    font_size: "8px",
-                                                    font_family: theme.font.body,
-                                                    font_weight: "normal",
-                                                    "Coming soon"
-                                                }
-                                            }
-                                        }
-                                        Link {
-                                            all: "unset",
-                                            to: "/learn_more",
-                                            cmp::Button { { "learn more" } }
-                                        }
-                                    ),
-                                    call_to_action_image: rsx!(
-                                        cmp::Shape {
-                                            w: "200px",
-                                            h: "auto",
-                                            color: theme.color.background.to_owned(),
-                                            model: cmp::ShapeModel::FourLobedRoundedSquare
-                                        }
-                                    ),
-                                    highlights: vec![
-                                        rsx!("Transparency"),
-                                        rsx!("Resilience"),
-                                        rsx!("100% Uptime"),
-                                        rsx!("Gassless")
-                                    ]
-                                }
-                            }
-                        }
-                    }
-                }
-                div {
-                    flex: "1"
-                }
-                div {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "center",
-                    align_items: "start",
-                    min_width: "100%",
-                    max_width: "100%",
-                    div {
-                        class: "soft_flicker",
-                        display: "flex",
-                        flex_direction: "column",
-                        justify_content: "center",
-                        align_items: "center",
-                        font_size: "32px",
-                        font_family: format!("{}", theme.font.body),
-                        font_weight: "normal",
-                        color: format!("{}", theme.color.foreground),
-                        "↡"
-                    }
-                }
-                div {
-                    flex: "1"
-                }
+            HeroSection {}
+            SummarySection {}
+            ProblemSection {}
+            TeamSection {}
+        }
+    )
+}
+
+#[component]
+fn HeroSection() -> Element {
+    let theme: theme::Theme = use_context();
+
+    rsx!(
+        cmp::PageItem {
+            cmp::navbar::Build {}
+            div {
+                flex: "1"
             }
-            cmp::PageItem {
-                div {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "center",
-                    align_items: "start",
-                    min_width: "100%",
-                    max_width: "100%",
-                    gap: "32px",
-                    cmp::Fieldset {
-                    
-                        label: rsx!("What?"),
-                        div {
-                            display: "flex",
-                            flex_direction: "column",
-                            justify_content: "start",
-                            align_items: "start",
-                            min_width: "300px",
-                            max_width: "300px",
-                            cmp::typography::P {
-                                "A Layer 1.5 built on Polkadot that abstracts complexity without sacrificing sovereignty. We provide a unified execution and coordination layer that lets builders ship faster, users interact seamlessly, and systems scale horizontally—while remaining natively interoperable with the Polkadot ecosystem."
-                            }
-                        }
-                    }
-                    cmp::Fieldset {
-                        label: rsx!("Why?"),
-                        div {
-                            display: "flex",
-                            flex_direction: "column",
-                            justify_content: "start",
-                            align_items: "start",
-                            min_width: "300px",
-                            max_width: "300px",
-                            cmp::typography::P {
-                                "You cannot challenge the status quo while depending on it. Real change requires infrastructure that is transparent by default, resilient by design, and impossible to silently control. We build for a future where systems serve users—not the other way around."
-                            }
-                        }
-                    }
-                    cmp::Fieldset {
-                        label: rsx!("Where?"),
-                        div {
-                            display: "flex",
-                            flex_direction: "column",
-                            justify_content: "start",
-                            align_items: "start",
-                            min_width: "300px",
-                            max_width: "300px",
-                            cmp::typography::P {
-                                "On-chain, between chains, and beyond them. We operate where systems meet—turning fragmentation into coherence."
-                            }
-                        }
-                    }
-                }
-                div {
-                    display: "flex",
-                    flex_direction: "row",
-                    justify_content: "center",
-                    align_items: "start",
-                    min_width: "100%",
-                    max_width: "100%",
-                    h4 {
-                        display: "flex",
-                        font_family: format!("{}", theme.font.display),
-                        font_weight: "normal",
-                        color: format!("{}", theme.color.foreground),
-                        "jjj"
-                    }
-                }
-                // comment section on what it is
-            }
-
-
-
-
-
-            cmp::PageItem {
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "start",
+                min_width: "100%",
+                max_width: "100%",
+                padding_top: "32px",
+                padding_bottom: "32px",
                 div {
                     display: "flex",
                     flex_direction: "column",
                     justify_content: "start",
                     align_items: "start",
-                    min_width: "100%",
-                    max_width: "100%",
-                    min_height: "100%",
-                    max_height: "100%",
                     div {
                         display: "flex",
                         flex_direction: "row",
                         justify_content: "start",
                         align_items: "start",
-                        min_width: "100%",
-                        max_width: "100%",
-                        padding: "32px",
-                        cmp::glyph::Glyph {
-                            top_left: rsx!(
-                                cmp::glyph::TopLeftAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            top_right: rsx!(
-                                cmp::glyph::TopRightAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            bottom_left: rsx!(
-                                cmp::glyph::BottomLeftAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            bottom_right: rsx!(
-                                cmp::glyph::BottomRightAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            cmp::glyph::Content {
-                                padding: "16px",
-                                cmp::typography::P {
-                                    max_width: "256px",
-                                    text_align: "justify",
-                                    "We were promised"
+                        gap: "8px",
+                        padding_bottom: "32px",
+                        for (asset, to) in vec![
+                            (asset!("asset/icon/social/discord.svg"), "/"),
+                            (asset!("asset/icon/social/github.svg"), "/"),
+                            (asset!("asset/icon/social/telegram.svg"), "/")
+                        ] {
+                            Link {
+                                to,
+                                div {
+                                    display: "flex",
+                                    flex_direction: "start",
+                                    align_items: "start",
+                                    min_width: "16px",
+                                    max_width: "16px",
+                                    aspect_ratio: "1 / 1",
+                                    background_image: format!("url({})", asset),
+                                    background_position: "center",
+                                    background_size: "contain",
+                                    background_repeat: "no-repeat",
+                                    color: theme.color.foreground.to_string()
                                 }
                             }
                         }
                     }
-                    HazardStripeContainer {
-                        div {
-                            display: "flex",
-                            flex_direction: "row",
-                            justify_content: "center",
-                            align_items: "start",
-                            min_width: "100%",
-                            max_width: "100%",
-                            div {
-                                display: "flex",
-                                flex_direction: "row",
-                                flex_wrap: "wrap",
-                                flex: "1",
-                                justify_content: "center",
-                                align_items: "center",
-                                gap: "8px",
-                                HazardStripeContainerContent {
-                                    cmp::effect::RenderOnVisible {
-                                        ProblemCard {
-                                            label: rsx!("Unbanked"),
-                                            value: rsx!(
-                                                cmp::Counter {
-                                                    from: 0.0,
-                                                    to: 4_000_000.0,
-                                                    duration: time::Duration::from_millis(9000)
-                                                }
-                                            )
-                                        }
-                                    }
-                                }
-                                HazardStripeContainerContent {
-                                    cmp::effect::RenderOnVisible {
-                                        ProblemCard {
-                                            label: rsx!("Unbanked"),
-                                            value: rsx!(
-                                                cmp::Counter {
-                                                    from: 0.0,
-                                                    to: 4_000_000.0,
-                                                    duration: time::Duration::from_millis(9000)
-                                                }
-                                            )
-                                        }
-                                    }
-                                }
-                                HazardStripeContainerContent {
-                                    cmp::effect::RenderOnVisible {
-                                        ProblemCard {
-                                            label: rsx!("Unbanked"),
-                                            value: rsx!(
-                                                cmp::Counter {
-                                                    from: 0.0,
-                                                    to: 4_000_000.0,
-                                                    duration: time::Duration::from_millis(9000)
-                                                }
-                                            )
-                                        }
-                                    }
-                                }
+                    cmp::glyph::Glyph {
+                        top_left: rsx!(
+                            cmp::glyph::TopLeftAngle {
+                                border_width: "2px",
+                                border_style: "solid",
+                                border_color: format!("{}", theme.color.foreground),
+                                border_length: "8px",
+                                border_radius: "2px"
                             }
-                            div {
-                                min_width: "32px"
+                        ),
+                        top_right: rsx!(
+                            cmp::glyph::TopRightAngle {
+                                border_width: "2px",
+                                border_style: "solid",
+                                border_color: format!("{}", theme.color.foreground),
+                                border_length: "8px",
+                                border_radius: "2px"
                             }
-                            HazardStripeContainerContent {
-                                cmp::Shape {
-                                    w: "256px",
-                                    h: "256px",
-                                    model: cmp::ShapeModel::GeometricStarburst,
-                                    color: theme.color.foreground.to_owned()
-                                }
+                        ),
+                        bottom_left: rsx!(
+                            cmp::glyph::BottomLeftAngle {
+                                border_width: "2px",
+                                border_style: "solid",
+                                border_color: format!("{}", theme.color.foreground),
+                                border_length: "8px",
+                                border_radius: "2px"
                             }
-                            div {
-                                min_width: "32px"
+                        ),
+                        bottom_right: rsx!(
+                            cmp::glyph::BottomRightAngle {
+                                border_width: "2px",
+                                border_style: "solid",
+                                border_color: format!("{}", theme.color.foreground),
+                                border_length: "8px",
+                                border_radius: "2px"
                             }
-                            div {
-                                display: "flex",
-                                flex_direction: "row",
-                                flex_wrap: "wrap",
-                                flex: "1",
-                                justify_content: "center",
-                                align_items: "center",
-                                gap: "8px",
-                                HazardStripeContainerContent {
-                                    cmp::effect::RenderOnVisible {
-                                        ProblemCard {
-                                            label: rsx!("Unbanked"),
-                                            value: rsx!(
-                                                cmp::Counter {
-                                                    from: 0.0,
-                                                    to: 4_000_000.0,
-                                                    duration: time::Duration::from_millis(9000)
-                                                }
-                                            )
+                        ),
+                        cmp::glyph::Content {
+                            padding: "16px",
+                            Banner {
+                                heading: rsx!(
+                                    span {
+                                        "A Layer 1.5 For "
+                                    }
+                                    span {
+                                        background: theme.color.background.to_string(),
+                                        border_radius: "2px",
+                                        cmp::typography::Gradient {
+                                            bg: format!(
+                                                "linear-gradient(to bottom right, {}, {})",
+                                                theme.color.failure,
+                                                theme.color.failure
+                                            ),
+                                            "Polkadot"
                                         }
                                     }
-                                }
-                                HazardStripeContainerContent {
-                                    cmp::effect::RenderOnVisible {
-                                        ProblemCard {
-                                            label: rsx!("Unbanked"),
-                                            value: rsx!(
-                                                cmp::Counter {
-                                                    from: 0.0,
-                                                    to: 4_000_000.0,
-                                                    duration: time::Duration::from_millis(9000)
-                                                }
-                                            )
+                                ),
+                                call_to_action_heading: rsx!("Challenge the status quo"),
+                                call_to_action_button_group: rsx!(
+                                    Link {
+                                        all: "unset",
+                                        to: "/",
+                                        div {
+                                            display: "flex",
+                                            flex_direction: "column",
+                                            justify_content: "start",
+                                            align_items: "start",
+                                            gap: "8px",
+                                            cmp::Button {
+                                                is_locked: true,
+                                                { "explore" }
+                                            }
+                                            div {
+                                                font_size: "8px",
+                                                font_family: theme.font.body,
+                                                font_weight: "normal",
+                                                "Coming soon"
+                                            }
                                         }
                                     }
-                                }
-                                HazardStripeContainerContent {
-                                    cmp::effect::RenderOnVisible {
-                                        ProblemCard {
-                                            label: rsx!("Unbanked"),
-                                            value: rsx!(
-                                                cmp::Counter {
-                                                    from: 0.0,
-                                                    to: 4_000_000.0,
-                                                    duration: time::Duration::from_millis(9000)
-                                                }
-                                            )
-                                        }
+                                    Link {
+                                        all: "unset",
+                                        to: "/learn_more",
+                                        cmp::Button { { "learn more" } }
                                     }
-                                }
-                            }
-                        }
-                    }
-                    div {
-                        display: "flex",
-                        flex_direction: "row",
-                        justify_content: "end",
-                        align_items: "start",
-                        min_width: "100%",
-                        max_width: "100%",
-                        padding: "32px",
-                        cmp::glyph::Glyph {
-                            top_left: rsx!(
-                                cmp::glyph::TopLeftAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            top_right: rsx!(
-                                cmp::glyph::TopRightAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            bottom_left: rsx!(
-                                cmp::glyph::BottomLeftAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            bottom_right: rsx!(
-                                cmp::glyph::BottomRightAngle {
-                                    border_width: "2px",
-                                    border_style: "solid",
-                                    border_color: format!("{}", theme.color.foreground),
-                                    border_radius: "2px",
-                                    border_length: "8px"
-                                }
-                            ),
-                            cmp::glyph::Content {
-                                padding: "16px",
-                                cmp::typography::P {
-                                    max_width: "256px",
-                                    text_align: "justify",
-                                    "We were promised"
-                                }
+                                ),
+                                call_to_action_image: rsx!(
+                                    cmp::Shape {
+                                        w: "200px",
+                                        h: "auto",
+                                        color: theme.color.background.to_owned(),
+                                        model: cmp::ShapeModel::FourLobedRoundedSquare
+                                    }
+                                ),
+                                highlights: vec![
+                                    rsx!("Transparency"),
+                                    rsx!("Resilience"),
+                                    rsx!("100% Uptime"),
+                                    rsx!("Gassless")
+                                ]
                             }
                         }
                     }
                 }
             }
-
-
-
-            // team page
-            cmp::PageItem {
-                h1 {
-                    "Meet the team!"
+            div {
+                flex: "1"
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "center",
+                align_items: "start",
+                min_width: "100%",
+                max_width: "100%",
+                div {
+                    class: "soft_flicker",
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "center",
+                    align_items: "center",
+                    font_size: "32px",
+                    font_family: format!("{}", theme.font.body),
+                    font_weight: "normal",
+                    color: format!("{}", theme.color.foreground),
+                    "↡"
                 }
+            }
+            div {
+                flex: "1"
+            }
+        }
+    )
+}
+
+#[component]
+fn SummarySection() -> Element {
+    let theme: theme::Theme = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "start",
+            min_width: "100%",
+            max_width: "100%",
+            gap: "32px",
+            cmp::Fieldset {
+            
+                label: rsx!("What?"),
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "start",
+                    min_width: "300px",
+                    max_width: "300px",
+                    cmp::typography::P {
+                        "A Layer 1.5 built on Polkadot that abstracts complexity without sacrificing sovereignty. We provide a unified execution and coordination layer that lets builders ship faster, users interact seamlessly, and systems scale horizontally—while remaining natively interoperable with the Polkadot ecosystem."
+                    }
+                }
+            }
+            cmp::Fieldset {
+                label: rsx!("Why?"),
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "start",
+                    min_width: "300px",
+                    max_width: "300px",
+                    cmp::typography::P {
+                        "You cannot challenge the status quo while depending on it. Real change requires infrastructure that is transparent by default, resilient by design, and impossible to silently control. We build for a future where systems serve users—not the other way around."
+                    }
+                }
+            }
+            cmp::Fieldset {
+                label: rsx!("Where?"),
+                div {
+                    display: "flex",
+                    flex_direction: "column",
+                    justify_content: "start",
+                    align_items: "start",
+                    min_width: "300px",
+                    max_width: "300px",
+                    cmp::typography::P {
+                        "On-chain, between chains, and beyond them. We operate where systems meet—turning fragmentation into coherence."
+                    }
+                }
+            }
+        }
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "start",
+            min_width: "100%",
+            max_width: "100%",
+            h4 {
+                display: "flex",
+                font_family: format!("{}", theme.font.display),
+                font_weight: "normal",
+                color: format!("{}", theme.color.foreground),
+                "jjj"
+            }
+        }
+        // comment section on what it is
+    )
+}
+
+#[component]
+fn ProblemSection() -> Element {
+    let theme: theme::Theme = use_context();
+
+    rsx!(
+        div {
+            display: "flex",
+            flex_direction: "column",
+            justify_content: "start",
+            align_items: "start",
+            min_width: "100%",
+            max_width: "100%",
+            padding_top: "64px",
+            padding_bottom: "64px",
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "start",
+                align_items: "start",
+                min_width: "100%",
+                max_width: "100%",
+                padding: "32px",
+                cmp::glyph::Glyph {
+                    top_left: rsx!(
+                        cmp::glyph::TopLeftAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    top_right: rsx!(
+                        cmp::glyph::TopRightAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    bottom_left: rsx!(
+                        cmp::glyph::BottomLeftAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    bottom_right: rsx!(
+                        cmp::glyph::BottomRightAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    cmp::glyph::Content {
+                        padding: "16px",
+                        cmp::typography::P {
+                            max_width: "256px",
+                            text_align: "justify",
+                            "We were promised"
+                        }
+                    }
+                }
+            }
+            HazardStripeContainer {
                 div {
                     display: "flex",
                     flex_direction: "row",
@@ -525,73 +356,263 @@ pub fn Home() -> Element {
                     align_items: "start",
                     min_width: "100%",
                     max_width: "100%",
-                    cmp::Fieldset {
-                        label: rsx!("Core Contributors"),
-                        cmp::Fieldset {
-                            label: rsx!("Council"),
-                            div {
-                                display: "flex",
-                                flex_direction: "row",
-                                flex_wrap: "wrap",
-                                justify_content: "center",
-                                align_items: "start",
-                                min_width: "100%",
-                                max_width: "100%",
-                                gap: "32px",
-                                CouncilMemberRoleCard {
-                                    name: rsx!("PascalCase"),
-                                    role: rsx!("Lead Engineer"),
-                                    image: rsx!(
-                                        cmp::Shape {
-                                            w: "64px",
-                                            h: "64px",
-                                            model: cmp::ShapeModel::ConcentricCircleLayers,
-                                            color: theme.color.foreground.to_owned()
-                                        }
-                                    )
-                                }
-                                CouncilMemberRoleCard {
-                                    name: rsx!("Jza"),
-                                    role: rsx!("Product Manager"),
-                                    image: rsx!(
-                                        cmp::Shape {
-                                            w: "64px",
-                                            h: "64px",
-                                            model: cmp::ShapeModel::ConcentricCircleLayers,
-                                            color: theme.color.foreground.to_owned()
-                                        }
-                                    )
-                                }
-                                CouncilMemberRoleCard {
-                                    name: rsx!("Frosty"),
-                                    role: rsx!("Project Manager"),
-                                    image: rsx!(
-                                        cmp::Shape {
-                                            w: "64px",
-                                            h: "64px",
-                                            model: cmp::ShapeModel::ConcentricCircleLayers,
-                                            color: theme.color.foreground.to_owned()
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        flex_wrap: "wrap",
+                        flex: "1",
+                        justify_content: "center",
+                        align_items: "center",
+                        gap: "8px",
+                        HazardStripeContainerContent {
+                            cmp::effect::RenderOnVisible {
+                                ProblemCard {
+                                    label: rsx!("Unbanked"),
+                                    value: rsx!(
+                                        cmp::Counter {
+                                            from: 0.0,
+                                            to: 4_000_000.0,
+                                            duration: time::Duration::from_millis(9000)
                                         }
                                     )
                                 }
                             }
                         }
-                        div {
-                            display: "flex",
-                            padding: "32px",
-                            CoreContributorRoleCard {
-                                name: rsx!("Autismo"),
-                                role: rsx!("Engineer"),
-                                image: rsx!(
-                                    cmp::Shape {
-                                        w: "64px",
-                                        h: "64px",
-                                        model: cmp::ShapeModel::ConcentricCircleLayers,
-                                        color: theme.color.foreground.to_owned()
-                                    }
-                                )
+                        HazardStripeContainerContent {
+                            cmp::effect::RenderOnVisible {
+                                ProblemCard {
+                                    label: rsx!("Unbanked"),
+                                    value: rsx!(
+                                        cmp::Counter {
+                                            from: 0.0,
+                                            to: 4_000_000.0,
+                                            duration: time::Duration::from_millis(9000)
+                                        }
+                                    )
+                                }
                             }
                         }
+                        HazardStripeContainerContent {
+                            cmp::effect::RenderOnVisible {
+                                ProblemCard {
+                                    label: rsx!("Unbanked"),
+                                    value: rsx!(
+                                        cmp::Counter {
+                                            from: 0.0,
+                                            to: 4_000_000.0,
+                                            duration: time::Duration::from_millis(9000)
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    div {
+                        min_width: "32px"
+                    }
+                    HazardStripeContainerContent {
+                        cmp::Shape {
+                            w: "256px",
+                            h: "256px",
+                            model: cmp::ShapeModel::GeometricStarburst,
+                            color: theme.color.foreground.to_owned()
+                        }
+                    }
+                    div {
+                        min_width: "32px"
+                    }
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        flex_wrap: "wrap",
+                        flex: "1",
+                        justify_content: "center",
+                        align_items: "center",
+                        gap: "8px",
+                        HazardStripeContainerContent {
+                            cmp::effect::RenderOnVisible {
+                                ProblemCard {
+                                    label: rsx!("Unbanked"),
+                                    value: rsx!(
+                                        cmp::Counter {
+                                            from: 0.0,
+                                            to: 4_000_000.0,
+                                            duration: time::Duration::from_millis(9000)
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                        HazardStripeContainerContent {
+                            cmp::effect::RenderOnVisible {
+                                ProblemCard {
+                                    label: rsx!("Unbanked"),
+                                    value: rsx!(
+                                        cmp::Counter {
+                                            from: 0.0,
+                                            to: 4_000_000.0,
+                                            duration: time::Duration::from_millis(9000)
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                        HazardStripeContainerContent {
+                            cmp::effect::RenderOnVisible {
+                                ProblemCard {
+                                    label: rsx!("Unbanked"),
+                                    value: rsx!(
+                                        cmp::Counter {
+                                            from: 0.0,
+                                            to: 4_000_000.0,
+                                            duration: time::Duration::from_millis(9000)
+                                        }
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            div {
+                display: "flex",
+                flex_direction: "row",
+                justify_content: "end",
+                align_items: "start",
+                min_width: "100%",
+                max_width: "100%",
+                padding: "32px",
+                cmp::glyph::Glyph {
+                    top_left: rsx!(
+                        cmp::glyph::TopLeftAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    top_right: rsx!(
+                        cmp::glyph::TopRightAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    bottom_left: rsx!(
+                        cmp::glyph::BottomLeftAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    bottom_right: rsx!(
+                        cmp::glyph::BottomRightAngle {
+                            border_width: "2px",
+                            border_style: "solid",
+                            border_color: format!("{}", theme.color.foreground),
+                            border_radius: "2px",
+                            border_length: "8px"
+                        }
+                    ),
+                    cmp::glyph::Content {
+                        padding: "16px",
+                        cmp::typography::P {
+                            max_width: "256px",
+                            text_align: "justify",
+                            "We were promised"
+                        }
+                    }
+                }
+            }
+        }
+    )
+}
+
+#[component]
+fn TeamSection() -> Element {
+    let theme: theme::Theme = use_context();
+    
+    rsx!(
+        h1 {
+            "Meet the team!"
+        }
+        div {
+            display: "flex",
+            flex_direction: "row",
+            justify_content: "center",
+            align_items: "start",
+            min_width: "100%",
+            max_width: "100%",
+            cmp::Fieldset {
+                label: rsx!("Core Contributors"),
+                cmp::Fieldset {
+                    label: rsx!("Council"),
+                    div {
+                        display: "flex",
+                        flex_direction: "row",
+                        flex_wrap: "wrap",
+                        justify_content: "center",
+                        align_items: "start",
+                        min_width: "100%",
+                        max_width: "100%",
+                        gap: "32px",
+                        CouncilMemberRoleCard {
+                            name: rsx!("PascalCase"),
+                            role: rsx!("Lead Engineer"),
+                            image: rsx!(
+                                cmp::Shape {
+                                    w: "64px",
+                                    h: "64px",
+                                    model: cmp::ShapeModel::ConcentricCircleLayers,
+                                    color: theme.color.foreground.to_owned()
+                                }
+                            )
+                        }
+                        CouncilMemberRoleCard {
+                            name: rsx!("Jza"),
+                            role: rsx!("Product Manager"),
+                            image: rsx!(
+                                cmp::Shape {
+                                    w: "64px",
+                                    h: "64px",
+                                    model: cmp::ShapeModel::ConcentricCircleLayers,
+                                    color: theme.color.foreground.to_owned()
+                                }
+                            )
+                        }
+                        CouncilMemberRoleCard {
+                            name: rsx!("Frosty"),
+                            role: rsx!("Project Manager"),
+                            image: rsx!(
+                                cmp::Shape {
+                                    w: "64px",
+                                    h: "64px",
+                                    model: cmp::ShapeModel::ConcentricCircleLayers,
+                                    color: theme.color.foreground.to_owned()
+                                }
+                            )
+                        }
+                    }
+                }
+                div {
+                    display: "flex",
+                    padding: "32px",
+                    CoreContributorRoleCard {
+                        name: rsx!("Autismo"),
+                        role: rsx!("Engineer"),
+                        image: rsx!(
+                            cmp::Shape {
+                                w: "64px",
+                                h: "64px",
+                                model: cmp::ShapeModel::ConcentricCircleLayers,
+                                color: theme.color.foreground.to_owned()
+                            }
+                        )
                     }
                 }
             }

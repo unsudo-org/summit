@@ -32,12 +32,15 @@ pub fn Build() -> Element {
                         }
                         Link {
                             all: "unset",
+                            to: "/tokenomics",
+                            NavbarGotoButton { "Tokenomics" }
+                        }
+                        Link {
+                            all: "unset",
                             to: "/",
                             NavbarGotoButton { "Learn More" }
                         }
-                        
                     }
-                    
                 }
             )
         }
