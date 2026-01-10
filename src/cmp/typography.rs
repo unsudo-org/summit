@@ -49,6 +49,7 @@ pub fn P(
             font_family: format!("{}", "br cobane"),
             font_weight: "normal",
             color: format!("{}", theme.color.foreground),
+            line_height: "1.5",
             ..more,
             { children }
         }

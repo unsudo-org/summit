@@ -398,11 +398,63 @@ pub fn RightSegment(
 ) -> Element {
     rsx!(
         div {
-            border_right_width: format!("{}", border_width),
-            border_right_style: format!("{}", border_style),
-            border_right_color: format!("{}", border_color),
-            min_height: format!("{}", border_length),
-            max_height: format!("{}", border_length)
+            border_right_width: border_width.to_owned(),
+            border_right_style: border_style.to_owned(),
+            border_right_color: border_color.to_owned(),
+            min_height: border_length.to_owned(),
+            max_height: border_length.to_owned()
+        }
+    )
+}
+
+#[component]
+pub fn Angled(
+    children: Option<Element>
+) -> Element {
+    let theme: theme::Theme = use_context();
+
+    rsx!(
+        Glyph {
+            top_left: rsx!(
+                TopLeftAngle {
+                    border_width: "2px",
+                    border_style: "solid",
+                    border_color: theme.color.foreground.to_string(),
+                    border_radius: "2px",
+                    border_length: "8px"
+                }
+            ),
+            top_right: rsx!(
+                TopRightAngle {
+                    border_width: "2px",
+                    border_style: "solid",
+                    border_color: theme.color.foreground.to_string(),
+                    border_radius: "2px",
+                    border_length: "8px"
+                }
+            ),
+            bottom_left: rsx!(
+                BottomLeftAngle {
+                    border_width: "2px",
+                    border_style: "solid",
+                    border_color: theme.color.foreground.to_string(),
+                    border_radius: "2px",
+                    border_length: "8px"
+                }
+            ),
+            bottom_right: rsx!(
+                BottomRightAngle {
+                    border_width: "2px",
+                    border_style: "solid",
+                    border_color: theme.color.foreground.to_string(),
+                    border_radius: "2px",
+                    border_length: "8px"
+                }
+            ),
+            Content {
+                padding: "8px",
+                { children }
+            }
         }
     )
 }

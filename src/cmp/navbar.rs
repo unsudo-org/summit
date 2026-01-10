@@ -13,7 +13,10 @@ pub fn Build() -> Element {
                     justify_content: "start",
                     align_items: "center",
                     gap: "32px",
-                    logo::Logo {}
+                    To {
+                        to: "/",
+                        logo::Logo {}
+                    }
                     div {
                         display: "flex",
                         flex_direction: "row",

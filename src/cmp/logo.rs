@@ -23,8 +23,8 @@ pub fn Logo(
                 cmp::typography::Gradient {
                     bg: format!(
                         "linear-gradient(to bottom right, {}, {})",
-                        color_1.unwrap_or(theme.color.foreground.to_string()),
-                        color_2.unwrap_or(theme.color.foreground.to_string())
+                        color_1.unwrap_or(theme.color.success.to_string()),
+                        color_2.unwrap_or(theme.color.highlight.to_string())
                     ),
                     "un"
                 }
