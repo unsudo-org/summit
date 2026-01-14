@@ -1,21 +1,24 @@
 use super::*;
 
-#[component]
-pub fn Fieldset(
-    label: Option<Element>,
-    children: Option<Element>,
+#[derive(Props, Clone, PartialEq)]
+pub struct FieldsetProps {
+    pub label: Option<Element>,
+    pub children: Option<Element>,
     #[props(extends = GlobalAttributes)]
-    more: Vec<Attribute>
-) -> Element {
-    let theme: theme::Theme = use_context();
+    pub more: Vec<Attribute>
+}
 
+#[component]
+pub fn Fieldset(props: FieldsetProps) -> Element {
+    let theme: theme::Theme = use_context();
+    
     rsx! {
         fieldset {
             border_width: "2px",
             border_style: "solid",
             border_color: format!("{}", theme.color.foreground),
             border_radius: "2px",
-            ..more,
+            ..props.more,
             legend {
                 display: "flex",
                 flex_direction: "row",
@@ -28,7 +31,7 @@ pub fn Fieldset(
                 font_size: "8px",
                 color: format!("{}", theme.color.foreground),
                 margin_left: "8px",
-                { label }
+                { props.label }
             },
             div {
                 display: "flex",
@@ -40,7 +43,7 @@ pub fn Fieldset(
                 padding_left: "16px",
                 padding_right: "16px",
                 min_width: "128px",
-                { children }
+                { props.children }
             }
         }
     }

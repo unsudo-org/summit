@@ -3,24 +3,19 @@ use super::*;
 #[repr(u8)]
 #[derive(Clone)]
 #[derive(PartialEq)]
-pub enum PageScrollSnap {
+pub enum ScrollSnap {
     Mandatory,
     Proximity
 }
 
 #[component]
 pub fn Page(
-    #[props(default = None)]
-    scroll_snap: Option<PageScrollSnap>,
-
-    #[props(default = None)]
+    scroll_snap: Option<ScrollSnap>,
     surface: Option<Element>,
-
-    #[props(default = None)]
     children: Option<Element>,
 
     #[props(extends = GlobalAttributes)]
-    attr: Vec<Attribute>
+    more: Vec<Attribute>
 ) -> Element {
     let theme: theme::Theme = use_context();
 
@@ -37,7 +32,7 @@ pub fn Page(
             overflow_y: "hidden",
             background: format!("{}", theme.color.background),
             cursor: format!("url('{}'), auto", theme.cursor.default),
-            ..attr,
+            ..more,
             if let Some(surface) = surface {
                 div {
                     grid_column_start: "1",
@@ -73,8 +68,8 @@ pub fn Page(
                 overflow_y: "auto",
                 scroll_behavior: "smooth",
                 scroll_snap_type: match scroll_snap {
-                    Some(PageScrollSnap::Mandatory) => "y mandatory",
-                    Some(PageScrollSnap::Proximity) => "y proximity",
+                    Some(ScrollSnap::Mandatory) => "y mandatory",
+                    Some(ScrollSnap::Proximity) => "y proximity",
                     None => "none"
                 },
                 { children }
@@ -84,8 +79,7 @@ pub fn Page(
 }
 
 #[component]
-pub fn PageItem(
-    #[props(default = None)]
+pub fn Item(
     children: Option<Element>,
 
     #[props(extends = GlobalAttributes)]

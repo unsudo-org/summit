@@ -5,21 +5,21 @@ pub fn Team() -> Element {
     let theme: theme::Theme = use_context();
 
     rsx!(
-        cmp::Page {
+        component::page::Page {
             div {
                 display: "flex",
                 flex_direction: "column",
                 justify_content: "start",
                 align_items: "start",
-                cmp::navbar::Build {}
+                component::navbar::Common {}
                 div {
                     display: "flex",
                     flex_direction: "column",
                     justify_content: "start",
                     align_items: "start",
-                    cmp::Fieldset {
+                    component::Fieldset {
                         label: rsx!("Team"),
-                        cmp::typography::P { "" }
+                        component::typography::P { "" }
                         div {
                             display: "flex",
                             flex_direction: "column",
@@ -30,10 +30,10 @@ pub fn Team() -> Element {
                             name: rsx!("PascalCase"),
                             role: rsx!("Head Engineer"),
                             image: rsx!(
-                                cmp::Shape {
+                                component::Shape {
                                     w: "64px",
                                     h: "64px",
-                                    model: cmp::ShapeModel::ConcentricCircleLayers,
+                                    model: component::ShapeModel::ConcentricCircleLayers,
                                     color: theme.color.foreground.to_owned()
                                 }
                             )
@@ -42,10 +42,10 @@ pub fn Team() -> Element {
                             name: rsx!("PascalCase"),
                             role: rsx!("Head Engineer"),
                             image: rsx!(
-                                cmp::Shape {
+                                component::Shape {
                                     w: "64px",
                                     h: "64px",
-                                    model: cmp::ShapeModel::ConcentricCircleLayers,
+                                    model: component::ShapeModel::ConcentricCircleLayers,
                                     color: theme.color.foreground.to_owned()
                                 }
                             )
@@ -54,10 +54,10 @@ pub fn Team() -> Element {
                             name: rsx!("PascalCase"),
                             role: rsx!("Head Engineer"),
                             image: rsx!(
-                                cmp::Shape {
+                                component::Shape {
                                     w: "64px",
                                     h: "64px",
-                                    model: cmp::ShapeModel::ConcentricCircleLayers,
+                                    model: component::ShapeModel::ConcentricCircleLayers,
                                     color: theme.color.foreground.to_owned()
                                 }
                             )

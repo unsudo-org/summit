@@ -46,10 +46,10 @@ pub fn P(
 
     rsx!(
         p {
-            font_family: format!("{}", "br cobane"),
+            font_family: format!("{}", theme.font.regular),
             font_weight: "normal",
             color: format!("{}", theme.color.foreground),
-            line_height: "1.5",
+            line_height: "1.25",
             ..more,
             { children }
         }

@@ -5,17 +5,17 @@ use super::*;
 pub mod glyph;
 pub mod navbar;
 pub mod logo;
-pub mod link;
+pub mod icon;
+pub mod page;
+pub mod footer;
 
 modwire::expose!(
     pub button
-    pub icon
     pub counter
     pub grid
     pub fieldset
     pub fill
     pub hazard_stripe
-    pub page
     pub shape
 );
 

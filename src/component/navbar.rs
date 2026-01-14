@@ -1,7 +1,7 @@
 use super::*;
 
 #[component]
-pub fn Build() -> Element {
+pub fn Common() -> Element {
     let theme: theme::Theme = use_context();
 
     rsx!(
@@ -25,23 +25,8 @@ pub fn Build() -> Element {
                         gap: "16px",
                         Link {
                             all: "unset",
-                            to: "/vision",
-                            NavbarGotoButton { "Vision" }
-                        }
-                        Link {
-                            all: "unset",
-                            to: "/team",
-                            NavbarGotoButton { "Team" }
-                        }
-                        Link {
-                            all: "unset",
-                            to: "/tokenomics",
-                            NavbarGotoButton { "Tokenomics" }
-                        }
-                        Link {
-                            all: "unset",
-                            to: "/",
-                            NavbarGotoButton { "Learn More" }
+                            to: "https://github.com/unsudo-org/doc/blob/main/doc/whitepaper.md",
+                            NavbarGotoButton { "Whitepaper" }
                         }
                     }
                 }

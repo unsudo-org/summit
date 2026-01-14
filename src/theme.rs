@@ -19,6 +19,7 @@ pub struct Color {
 
 #[derive(Clone)]
 pub struct Font {
+    pub regular: &'static str,
     pub body: &'static str,
     pub display: &'static str,
     pub monospace: &'static str
