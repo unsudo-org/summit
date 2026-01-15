@@ -33,8 +33,8 @@ pub fn Home() -> Element {
                             gap: "8px",
                             padding_bottom: "32px",
                             for (asset, to) in vec![
-                                (asset!("asset/icon/social/discord.svg"), "/"),
-                                (asset!("asset/icon/social/github.svg"), "/"),
+                                (asset!("asset/icon/social/discord.svg"), "https://discord.gg/5yRwGEpUJY"),
+                                (asset!("asset/icon/social/github.svg"), "https://github.com/settings/organizations"),
                                 (asset!("asset/icon/social/telegram.svg"), "/")
                             ] {
                                 component::To {
@@ -147,7 +147,7 @@ pub fn Home() -> Element {
                             span { " " }
                             span { "Polkadot JAM is a meaningful step forward, but its impact depends on usability and real-world adoption." }
                             span { " " }
-                            span { "Unsudo closes this gap by turning JAM’s technical potential into practical, developer-friendly foundations—so builders can move from experimentation to production with confidence." }
+                            span { "Unsudo closes this gap by turning JAM’s technical potential into practical, developer-friendly foundations, so builders can move from experimentation to production with confidence." }
                         )
                     ])
                 ]
@@ -212,7 +212,7 @@ pub fn Home() -> Element {
                 label: rsx!("Sovereignty Drain"),
                 summary: rsx!("Reliance on others invites control and coercion."),
                 bullet_points: [
-                    rsx!("Over 90% of mid- and large organizations report that each hour of downtime costs $300,000, pressuring operators to comply with external demands."),
+                    rsx!("Over 90% of mid and large organizations report that each hour of downtime costs $300,000, pressuring operators to comply with external demands."),
                     rsx!("63–70% of outages involve external providers."),
                     rsx!("Even with 99.9% uptime, servers can be offline 9 hours per year, creating windows for intervention."),
                     rsx!("40% of servers experience unplanned downtime annually."),
@@ -226,7 +226,7 @@ pub fn Home() -> Element {
                         rsx!(
                             span { "Systems that depend on external services or infrastructure are exposed to censorship and coercion." }
                             span { " " }
-                            span { "Cloud providers, network operators, and SaaS platforms can comply with legal orders, government requests, or corporate pressure — often without transparency." }
+                            span { "Cloud providers, network operators, and SaaS platforms can comply with legal orders, government requests, or corporate pressure, often without transparency." }
                             span { " " }
                             span { "Users and developers have no recourse when external dependencies fail or act under coercion." }
                             span { " " }
