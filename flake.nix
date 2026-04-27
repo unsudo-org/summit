@@ -7,9 +7,21 @@
 	} {
 		systems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-		perSystem = { pkgs, ... }: {
-			packages.default = pkgs.stdenv.mkDerivation {
-				pname = "default";
+		perSystem = { pkgs, lib, ... }: 
+		let
+			build_inputs = [
+				pkgs.openssl
+				pkgs.glib
+				pkgs.gtk3
+				pkgs.libsoup_3
+				pkgs.webkitgtk_4_1
+				pkgs.xdotool
+				pkgs.wayland
+				pkgs.fmt
+			];
+		in {
+			packages.summit = pkgs.stdenv.mkDerivation {
+				pname = "summit";
 				version = "0.1.0";
 				src = ./.;
 				
@@ -19,24 +31,20 @@
 					pkgs.rustc
 					pkgs.dioxus-cli
 					pkgs.rustPlatform.cargoSetupHook
+					pkgs.wasm-bindgen-cli_0_2_106
+					pkgs.lld
+					pkgs.binaryen
 				];
 				
 				cargoDeps = pkgs.rustPlatform.importCargoLock {
 					lockFile = ./Cargo.lock;
+					outputHashes."kore-0.1.0" = "sha256-s+w81rZPnoXxjbaSma6MZ5JKvr1dj3WNr1JIjF9e20g=";
 				};
 				
-				buildInputs = [
-					pkgs.openssl
-					pkgs.glib
-					pkgs.gtk3
-					pkgs.libsoup_3
-					pkgs.webkitgtk_4_1
-					pkgs.xdotool
-					pkgs.wayland
-					pkgs.fmt
-				];
+				buildInputs = build_inputs;
 				
 				buildPhase = ''
+					export HOME=$TMPDIR
 					dx build \
 						--release \
 						--package summit \
@@ -45,8 +53,8 @@
 				'';
 				
 				installPhase = ''
-					mkdir -p $out/bin
-					cp -r target/dx/summit/release/linux/app/summit $out/bin/summit
+					mkdir -p $out/ 
+					cp -r target/dx/summit/release/web/. $out/
 				'';
 			};
 			
@@ -57,21 +65,15 @@
 					pkgs.clippy
 					pkgs.cargo
 					pkgs.rustc
-					pkgs.rust-rust-analyzer
+					pkgs.rust-analyzer
 					pkgs.pkg-config
 					pkgs.dioxus-cli
+					pkgs.wasm-bindgen-cli_0_2_106
+					pkgs.lld
+					pkgs.binaryen
 				];
 				
-				buildInputs = [
-					pkgs.openssl
-					pkgs.glib
-					pkgs.gtk3
-					pkgs.libsoup_3
-					pkgs.webkitgtk_4_1
-					pkgs.xdotool
-					pkgs.wayland
-					pkgs.fmt
-				];
+				buildInputs = build_inputs;
 				
 				shellHook = ''
 					export PATH="$HOME/.cargo/bin:$PATH"

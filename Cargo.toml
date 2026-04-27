@@ -6,7 +6,7 @@ publish = false
 license = "CC BY-NC-SA 4.0"
 
 [dependencies.dioxus]
-version = "0.6.0"
+version = "0.7.0"
 features = ["router", "fullstack"]
 
 [dependencies.modwire]
