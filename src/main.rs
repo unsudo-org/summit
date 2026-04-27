@@ -1,3 +1,4 @@
+use dioxus::html::g::font_weight;
 use dioxus::prelude::*;
 use std::time;
 use std::sync;
